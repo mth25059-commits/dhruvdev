@@ -39,28 +39,43 @@ nav.sc{border-color:var(--border)}
 /* ── HERO ── */
 .hero{min-height:100vh;padding:130px 52px 80px;display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
 .hero-left{position:relative;z-index:1}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:36px;opacity:0;animation:up .8s ease .2s forwards}
+
+/* Hero text animations - staggered & smooth */
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:36px;opacity:0;animation:heroSlideUp .9s cubic-bezier(0.16,1,0.3,1) .15s forwards}
 .hero-tag::before{content:'';width:24px;height:1px;background:var(--accent)}
-.hero-name{font-family:var(--display);font-size:clamp(48px,6.5vw,92px);line-height:1.0;color:var(--ink);margin-bottom:28px;opacity:0;animation:up .9s ease .35s forwards}
-.hero-name em{font-style:italic;color:var(--accent)}
-.hero-desc{font-size:15px;line-height:1.75;color:var(--muted);max-width:420px;margin-bottom:44px;opacity:0;animation:up .9s ease .5s forwards;font-weight:400}
-.hero-btns{display:flex;gap:14px;opacity:0;animation:up .9s ease .65s forwards;flex-wrap:wrap}
-.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:13px 26px;text-decoration:none;border:1.5px solid var(--ink);transition:all .25s;cursor:none}
-.btn-p:hover{background:var(--accent);border-color:var(--accent)}
-.btn-s{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:13px 26px;text-decoration:none;border:1.5px solid var(--border);transition:all .25s;cursor:none}
-.btn-s:hover{border-color:var(--ink)}
-.avail{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#16a34a;background:#f0fdf4;border:1px solid #bbf7d0;padding:8px 14px;border-radius:2px;margin-bottom:28px;opacity:0;animation:up .8s ease .1s forwards}
+
+.hero-name{font-family:var(--display);font-size:clamp(48px,6.5vw,92px);line-height:1.0;color:var(--ink);margin-bottom:28px;opacity:0;animation:heroSlideUp .9s cubic-bezier(0.16,1,0.3,1) .3s forwards}
+.hero-name em{font-style:italic;color:var(--accent);position:relative}
+.hero-name em::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);animation:lineGrow 1.2s cubic-bezier(0.16,1,0.3,1) 1.2s forwards}
+
+.hero-desc{font-size:15px;line-height:1.75;color:var(--muted);max-width:420px;margin-bottom:44px;opacity:0;animation:heroSlideUp .9s cubic-bezier(0.16,1,0.3,1) .45s forwards;font-weight:400}
+.hero-btns{display:flex;gap:14px;opacity:0;animation:heroSlideUp .9s cubic-bezier(0.16,1,0.3,1) .6s forwards;flex-wrap:wrap}
+
+.avail{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#16a34a;background:#f0fdf4;border:1px solid #bbf7d0;padding:8px 14px;border-radius:2px;margin-bottom:28px;opacity:0;animation:heroSlideUp .9s cubic-bezier(0.16,1,0.3,1) .05s forwards}
 .avail-dot{width:6px;height:6px;background:#16a34a;border-radius:50%;animation:blink 2s infinite}
 
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:13px 26px;text-decoration:none;border:1.5px solid var(--ink);transition:all .3s cubic-bezier(0.16,1,0.3,1);cursor:none;position:relative;overflow:hidden}
+.btn-p::before{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(0.16,1,0.3,1)}
+.btn-p:hover::before{transform:scaleX(1)}
+.btn-p:hover{border-color:var(--accent)}
+.btn-p span{position:relative;z-index:1}
+
+.btn-s{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:13px 26px;text-decoration:none;border:1.5px solid var(--border);transition:all .3s cubic-bezier(0.16,1,0.3,1);cursor:none}
+.btn-s:hover{border-color:var(--ink);transform:translateX(3px)}
+
 /* ── 3D GLOBE ── */
-.hero-right{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;opacity:0;animation:fadein 1.2s ease .7s forwards}
+.hero-right{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;opacity:0;animation:heroFadeScale 1.4s cubic-bezier(0.16,1,0.3,1) .5s forwards}
 #globe-wrap{position:relative;width:380px;height:380px}
 #globe-canvas{width:100%;height:100%}
-.globe-label{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--paper);border:1px solid var(--border);padding:5px 10px;border-radius:1px;white-space:nowrap;pointer-events:none}
-.globe-label::before{content:'';position:absolute;width:20px;height:1px;background:var(--accent);top:50%}
-.gl-1{top:20%;right:-80px}.gl-1::before{left:-22px}
-.gl-2{top:55%;right:-90px}.gl-2::before{left:-22px}
-.gl-3{bottom:20%;left:-90px;text-align:right}.gl-3::before{right:-22px;left:auto}
+.globe-label{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--paper);border:1px solid var(--border);padding:5px 10px;border-radius:1px;white-space:nowrap;pointer-events:none;opacity:0;animation:heroSlideUp .7s cubic-bezier(0.16,1,0.3,1) forwards}
+.gl-1{top:20%;right:-80px;animation-delay:.9s}.gl-1::before{content:'';position:absolute;width:20px;height:1px;background:var(--accent);top:50%;left:-22px}
+.gl-2{top:55%;right:-90px;animation-delay:1.1s}.gl-2::before{content:'';position:absolute;width:20px;height:1px;background:var(--accent);top:50%;left:-22px}
+.gl-3{bottom:20%;left:-90px;text-align:right;animation-delay:1.3s}.gl-3::before{content:'';position:absolute;width:20px;height:1px;background:var(--accent);top:50%;right:-22px}
+
+/* Floating particles behind hero */
+.hero-particles{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.hp{position:absolute;border-radius:50%;animation:particleFloat linear infinite}
+@keyframes particleFloat{0%{transform:translateY(0) rotate(0deg);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100vh) rotate(360deg);opacity:0}}
 
 /* ── TICKER ── */
 .ticker-wrap{overflow:hidden;border-bottom:1px solid var(--border);padding:13px 0}
@@ -91,7 +106,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .tags{display:flex;flex-wrap:wrap;gap:7px}
 .tag{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink);background:var(--border);padding:5px 9px;transition:all .2s}
 .sk:hover .tag{background:rgba(26,107,255,.1);color:var(--accent)}
-
 .sk.featured{background:#0f1e3d;border-color:#1e3060}
 .sk.featured:hover{background:#111f42}
 .sk.featured .sk-num{color:rgba(255,255,255,.3)}
@@ -100,7 +114,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .sk.featured .tag{background:rgba(26,107,255,.25);color:#7fb3ff;border:none}
 .sk.featured:hover .tag{background:var(--accent);color:#fff}
 .sk.featured::after{background:var(--accent2)}
-
 .skills-r2{display:grid;grid-template-columns:1fr 1fr}
 .skills-r2 .sk:first-child{border-right:1px solid var(--border)}
 .skills-r2 .sk:last-child{border-right:none}
@@ -117,7 +130,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .proj-thumb.wp{background:linear-gradient(135deg,#1a1a2e,#16213e)}
 .proj-thumb.vps{background:linear-gradient(135deg,#0d1117,#161b22)}
 .proj-thumb.bot{background:linear-gradient(135deg,#f9fafb,#e5e7eb)}
-
 .mini-tg{width:88%;height:90%;background:#17212b;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 8px 32px rgba(0,0,0,.4);font-family:'DM Mono',monospace}
 .mini-tg-top{background:#242f3d;padding:8px 12px;display:flex;align-items:center;gap:8px;flex-shrink:0}
 .mini-tg-av{width:28px;height:28px;border-radius:50%;background:#1a6bff;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
@@ -131,7 +143,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .mini-inp{flex:1;background:#17212b;border:1px solid #2b3d52;color:#7d8590;padding:5px 10px;font-size:9px;border-radius:16px;font-family:inherit}
 .mini-send{width:26px;height:26px;background:#00c896;border:none;border-radius:50%;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
 @keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-
 .mini-wp{width:88%;height:90%;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.35);display:flex;flex-direction:column}
 .mini-wp-nav{background:#1a1a2e;padding:0 14px;height:36px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .mini-wp-logo{color:#fff;font-size:11px;font-weight:800;font-family:'Syne',sans-serif}
@@ -146,7 +157,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .mini-wp-card .ic{font-size:16px;margin-bottom:4px}
 .mini-wp-card .nm{font-size:8px;font-weight:700;color:#1a1a2e;font-family:'Syne',sans-serif}
 .mini-wp-card .tm{font-size:7px;color:#888;font-family:'DM Mono',monospace}
-
 .mini-vps{width:88%;height:90%;background:#0d1117;border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5);display:flex;flex-direction:column;font-family:'DM Mono',monospace}
 .mini-vps-top{background:#161b22;padding:8px 14px;display:flex;align-items:center;gap:6px;flex-shrink:0}
 .mini-vps-dot{width:10px;height:10px;border-radius:50%}
@@ -161,7 +171,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .vl .wn{color:#d29922}
 .vcursor{display:inline-block;width:7px;height:12px;background:#3fb950;animation:cb .8s infinite;vertical-align:middle}
 @keyframes cb{0%,100%{opacity:1}50%{opacity:0}}
-
 .mini-dash{width:92%;height:92%;background:#f9fafb;border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.15);display:flex;flex-direction:column}
 .mini-dash-top{background:#fff;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e5e7eb;flex-shrink:0}
 .mini-dash-logo{font-weight:800;font-size:12px;color:#111;letter-spacing:-.02em;font-family:'Syne',sans-serif}
@@ -178,7 +187,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .mini-bar-w{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
 .mini-bar{width:100%;border-radius:2px 2px 0 0;background:#1a6bff}
 .mini-bar-l{font-size:7px;color:#9ca3af;font-family:'DM Mono',monospace}
-
 .proj-demo-overlay{position:absolute;inset:0;background:rgba(10,10,10,.0);z-index:5;display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px;transition:background .3s;pointer-events:none}
 .proj-card:hover .proj-demo-overlay{background:rgba(10,10,10,.08)}
 .proj-demo-btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);border:none;padding:9px 20px;cursor:none;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:all}
@@ -232,7 +240,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .tg-send-btn{width:40px;height:40px;background:linear-gradient(135deg,#1a6bff,#00c896);border:none;border-radius:50%;color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform .2s;box-shadow:0 2px 8px rgba(26,107,255,.4)}
 .tg-send-btn:hover{transform:scale(1.1)}
 .tg-typing{font-size:11px;color:#7fb3d3;padding:0 18px 8px;font-style:italic;min-height:24px;transition:opacity .3s}
-
 /* WP MODAL */
 .wp-app{background:#fff;height:500px;overflow-y:auto;display:flex;flex-direction:column}
 .wp-topbar{background:#1a1a2e;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;flex-shrink:0;position:sticky;top:0;z-index:2}
@@ -271,7 +278,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .wp-footer{background:#1a1a2e;padding:20px 32px;display:flex;justify-content:space-between;align-items:center}
 .wp-footer-logo{color:#fff;font-size:14px;font-weight:800;font-family:'Syne',sans-serif}
 .wp-footer-text{color:rgba(255,255,255,.35);font-size:10px;font-family:'DM Mono',monospace}
-
 /* VPS MODAL */
 .vps-app{background:#0d1117;height:500px;font-family:'DM Mono',monospace;display:flex;flex-direction:column}
 .vps-topbar{background:#161b22;padding:12px 18px;display:flex;align-items:center;gap:8px;flex-shrink:0;border-bottom:1px solid #21262d}
@@ -295,7 +301,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .vps-quick-cmds{padding:6px 16px 10px;background:#161b22;display:flex;gap:8px;flex-wrap:wrap}
 .vqs{background:#21262d;color:#7d8590;border:1px solid #30363d;padding:4px 10px;font-size:10px;border-radius:4px;cursor:pointer;font-family:'DM Mono',monospace;transition:all .2s;letter-spacing:.03em}
 .vqs:hover{background:#30363d;color:#e6edf3}
-
 /* DASHBOARD MODAL */
 .dash-app{background:#f9fafb;height:500px;display:flex;flex-direction:column;overflow-y:auto}
 .dash-topbar{background:#fff;padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e5e7eb;flex-shrink:0;position:sticky;top:0;z-index:2}
@@ -356,24 +361,268 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .svc-desc{font-size:13.5px;line-height:1.65;color:var(--muted);font-weight:400}
 .svc-price{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--accent);background:#e8f0ff;padding:5px 10px;margin-top:14px;border-radius:1px}
 
-/* ── REVIEWS ── */
-#reviews{background:var(--dark);border-bottom:1px solid #1e1e1e}
-#reviews .sec-label{color:rgba(255,255,255,.35)}
-#reviews .sec-label::before{background:var(--accent2)}
-#reviews .sec-title{color:#fff}
-#reviews .sec-title em{color:rgba(255,255,255,.3)}
-#reviews .sec-head{border-color:#1e1e1e}
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
-.rv{padding:44px 36px;border-right:1px solid #1e1e1e;position:relative}
-.rv:last-child{border-right:none}
-.rv-stars{font-size:14px;margin-bottom:20px;letter-spacing:2px;color:#fbbf24}
-.rv-text{font-size:14px;line-height:1.75;color:rgba(255,255,255,.55);margin-bottom:28px;font-weight:400;font-style:italic}
-.rv-text::before{content:'"';font-family:var(--display);font-size:48px;color:rgba(255,255,255,.1);display:block;line-height:.8;margin-bottom:12px}
-.rv-author{display:flex;align-items:center;gap:14px}
-.rv-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.rv-name{font-family:var(--sans);font-size:14px;font-weight:700;color:#fff}
-.rv-role{font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:2px}
-.rv-country{position:absolute;top:36px;right:32px;font-size:20px}
+/* ══════════════════════════════════════
+   REVIEWS — MASTERCLASS MINIMAL DESIGN
+   Editorial dark, asymmetric, no borders grid
+══════════════════════════════════════ */
+#reviews {
+  background: #0a0a0a;
+  padding: 120px 52px;
+  border-bottom: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle background texture */
+#reviews::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(26,107,255,.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0,200,150,.03) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.rv-sec-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.25);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.rv-sec-label::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--accent2);
+}
+
+.rv-sec-title {
+  font-family: var(--display);
+  font-size: clamp(36px, 4.5vw, 60px);
+  line-height: 1.0;
+  color: #fff;
+}
+.rv-sec-title em {
+  font-style: italic;
+  color: rgba(255,255,255,.2);
+}
+
+.rv-rating-block {
+  text-align: right;
+}
+.rv-big-score {
+  font-family: var(--display);
+  font-size: 64px;
+  line-height: 1;
+  color: #fff;
+  font-style: italic;
+}
+.rv-stars-row {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #fbbf24;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+.rv-reviews-count {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.25);
+}
+
+/* The masterpiece grid — asymmetric editorial */
+.rv-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 0.9fr;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Divider lines — ultra thin, editorial */
+.rv-card {
+  padding: 48px 44px;
+  border-right: 1px solid rgba(255,255,255,.05);
+  position: relative;
+  cursor: default;
+  transition: background .4s ease;
+}
+.rv-card:last-child { border-right: none; }
+.rv-card:hover { background: rgba(255,255,255,.02); }
+
+/* Giant opening quote — purely decorative */
+.rv-card::before {
+  content: '"';
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  font-family: var(--display);
+  font-size: 100px;
+  line-height: 1;
+  color: rgba(255,255,255,.04);
+  font-style: italic;
+  pointer-events: none;
+  transition: color .4s;
+}
+.rv-card:hover::before { color: rgba(26,107,255,.08); }
+
+/* Stars — minimal, top */
+.rv-card-stars {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #fbbf24;
+  margin-bottom: 28px;
+  display: block;
+}
+
+/* The actual review text */
+.rv-card-text {
+  font-family: var(--display);
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.6;
+  color: rgba(255,255,255,.65);
+  margin-bottom: 40px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Highlighted keyword */
+.rv-card-text strong {
+  color: rgba(255,255,255,.9);
+  font-style: normal;
+}
+
+/* Author row — compact, horizontal */
+.rv-author-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.rv-author-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.rv-author-info {}
+.rv-author-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,.85);
+  letter-spacing: -.01em;
+}
+.rv-author-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+}
+.rv-author-role {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.25);
+}
+.rv-flag {
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* Top accent bar on first card */
+.rv-card.featured-rv {
+  position: relative;
+}
+.rv-card.featured-rv::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 44px;
+  right: 44px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2), transparent);
+}
+
+/* Bottom accent — count/platform badge */
+.rv-platform-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.2);
+  margin-top: 20px;
+  padding: 5px 10px;
+  border: 1px solid rgba(255,255,255,.06);
+}
+.rv-platform-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent2);
+}
+
+/* Bottom row — trust indicators */
+.rv-trust-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  margin-top: 72px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255,255,255,.06);
+  position: relative;
+  z-index: 1;
+}
+.rv-trust-item {
+  text-align: center;
+}
+.rv-trust-val {
+  font-family: var(--display);
+  font-size: 32px;
+  color: #fff;
+  font-style: italic;
+  line-height: 1;
+}
+.rv-trust-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.25);
+  margin-top: 6px;
+}
+.rv-trust-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,.06);
+}
 
 /* ── ABOUT ── */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
@@ -388,7 +637,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .about-photo-tag{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(26,107,255,.9);background:rgba(26,107,255,.12);border:1px solid rgba(26,107,255,.2);padding:4px 9px}
 .about-photo::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(26,107,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(26,107,255,.05) 1px,transparent 1px);background-size:28px 28px;z-index:1}
 .about-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,rgba(26,107,255,.06));z-index:1}
-
 .about-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:12px}
 .about-tag::before{content:'';width:24px;height:1px;background:var(--accent)}
 .about-heading{font-family:var(--display);font-size:clamp(30px,3vw,44px);line-height:1.15;margin-bottom:24px}
@@ -401,337 +649,64 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .fact-val{font-family:var(--display);font-size:32px;font-style:italic;color:var(--ink);line-height:1}
 .fact-key{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 
-/* ══════════════════════════════════════════════
-   NEW CONTACT SECTION — yanhladchenko.com style
-   Editorial, fullscreen, dark + light split
-══════════════════════════════════════════════ */
-#contact {
-  padding: 0;
-  border-bottom: none;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
-}
-
-/* LEFT PANEL — dark editorial */
-.contact-left {
-  background: #0a0a0a;
-  padding: 80px 64px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-}
-.contact-left::before {
-  content: '';
-  position: absolute;
-  top: -200px;
-  left: -200px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(26,107,255,.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.contact-left::after {
-  content: '';
-  position: absolute;
-  bottom: -100px;
-  right: -100px;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(0,200,150,.06) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.contact-label-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.3);
-  margin-bottom: 0;
-}
-.contact-label-row::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-  background: var(--accent);
-}
-
-.contact-hero-text {
-  position: relative;
-  z-index: 1;
-}
-.contact-big-word {
-  font-family: var(--display);
-  font-size: clamp(52px, 7vw, 96px);
-  line-height: .95;
-  color: #fff;
-  display: block;
-}
-.contact-big-word.italic {
-  font-style: italic;
-  color: rgba(255,255,255,.25);
-}
-.contact-big-word.accent {
-  color: var(--accent);
-  font-style: italic;
-}
-
-.contact-subtext {
-  font-size: 14px;
-  line-height: 1.75;
-  color: rgba(255,255,255,.4);
-  margin-top: 36px;
-  max-width: 340px;
-  font-weight: 400;
-}
-
-/* Channel links — bottom left */
-.contact-channels {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border-top: 1px solid rgba(255,255,255,.08);
-  margin-top: 40px;
-}
-.contact-channel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  text-decoration: none;
-  color: rgba(255,255,255,.55);
-  transition: color .25s, padding-left .25s;
-  cursor: none;
-  group: true;
-}
-.contact-channel:hover {
-  color: #fff;
-  padding-left: 8px;
-}
-.contact-channel:hover .ch-arrow { opacity: 1; transform: translateX(0); }
-.ch-left { display: flex; align-items: center; gap: 16px; }
-.ch-icon {
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(255,255,255,.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  flex-shrink: 0;
-  transition: border-color .25s, background .25s;
-}
-.contact-channel:hover .ch-icon { border-color: var(--accent); background: rgba(26,107,255,.1); }
-.ch-text { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; }
-.ch-label { font-size: 9px; color: rgba(255,255,255,.25); letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 2px; }
-.ch-value { color: inherit; }
-.ch-arrow {
-  font-family: var(--mono);
-  font-size: 13px;
-  opacity: 0;
-  transform: translateX(-6px);
-  transition: all .25s;
-  color: var(--accent);
-}
-
-/* Availability badge */
-.contact-avail-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: #16a34a;
-  background: rgba(22,163,74,.08);
-  border: 1px solid rgba(22,163,74,.2);
-  padding: 8px 14px;
-  margin-top: 28px;
-  align-self: flex-start;
-}
-.avail-pulse { width: 6px; height: 6px; background: #16a34a; border-radius: 50%; animation: blink 2s infinite; }
-
-/* RIGHT PANEL — light, form */
-.contact-right {
-  background: var(--paper);
-  padding: 80px 64px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-left: 1px solid var(--border);
-}
-
-.contact-form-header {
-  margin-bottom: 44px;
-}
-.contact-form-eyebrow {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.contact-form-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
-.contact-form-title {
-  font-family: var(--display);
-  font-size: clamp(28px, 3vw, 42px);
-  line-height: 1.1;
-  margin-bottom: 10px;
-}
-.contact-form-title em { font-style: italic; color: var(--muted); }
-.contact-form-sub {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.65;
-  font-weight: 400;
-}
-
-/* Form fields */
-.cf-group { margin-bottom: 22px; }
-.cf-label {
-  display: block;
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-.cf-input, .cf-textarea {
-  width: 100%;
-  font-family: var(--sans);
-  font-size: 15px;
-  color: var(--ink);
-  background: transparent;
-  border: none;
-  border-bottom: 1.5px solid var(--border);
-  padding: 10px 0;
-  outline: none;
-  transition: border-color .2s;
-  border-radius: 0;
-  font-weight: 400;
-  resize: none;
-}
-.cf-input:focus, .cf-textarea:focus { border-color: var(--ink); }
-.cf-input::placeholder, .cf-textarea::placeholder { color: rgba(136,132,128,.5); }
-.cf-textarea { min-height: 100px; }
-
-/* Service selector */
-.cf-services {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 8px;
-}
-.cf-svc-btn {
-  padding: 10px 14px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  color: var(--muted);
-  background: transparent;
-  border: 1.5px solid var(--border);
-  cursor: pointer;
-  transition: all .2s;
-  text-align: left;
-}
-.cf-svc-btn:hover, .cf-svc-btn.active {
-  border-color: var(--ink);
-  color: var(--ink);
-  background: rgba(0,0,0,.03);
-}
-.cf-svc-btn.active { border-color: var(--accent); color: var(--accent); }
-
-/* Submit button */
-.cf-submit {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  background: var(--ink);
-  color: var(--paper);
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  padding: 18px 28px;
-  border: none;
-  cursor: pointer;
-  transition: background .25s;
-  margin-top: 32px;
-  position: relative;
-  overflow: hidden;
-}
-.cf-submit:hover { background: var(--accent); }
-.cf-submit-text { position: relative; z-index: 1; }
-.cf-submit-arrow {
-  font-size: 18px;
-  transition: transform .3s;
-  position: relative;
-  z-index: 1;
-}
-.cf-submit:hover .cf-submit-arrow { transform: translateX(4px); }
-.cf-submit.loading { pointer-events: none; background: #333; }
-
-/* Success state */
-.cf-success {
-  display: none;
-  text-align: center;
-  padding: 32px;
-  border: 1px solid var(--accent2);
-  margin-top: 20px;
-  background: rgba(0,200,150,.03);
-}
-.cf-success-icon { font-size: 36px; margin-bottom: 12px; }
-.cf-success-title {
-  font-family: var(--display);
-  font-size: 22px;
-  color: var(--ink);
-  margin-bottom: 8px;
-}
-.cf-success-sub {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .06em;
-  color: var(--accent2);
-  text-transform: uppercase;
-}
-
-/* Sending indicator */
-.cf-sending {
-  display: none;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  margin-top: 12px;
-}
-.cf-sending.show { display: flex; }
-.cf-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: dotpulse 1.2s ease infinite; }
-.cf-dot:nth-child(2) { animation-delay: .2s; }
-.cf-dot:nth-child(3) { animation-delay: .4s; }
-@keyframes dotpulse { 0%,80%,100%{transform:scale(0);opacity:.3} 40%{transform:scale(1);opacity:1} }
+/* ── CONTACT ── */
+#contact{padding:0;border-bottom:none;display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+.contact-left{background:#0a0a0a;padding:80px 64px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.contact-left::before{content:'';position:absolute;top:-200px;left:-200px;width:500px;height:500px;background:radial-gradient(circle,rgba(26,107,255,.08) 0%,transparent 70%);pointer-events:none}
+.contact-left::after{content:'';position:absolute;bottom:-100px;right:-100px;width:300px;height:300px;background:radial-gradient(circle,rgba(0,200,150,.06) 0%,transparent 70%);pointer-events:none}
+.contact-label-row{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.contact-label-row::before{content:'';width:20px;height:1px;background:var(--accent)}
+.contact-hero-text{position:relative;z-index:1}
+.contact-big-word{font-family:var(--display);font-size:clamp(52px,7vw,96px);line-height:.95;color:#fff;display:block}
+.contact-big-word.italic{font-style:italic;color:rgba(255,255,255,.25)}
+.contact-big-word.accent{color:var(--accent);font-style:italic}
+.contact-subtext{font-size:14px;line-height:1.75;color:rgba(255,255,255,.4);margin-top:36px;max-width:340px;font-weight:400}
+.contact-channels{position:relative;z-index:1;display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,.08);margin-top:40px}
+.contact-channel{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06);text-decoration:none;color:rgba(255,255,255,.55);transition:color .25s,padding-left .25s;cursor:none}
+.contact-channel:hover{color:#fff;padding-left:8px}
+.contact-channel:hover .ch-arrow{opacity:1;transform:translateX(0)}
+.ch-left{display:flex;align-items:center;gap:16px}
+.ch-icon{width:36px;height:36px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:border-color .25s,background .25s}
+.contact-channel:hover .ch-icon{border-color:var(--accent);background:rgba(26,107,255,.1)}
+.ch-text{font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+.ch-label{font-size:9px;color:rgba(255,255,255,.25);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px}
+.ch-value{color:inherit}
+.ch-arrow{font-family:var(--mono);font-size:13px;opacity:0;transform:translateX(-6px);transition:all .25s;color:var(--accent)}
+.contact-avail-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#16a34a;background:rgba(22,163,74,.08);border:1px solid rgba(22,163,74,.2);padding:8px 14px;margin-top:28px;align-self:flex-start}
+.avail-pulse{width:6px;height:6px;background:#16a34a;border-radius:50%;animation:blink 2s infinite}
+.contact-right{background:var(--paper);padding:80px 64px;display:flex;flex-direction:column;justify-content:center;border-left:1px solid var(--border)}
+.contact-form-header{margin-bottom:44px}
+.contact-form-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.contact-form-eyebrow::before{content:'';width:20px;height:1px;background:var(--accent)}
+.contact-form-title{font-family:var(--display);font-size:clamp(28px,3vw,42px);line-height:1.1;margin-bottom:10px}
+.contact-form-title em{font-style:italic;color:var(--muted)}
+.contact-form-sub{font-size:14px;color:var(--muted);line-height:1.65;font-weight:400}
+.cf-group{margin-bottom:22px}
+.cf-label{display:block;font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.cf-input,.cf-textarea{width:100%;font-family:var(--sans);font-size:15px;color:var(--ink);background:transparent;border:none;border-bottom:1.5px solid var(--border);padding:10px 0;outline:none;transition:border-color .2s;border-radius:0;font-weight:400;resize:none}
+.cf-input:focus,.cf-textarea:focus{border-color:var(--ink)}
+.cf-input::placeholder,.cf-textarea::placeholder{color:rgba(136,132,128,.5)}
+.cf-textarea{min-height:100px}
+.cf-services{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.cf-svc-btn{padding:10px 14px;font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:transparent;border:1.5px solid var(--border);cursor:pointer;transition:all .2s;text-align:left}
+.cf-svc-btn:hover,.cf-svc-btn.active{border-color:var(--ink);color:var(--ink);background:rgba(0,0,0,.03)}
+.cf-svc-btn.active{border-color:var(--accent);color:var(--accent)}
+.cf-submit{display:flex;align-items:center;justify-content:space-between;width:100%;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:18px 28px;border:none;cursor:pointer;transition:background .25s;margin-top:32px;position:relative;overflow:hidden}
+.cf-submit:hover{background:var(--accent)}
+.cf-submit-text{position:relative;z-index:1}
+.cf-submit-arrow{font-size:18px;transition:transform .3s;position:relative;z-index:1}
+.cf-submit:hover .cf-submit-arrow{transform:translateX(4px)}
+.cf-submit.loading{pointer-events:none;background:#333}
+.cf-success{display:none;text-align:center;padding:32px;border:1px solid var(--accent2);margin-top:20px;background:rgba(0,200,150,.03)}
+.cf-success-icon{font-size:36px;margin-bottom:12px}
+.cf-success-title{font-family:var(--display);font-size:22px;color:var(--ink);margin-bottom:8px}
+.cf-success-sub{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--accent2);text-transform:uppercase}
+.cf-sending{display:none;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:12px}
+.cf-sending.show{display:flex}
+.cf-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:dotpulse 1.2s ease infinite}
+.cf-dot:nth-child(2){animation-delay:.2s}
+.cf-dot:nth-child(3){animation-delay:.4s}
+@keyframes dotpulse{0%,80%,100%{transform:scale(0);opacity:.3}40%{transform:scale(1);opacity:1}}
 
 /* ── FOOTER ── */
 footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
@@ -740,10 +715,14 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
 .foot-link{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;cursor:none}
 .foot-link:hover{color:var(--ink)}
 
-/* ── ANIMS ── */
-@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+/* ── ANIMATIONS ── */
+@keyframes heroSlideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes heroFadeScale{from{opacity:0;transform:scale(.93)}to{opacity:1;transform:scale(1)}}
+@keyframes lineGrow{from{width:0}to{width:100%}}
 @keyframes fadein{from{opacity:0}to{opacity:1}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 
@@ -766,14 +745,19 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
   .proj-card:nth-child(1){border-top:1px solid var(--border)}
   .svc-list{grid-template-columns:1fr}
   .svc{border-right:none!important;border-bottom:1px solid var(--border)!important}
-  .reviews-grid{grid-template-columns:1fr}
-  .rv{border-right:none;border-bottom:1px solid #1e1e1e}
+  #reviews{padding:80px 24px}
+  .rv-grid{grid-template-columns:1fr}
+  .rv-card{border-right:none;border-bottom:1px solid rgba(255,255,255,.05);padding:40px 0}
+  .rv-card:last-child{border-bottom:none}
+  .rv-card.featured-rv::after{left:0;right:0}
+  .rv-trust-row{gap:28px;flex-wrap:wrap}
+  .reviews-header{flex-direction:column;align-items:flex-start;gap:24px}
   .about-grid{grid-template-columns:1fr;gap:40px}
   footer{padding:24px;flex-direction:column;gap:16px;text-align:center}
-  #contact { grid-template-columns: 1fr; min-height: auto; }
-  .contact-left { padding: 60px 28px; }
-  .contact-right { padding: 60px 28px; }
-  .cf-services { grid-template-columns: 1fr; }
+  #contact{grid-template-columns:1fr;min-height:auto}
+  .contact-left{padding:60px 28px}
+  .contact-right{padding:60px 28px}
+  .cf-services{grid-template-columns:1fr}
   .dash-stats-row{grid-template-columns:repeat(2,1fr)}
   .dash-row{grid-template-columns:1fr}
   .wp-class-grid,.wp-trainers-grid{grid-template-columns:1fr 1fr}
@@ -812,13 +796,15 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
 <!-- HERO -->
 <section class="hero" id="home">
   <canvas id="hero-bg-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.4"></canvas>
+  <!-- Floating particles -->
+  <div class="hero-particles" id="hero-particles"></div>
   <div class="hero-left">
     <div class="avail"><span class="avail-dot"></span>Open to Work · Gurugram, India</div>
     <div class="hero-tag">Cloud Developer & AI Builder</div>
     <h1 class="hero-name">Building <em>Smarter</em><br>Infrastructure</h1>
     <p class="hero-desc">I deploy cloud servers, automate workflows with AI, build Telegram bots, and create WordPress sites — fast delivery, real results.</p>
     <div class="hero-btns">
-      <a href="#projects" class="btn-p">See My Work →</a>
+      <a href="#projects" class="btn-p"><span>See My Work →</span></a>
       <a href="#contact" class="btn-s">Let's Talk ↗</a>
     </div>
   </div>
@@ -1053,7 +1039,7 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
         <span class="svc-icon">☁️</span>
         <div class="svc-name">VPS Setup & Management</div>
         <p class="svc-desc">Full VPS setup from scratch — OS install, Nginx, SSL, domain, firewall. Your server ready in 24 hours.</p>
-        <span class="svc-price">Starting ₹2,000</span>
+        <span class="svc-price">Starting ₹4,000</span>
       </div>
     </div>
     <div class="svc reveal" style="transition-delay:.1s">
@@ -1062,7 +1048,7 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
         <span class="svc-icon">🤖</span>
         <div class="svc-name">Telegram Bot Development</div>
         <p class="svc-desc">Custom Telegram bots for your business — order alerts, auto-replies, admin panels, payment integration.</p>
-        <span class="svc-price">Starting ₹3,500</span>
+        <span class="svc-price">Starting ₹5,000</span>
       </div>
     </div>
     <div class="svc reveal" style="transition-delay:.05s">
@@ -1071,7 +1057,7 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
         <span class="svc-icon">🌐</span>
         <div class="svc-name">WordPress Website</div>
         <p class="svc-desc">Complete WordPress site — design, plugins, WooCommerce, speed optimization, and hosting on VPS.</p>
-        <span class="svc-price">Starting ₹5,000</span>
+        <span class="svc-price">Starting ₹15,000</span>
       </div>
     </div>
     <div class="svc reveal" style="transition-delay:.15s">
@@ -1080,45 +1066,106 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
         <span class="svc-icon">⚡</span>
         <div class="svc-name">AI-Powered App Development</div>
         <p class="svc-desc">Fast delivery using AI tools — landing pages, dashboards, tools. Ship in 24-48 hours at fraction of usual cost.</p>
-        <span class="svc-price">Starting ₹4,000</span>
+        <span class="svc-price">Starting ₹10,000</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REVIEWS -->
+<!-- ══════════════════════════════════
+     REVIEWS — MASTERCLASS MINIMAL
+══════════════════════════════════ -->
 <section id="reviews">
-  <div class="sec-head reveal">
-    <div><div class="sec-label">Client Reviews</div><h2 class="sec-title">What They <em>Say</em></h2></div>
-    <div style="font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase">★★★★★ 5.0 avg</div>
+  <div class="reviews-header reveal">
+    <div>
+      <div class="rv-sec-label">Client Reviews</div>
+      <h2 class="rv-sec-title">What They <em>Say</em></h2>
+    </div>
+    <div class="rv-rating-block">
+      <div class="rv-stars-row">★★★★★</div>
+      <div class="rv-big-score">5.0</div>
+      <div class="rv-reviews-count">Avg · 10+ Projects</div>
+    </div>
   </div>
-  <div class="reviews-grid">
-    <div class="rv reveal">
-      <div class="rv-country">🇮🇳</div>
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">Set up our entire VPS in one day — Nginx, SSL, domain, everything working perfectly. Super responsive and knows his stuff inside out.</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:#1a6bff22">🧑‍💼</div>
-        <div><div class="rv-name">Rahul Mehta</div><div class="rv-role">Founder, TechStart Delhi</div></div>
+
+  <div class="rv-grid">
+    <!-- Card 1 -->
+    <div class="rv-card featured-rv reveal">
+      <span class="rv-card-stars">★★★★★</span>
+      <p class="rv-card-text">Set up our entire VPS in <strong>one single day</strong> — Nginx, SSL, domain, everything working perfectly. Super responsive and knows his stuff inside out.</p>
+      <div class="rv-author-row">
+        <div class="rv-author-avatar" style="background:rgba(26,107,255,.1)">🧑‍💼</div>
+        <div class="rv-author-info">
+          <div class="rv-author-name">Rahul Mehta</div>
+          <div class="rv-author-meta">
+            <span class="rv-author-role">Founder, TechStart Delhi</span>
+            <span class="rv-flag">🇮🇳</span>
+          </div>
+        </div>
       </div>
+      <div class="rv-platform-badge"><span class="rv-platform-dot"></span>Verified · VPS Setup</div>
     </div>
-    <div class="rv reveal" style="transition-delay:.1s">
-      <div class="rv-country">🇦🇪</div>
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">Built us a Telegram bot for our store in 2 days. Order alerts, auto replies, admin panel — everything worked exactly as needed. Will hire again.</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:#00c89622">👩‍💻</div>
-        <div><div class="rv-name">Fatima Al-Rashid</div><div class="rv-role">E-commerce Owner, Dubai</div></div>
+
+    <!-- Card 2 -->
+    <div class="rv-card reveal" style="transition-delay:.12s">
+      <span class="rv-card-stars">★★★★★</span>
+      <p class="rv-card-text">Built us a <strong>Telegram bot in 2 days</strong>. Order alerts, auto replies, admin panel — everything worked exactly as needed. Will hire again.</p>
+      <div class="rv-author-row">
+        <div class="rv-author-avatar" style="background:rgba(0,200,150,.1)">👩‍💻</div>
+        <div class="rv-author-info">
+          <div class="rv-author-name">Fatima Al-Rashid</div>
+          <div class="rv-author-meta">
+            <span class="rv-author-role">E-commerce Owner, Dubai</span>
+            <span class="rv-flag">🇦🇪</span>
+          </div>
+        </div>
       </div>
+      <div class="rv-platform-badge"><span class="rv-platform-dot"></span>Verified · Telegram Bot</div>
     </div>
-    <div class="rv reveal" style="transition-delay:.2s">
-      <div class="rv-country">🇺🇸</div>
-      <div class="rv-stars">★★★★★</div>
-      <p class="rv-text">Needed a WordPress site fast. Dhruv delivered in 48 hours — clean design, fast load, mobile perfect. Best freelancer I've worked with.</p>
-      <div class="rv-author">
-        <div class="rv-avatar" style="background:#fbbf2422">🧑‍🎨</div>
-        <div><div class="rv-name">Marcus Johnson</div><div class="rv-role">Fitness Coach, USA</div></div>
+
+    <!-- Card 3 -->
+    <div class="rv-card reveal" style="transition-delay:.24s">
+      <span class="rv-card-stars">★★★★★</span>
+      <p class="rv-card-text">Needed a WordPress site fast. Dhruv delivered in <strong>48 hours</strong> — clean design, fast load, mobile perfect. Best freelancer I've worked with.</p>
+      <div class="rv-author-row">
+        <div class="rv-author-avatar" style="background:rgba(251,191,36,.1)">🧑‍🎨</div>
+        <div class="rv-author-info">
+          <div class="rv-author-name">Marcus Johnson</div>
+          <div class="rv-author-meta">
+            <span class="rv-author-role">Fitness Coach, USA</span>
+            <span class="rv-flag">🇺🇸</span>
+          </div>
+        </div>
       </div>
+      <div class="rv-platform-badge"><span class="rv-platform-dot"></span>Verified · WordPress</div>
+    </div>
+  </div>
+
+  <!-- Trust indicators row -->
+  <div class="rv-trust-row reveal">
+    <div class="rv-trust-item">
+      <div class="rv-trust-val">10+</div>
+      <div class="rv-trust-label">Projects Completed</div>
+    </div>
+    <div class="rv-trust-divider"></div>
+    <div class="rv-trust-item">
+      <div class="rv-trust-val">5.0</div>
+      <div class="rv-trust-label">Average Rating</div>
+    </div>
+    <div class="rv-trust-divider"></div>
+    <div class="rv-trust-item">
+      <div class="rv-trust-val">24h</div>
+      <div class="rv-trust-label">Avg Response</div>
+    </div>
+    <div class="rv-trust-divider"></div>
+    <div class="rv-trust-item">
+      <div class="rv-trust-val">3</div>
+      <div class="rv-trust-label">Countries Served</div>
+    </div>
+    <div class="rv-trust-divider"></div>
+    <div class="rv-trust-item">
+      <div class="rv-trust-val">100%</div>
+      <div class="rv-trust-label">Satisfaction Rate</div>
     </div>
   </div>
 </section>
@@ -1157,81 +1204,47 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
   </div>
 </section>
 
-<!-- ══════════════════════════════════
-     NEW CONTACT SECTION
-══════════════════════════════════ -->
+<!-- CONTACT -->
 <section id="contact">
-
-  <!-- LEFT — Dark editorial panel -->
   <div class="contact-left reveal">
-    <div>
-      <div class="contact-label-row">Get in Touch</div>
-    </div>
-
+    <div><div class="contact-label-row">Get in Touch</div></div>
     <div class="contact-hero-text">
       <span class="contact-big-word">Let's</span>
       <span class="contact-big-word italic">build</span>
       <span class="contact-big-word accent">together.</span>
       <p class="contact-subtext">Have a project idea? Need a VPS configured, a Telegram bot built, or a full site shipped? I respond within 24 hours — usually much faster.</p>
-      <div class="contact-avail-badge">
-        <span class="avail-pulse"></span>
-        Available for new projects
-      </div>
+      <div class="contact-avail-badge"><span class="avail-pulse"></span>Available for new projects</div>
     </div>
-
     <div class="contact-channels">
       <a href="https://www.linkedin.com/in/dhruv-chandrawanshi-31844b3bb/" target="_blank" class="contact-channel">
-        <div class="ch-left">
-          <div class="ch-icon">💼</div>
-          <div class="ch-text">
-            <span class="ch-label">LinkedIn</span>
-            <span class="ch-value">Dhruv Chandrawanshi</span>
-          </div>
-        </div>
+        <div class="ch-left"><div class="ch-icon">💼</div><div class="ch-text"><span class="ch-label">LinkedIn</span><span class="ch-value">Dhruv Chandrawanshi</span></div></div>
         <span class="ch-arrow">→</span>
       </a>
       <a href="https://wa.me/919540693239" target="_blank" class="contact-channel">
-        <div class="ch-left">
-          <div class="ch-icon">💬</div>
-          <div class="ch-text">
-            <span class="ch-label">WhatsApp</span>
-            <span class="ch-value">+91 95406 93239</span>
-          </div>
-        </div>
+        <div class="ch-left"><div class="ch-icon">💬</div><div class="ch-text"><span class="ch-label">WhatsApp</span><span class="ch-value">+91 95406 93239</span></div></div>
         <span class="ch-arrow">→</span>
       </a>
       <a href="mailto:dxruxkumar@gmail.com" class="contact-channel">
-        <div class="ch-left">
-          <div class="ch-icon">📧</div>
-          <div class="ch-text">
-            <span class="ch-label">Email</span>
-            <span class="ch-value">dxruxkumar@gmail.com</span>
-          </div>
-        </div>
+        <div class="ch-left"><div class="ch-icon">📧</div><div class="ch-text"><span class="ch-label">Email</span><span class="ch-value">dxruxkumar@gmail.com</span></div></div>
         <span class="ch-arrow">→</span>
       </a>
     </div>
   </div>
-
-  <!-- RIGHT — Form panel -->
   <div class="contact-right reveal" style="transition-delay:.2s">
     <div class="contact-form-header">
       <div class="contact-form-eyebrow">Send a Message</div>
       <h2 class="contact-form-title">Start a <em>Conversation</em></h2>
       <p class="contact-form-sub">Fill the form — I'll receive it instantly on Telegram and reply to you.</p>
     </div>
-
     <div id="contact-form-wrap">
       <div class="cf-group">
         <label class="cf-label">Your Name *</label>
         <input type="text" class="cf-input" id="cf-name" placeholder="Rahul Sharma">
       </div>
-
       <div class="cf-group">
         <label class="cf-label">Email Address *</label>
         <input type="email" class="cf-input" id="cf-email" placeholder="rahul@company.com">
       </div>
-
       <div class="cf-group">
         <label class="cf-label">What do you need?</label>
         <div class="cf-services" id="cf-services">
@@ -1241,32 +1254,25 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
           <button class="cf-svc-btn" onclick="toggleSvc(this)">⚡ AI App / Tool</button>
         </div>
       </div>
-
       <div class="cf-group">
         <label class="cf-label">Tell me about your project *</label>
         <textarea class="cf-textarea" id="cf-message" placeholder="I need a Telegram bot for my e-commerce store that sends order alerts and lets me check stats..."></textarea>
       </div>
-
       <button class="cf-submit" id="cf-submit" onclick="submitContactForm()">
         <span class="cf-submit-text">Send Message via Telegram</span>
         <span class="cf-submit-arrow">→</span>
       </button>
-
       <div class="cf-sending" id="cf-sending">
-        <div class="cf-dot"></div>
-        <div class="cf-dot"></div>
-        <div class="cf-dot"></div>
+        <div class="cf-dot"></div><div class="cf-dot"></div><div class="cf-dot"></div>
         <span>Sending to Telegram...</span>
       </div>
     </div>
-
     <div class="cf-success" id="cf-success">
       <div class="cf-success-icon">✅</div>
       <div class="cf-success-title">Message Sent!</div>
       <div class="cf-success-sub">I've received it on Telegram · Replying within 24h</div>
     </div>
   </div>
-
 </section>
 
 <footer>
@@ -1302,452 +1308,197 @@ document.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',()=
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-// ── HERO BG ──
+// ── HERO FLOATING PARTICLES ──
+(function(){
+  const container=document.getElementById('hero-particles');
+  const colors=['rgba(26,107,255,', 'rgba(0,200,150,', 'rgba(255,255,255,'];
+  for(let i=0;i<18;i++){
+    const p=document.createElement('div');
+    p.className='hp';
+    const size=Math.random()*4+2;
+    const color=colors[Math.floor(Math.random()*colors.length)];
+    const duration=Math.random()*20+15;
+    const delay=Math.random()*15;
+    const left=Math.random()*100;
+    const opacity=Math.random()*.15+.05;
+    p.style.cssText=`
+      width:${size}px;height:${size}px;
+      left:${left}%;bottom:-20px;
+      background:${color}${opacity});
+      animation-duration:${duration}s;
+      animation-delay:${delay}s;
+    `;
+    container.appendChild(p);
+  }
+})();
+
+// ── HERO BG CANVAS ──
 const bgC=document.getElementById('hero-bg-canvas'),bgCtx=bgC.getContext('2d');
 let pts=[];
 function resizeBg(){bgC.width=bgC.offsetWidth;bgC.height=bgC.offsetHeight;}
 resizeBg();window.addEventListener('resize',resizeBg);
 for(let i=0;i<60;i++)pts.push({x:Math.random()*bgC.width,y:Math.random()*bgC.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*2+.5});
-function drawBg(){bgCtx.clearRect(0,0,bgC.width,bgC.height);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>bgC.width)p.vx*=-1;if(p.y<0||p.y>bgC.height)p.vy*=-1;bgCtx.beginPath();bgCtx.arc(p.x,p.y,p.r,0,Math.PI*2);bgCtx.fillStyle='rgba(26,107,255,.25)';bgCtx.fill();});pts.forEach((a,i)=>pts.slice(i+1).forEach(b=>{const d=Math.hypot(a.x-b.x,a.y-b.y);if(d<100){bgCtx.beginPath();bgCtx.moveTo(a.x,a.y);bgCtx.lineTo(b.x,b.y);bgCtx.strokeStyle=`rgba(26,107,255,${.08*(1-d/100)})`;bgCtx.lineWidth=.5;bgCtx.stroke();}}));requestAnimationFrame(drawBg);}
+function drawBg(){
+  bgCtx.clearRect(0,0,bgC.width,bgC.height);
+  pts.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>bgC.width)p.vx*=-1;
+    if(p.y<0||p.y>bgC.height)p.vy*=-1;
+    bgCtx.beginPath();bgCtx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    bgCtx.fillStyle='rgba(26,107,255,.25)';bgCtx.fill();
+  });
+  pts.forEach((a,i)=>pts.slice(i+1).forEach(b=>{
+    const d=Math.hypot(a.x-b.x,a.y-b.y);
+    if(d<100){
+      bgCtx.beginPath();bgCtx.moveTo(a.x,a.y);bgCtx.lineTo(b.x,b.y);
+      bgCtx.strokeStyle=`rgba(26,107,255,${.08*(1-d/100)})`;bgCtx.lineWidth=.5;bgCtx.stroke();
+    }
+  }));
+  requestAnimationFrame(drawBg);
+}
 drawBg();
 
 // ── GLOBE ──
 const gc=document.getElementById('globe-canvas'),ctx=gc.getContext('2d');
 let W,H,dots=[],rot=0;
 function resizeGlobe(){const wrap=document.getElementById('globe-wrap');W=gc.width=wrap.offsetWidth;H=gc.height=wrap.offsetHeight;buildGlobe();}
-function buildGlobe(){dots=[];const R=Math.min(W,H)*.42;for(let lat=-80;lat<=80;lat+=12){for(let lon=0;lon<360;lon+=12){const phi=(90-lat)*Math.PI/180,theta=lon*Math.PI/180;dots.push({x:R*Math.sin(phi)*Math.cos(theta),y:R*Math.cos(phi),z:R*Math.sin(phi)*Math.sin(theta),type:'dot'});}}const lb=[{lat:20,lon:80,s:20,n:30},{lat:40,lon:10,s:18,n:25},{lat:5,lon:20,s:22,n:28},{lat:40,lon:-100,s:22,n:30},{lat:-15,lon:-55,s:18,n:22},{lat:-25,lon:135,s:14,n:16}];lb.forEach(b=>{for(let i=0;i<b.n;i++){const la=b.lat+(Math.random()-.5)*b.s,lo=b.lon+(Math.random()-.5)*b.s,phi=(90-la)*Math.PI/180,theta=lo*Math.PI/180,R2=Math.min(W,H)*.42;dots.push({x:R2*Math.sin(phi)*Math.cos(theta),y:R2*Math.cos(phi),z:R2*Math.sin(phi)*Math.sin(theta),type:'land'});}});}
+function buildGlobe(){
+  dots=[];
+  const R=Math.min(W,H)*.42;
+  for(let lat=-80;lat<=80;lat+=12){
+    for(let lon=0;lon<360;lon+=12){
+      const phi=(90-lat)*Math.PI/180,theta=lon*Math.PI/180;
+      dots.push({x:R*Math.sin(phi)*Math.cos(theta),y:R*Math.cos(phi),z:R*Math.sin(phi)*Math.sin(theta),type:'dot'});
+    }
+  }
+  const lb=[{lat:20,lon:80,s:20,n:30},{lat:40,lon:10,s:18,n:25},{lat:5,lon:20,s:22,n:28},{lat:40,lon:-100,s:22,n:30},{lat:-15,lon:-55,s:18,n:22},{lat:-25,lon:135,s:14,n:16}];
+  lb.forEach(b=>{
+    for(let i=0;i<b.n;i++){
+      const la=b.lat+(Math.random()-.5)*b.s,lo=b.lon+(Math.random()-.5)*b.s;
+      const phi=(90-la)*Math.PI/180,theta=lo*Math.PI/180,R2=Math.min(W,H)*.42;
+      dots.push({x:R2*Math.sin(phi)*Math.cos(theta),y:R2*Math.cos(phi),z:R2*Math.sin(phi)*Math.sin(theta),type:'land'});
+    }
+  });
+}
 resizeGlobe();window.addEventListener('resize',resizeGlobe);
-function drawGlobe(){ctx.clearRect(0,0,W,H);const cx=W/2,cy=H/2,R=Math.min(W,H)*.42;rot+=.004;const cos=Math.cos(rot),sin=Math.sin(rot);const grad=ctx.createRadialGradient(cx-R*.25,cy-R*.25,0,cx,cy,R);grad.addColorStop(0,'rgba(26,107,255,.06)');grad.addColorStop(.7,'rgba(26,107,255,.02)');grad.addColorStop(1,'rgba(26,107,255,0)');ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.strokeStyle='rgba(26,107,255,.12)';ctx.lineWidth=1;ctx.stroke();const sorted=[...dots].sort((a,b)=>{return(a.x*sin+a.z*cos)-(b.x*sin+b.z*cos);});sorted.forEach(d=>{const rx2=d.x*cos-d.z*sin,rz=d.x*sin+d.z*cos,visible=rz>-R*.1,sx=cx+rx2,sy=cy+d.y,alpha=visible?(0.15+(rz/R)*.55):.03,sz=d.type==='land'?2.2:1.2;ctx.beginPath();ctx.arc(sx,sy,sz,0,Math.PI*2);ctx.fillStyle=d.type==='land'?`rgba(26,107,255,${alpha*.9})`:`rgba(26,107,255,${alpha*.45})`;ctx.fill();});const pulse=(Math.sin(Date.now()*.002)+1)/2;ctx.beginPath();ctx.arc(cx,cy,R*(1+pulse*.04),0,Math.PI*2);ctx.strokeStyle=`rgba(26,107,255,${.08*(1-pulse)})`;ctx.lineWidth=1;ctx.stroke();requestAnimationFrame(drawGlobe);}
+function drawGlobe(){
+  ctx.clearRect(0,0,W,H);
+  const cx=W/2,cy=H/2,R=Math.min(W,H)*.42;
+  rot+=.004;
+  const cos=Math.cos(rot),sin=Math.sin(rot);
+  const grad=ctx.createRadialGradient(cx-R*.25,cy-R*.25,0,cx,cy,R);
+  grad.addColorStop(0,'rgba(26,107,255,.06)');grad.addColorStop(.7,'rgba(26,107,255,.02)');grad.addColorStop(1,'rgba(26,107,255,0)');
+  ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();
+  ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.strokeStyle='rgba(26,107,255,.12)';ctx.lineWidth=1;ctx.stroke();
+  const sorted=[...dots].sort((a,b)=>(a.x*sin+a.z*cos)-(b.x*sin+b.z*cos));
+  sorted.forEach(d=>{
+    const rx2=d.x*cos-d.z*sin,rz=d.x*sin+d.z*cos,visible=rz>-R*.1;
+    const sx=cx+rx2,sy=cy+d.y,alpha=visible?(0.15+(rz/R)*.55):.03,sz=d.type==='land'?2.2:1.2;
+    ctx.beginPath();ctx.arc(sx,sy,sz,0,Math.PI*2);
+    ctx.fillStyle=d.type==='land'?`rgba(26,107,255,${alpha*.9})`:`rgba(26,107,255,${alpha*.45})`;ctx.fill();
+  });
+  const pulse=(Math.sin(Date.now()*.002)+1)/2;
+  ctx.beginPath();ctx.arc(cx,cy,R*(1+pulse*.04),0,Math.PI*2);
+  ctx.strokeStyle=`rgba(26,107,255,${.08*(1-pulse)})`;ctx.lineWidth=1;ctx.stroke();
+  requestAnimationFrame(drawGlobe);
+}
 drawGlobe();
 
-// ══════════════════════════════════════
 // ── SERVICE TOGGLE ──
-// ══════════════════════════════════════
-window.toggleSvc = function(btn) {
-  btn.classList.toggle('active');
-};
+window.toggleSvc=function(btn){btn.classList.toggle('active');};
 
-// ══════════════════════════════════════
-// ── CONTACT FORM → TELEGRAM BOT ──
-// Sends message to Dhruv's Telegram via Bot API
-// Bot: 8782631390:AAHUDKQN-fA2EiK1nMpgYvJxFvD89jmSLh0
-// Chat: 7092478487
-// ══════════════════════════════════════
-const TG_BOT_TOKEN = '8782631390:AAHUDKQN-fA2EiK1nMpgYvJxFvD89jmSLh0';
-const TG_CHAT_ID   = '7092478487';
-
-window.submitContactForm = async function() {
-  const name    = document.getElementById('cf-name').value.trim();
-  const email   = document.getElementById('cf-email').value.trim();
-  const message = document.getElementById('cf-message').value.trim();
-
-  // Collect selected services
-  const activeSvcs = [...document.querySelectorAll('.cf-svc-btn.active')]
-    .map(b => b.textContent.trim()).join(', ') || 'Not specified';
-
-  // Validation
-  if (!name || !email || !message) {
-    const btn = document.getElementById('cf-submit');
-    const orig = btn.querySelector('.cf-submit-text').textContent;
-    btn.style.background = '#c0392b';
-    btn.querySelector('.cf-submit-text').textContent = '⚠ Fill all required fields';
-    setTimeout(() => {
-      btn.style.background = '';
-      btn.querySelector('.cf-submit-text').textContent = orig;
-    }, 2500);
-    return;
+// ── CONTACT FORM ──
+const TG_BOT_TOKEN='8782631390:AAHUDKQN-fA2EiK1nMpgYvJxFvD89jmSLh0';
+const TG_CHAT_ID='7092478487';
+window.submitContactForm=async function(){
+  const name=document.getElementById('cf-name').value.trim();
+  const email=document.getElementById('cf-email').value.trim();
+  const message=document.getElementById('cf-message').value.trim();
+  const activeSvcs=[...document.querySelectorAll('.cf-svc-btn.active')].map(b=>b.textContent.trim()).join(', ')||'Not specified';
+  if(!name||!email||!message){
+    const btn=document.getElementById('cf-submit');
+    btn.style.background='#c0392b';btn.querySelector('.cf-submit-text').textContent='⚠ Fill all required fields';
+    setTimeout(()=>{btn.style.background='';btn.querySelector('.cf-submit-text').textContent='Send Message via Telegram';},2500);return;
   }
-
-  // Show loading
-  const btn = document.getElementById('cf-submit');
-  btn.classList.add('loading');
-  btn.querySelector('.cf-submit-text').textContent = 'Sending...';
+  const btn=document.getElementById('cf-submit');
+  btn.classList.add('loading');btn.querySelector('.cf-submit-text').textContent='Sending...';
   document.getElementById('cf-sending').classList.add('show');
-
-  // Build Telegram message
-  const now = new Date();
-  const timeStr = now.toLocaleString('en-IN', {
-    timeZone: 'Asia/Kolkata',
-    day: '2-digit', month: 'short', year: 'numeric',
-    hour: '2-digit', minute: '2-digit'
-  });
-
-  const text =
-`🔔 *New Portfolio Inquiry!*
-
-👤 *Name:* ${name}
-📧 *Email:* ${email}
-🛠 *Service:* ${activeSvcs}
-
-💬 *Message:*
-${message}
-
-📅 *Time:* ${timeStr} IST
-🌐 *Source:* dhruvdev.me/contact`;
-
-  try {
-    const res = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: TG_CHAT_ID,
-        text: text,
-        parse_mode: 'Markdown'
-      })
-    });
-
-    const data = await res.json();
-
-    if (data.ok) {
-      // Success!
-      document.getElementById('contact-form-wrap').style.display = 'none';
-      document.getElementById('cf-success').style.display = 'block';
-      document.getElementById('cf-sending').classList.remove('show');
-    } else {
-      throw new Error(data.description || 'Telegram API error');
-    }
-  } catch (err) {
-    // Fallback — open mailto
-    console.error('TG send failed:', err);
-    document.getElementById('cf-sending').classList.remove('show');
-    btn.classList.remove('loading');
-    btn.querySelector('.cf-submit-text').textContent = 'Send Message via Telegram';
-    btn.style.background = '';
-
-    // Fallback to mailto
-    const subject = encodeURIComponent('Portfolio Inquiry from ' + name);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nService: ${activeSvcs}\n\nMessage:\n${message}`);
-    window.location.href = `mailto:dxruxkumar@gmail.com?subject=${subject}&body=${body}`;
+  const now=new Date();
+  const timeStr=now.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  const text=`🔔 *New Portfolio Inquiry!*\n\n👤 *Name:* ${name}\n📧 *Email:* ${email}\n🛠 *Service:* ${activeSvcs}\n\n💬 *Message:*\n${message}\n\n📅 *Time:* ${timeStr} IST\n🌐 *Source:* dhruvdev.me/contact`;
+  try{
+    const res=await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:TG_CHAT_ID,text,parse_mode:'Markdown'})});
+    const data=await res.json();
+    if(data.ok){document.getElementById('contact-form-wrap').style.display='none';document.getElementById('cf-success').style.display='block';document.getElementById('cf-sending').classList.remove('show');}
+    else throw new Error(data.description);
+  }catch(err){
+    document.getElementById('cf-sending').classList.remove('show');btn.classList.remove('loading');btn.querySelector('.cf-submit-text').textContent='Send Message via Telegram';btn.style.background='';
+    const subject=encodeURIComponent('Portfolio Inquiry from '+name);
+    const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\nService: ${activeSvcs}\n\nMessage:\n${message}`);
+    window.location.href=`mailto:dxruxkumar@gmail.com?subject=${subject}&body=${body}`;
   }
 };
 
-// ══════════════════════════════════════
 // ── MODAL SYSTEM ──
-// ══════════════════════════════════════
-const PROJECTS = {
-  tg: {
-    type: 'Telegram Bot · Python · aiogram · VPS',
-    title: 'ShopAlert Bot',
-    sub: 'A fully functional Telegram bot for e-commerce stores — sends real-time order alerts, tracks shipments, and handles customer queries via smart auto-replies. Deployed on DigitalOcean with webhook architecture.',
-    tags: ['Python','aiogram','DigitalOcean VPS','Nginx Webhooks','SQLite DB','python-dotenv'],
-    demo: buildTgDemo
-  },
-  wp: {
-    type: 'WordPress · Elementor · Nginx · SSL',
-    title: 'FitZone Gym Website',
-    sub: 'A complete gym business website with interactive class schedule, trainer profiles, and membership booking form. Hosted on a VPS with custom Nginx config, SSL via Certbot, and sub-3s load time.',
-    tags: ['WordPress 6.4','Elementor Pro','Nginx','Certbot SSL','WooCommerce','Contact Form 7'],
-    demo: buildWpDemo
-  },
-  vps: {
-    type: 'Cloud · Ubuntu · Nginx · Linux Admin',
-    title: 'Multi-App VPS Setup',
-    sub: 'A production-grade single DigitalOcean droplet ($6/mo) running 3 completely separate apps — each with its own domain, SSL certificate, and process manager. Terminal is fully interactive.',
-    tags: ['Ubuntu 22.04','Nginx Virtual Hosts','Certbot','UFW Firewall','PM2','systemctl'],
-    demo: buildVpsDemo
-  },
-  dash: {
-    type: 'AI Coding · v0.dev · Cursor · React',
-    title: 'QuickDash — Admin Panel',
-    sub: 'A full-stack admin dashboard shipped in under 4 hours using AI-assisted coding tools. Features real-time stats, revenue charts, recent orders table, and user management. Deployed on Vercel.',
-    tags: ['v0.dev','Cursor AI','React 18','Recharts','Vercel','Tailwind CSS'],
-    demo: buildDashDemo
-  }
+const PROJECTS={
+  tg:{type:'Telegram Bot · Python · aiogram · VPS',title:'ShopAlert Bot',sub:'A fully functional Telegram bot for e-commerce stores — sends real-time order alerts, tracks shipments, and handles customer queries via smart auto-replies. Deployed on DigitalOcean with webhook architecture.',tags:['Python','aiogram','DigitalOcean VPS','Nginx Webhooks','SQLite DB','python-dotenv'],demo:buildTgDemo},
+  wp:{type:'WordPress · Elementor · Nginx · SSL',title:'FitZone Gym Website',sub:'A complete gym business website with interactive class schedule, trainer profiles, and membership booking form. Hosted on a VPS with custom Nginx config, SSL via Certbot, and sub-3s load time.',tags:['WordPress 6.4','Elementor Pro','Nginx','Certbot SSL','WooCommerce','Contact Form 7'],demo:buildWpDemo},
+  vps:{type:'Cloud · Ubuntu · Nginx · Linux Admin',title:'Multi-App VPS Setup',sub:'A production-grade single DigitalOcean droplet ($6/mo) running 3 completely separate apps — each with its own domain, SSL certificate, and process manager. Terminal is fully interactive.',tags:['Ubuntu 22.04','Nginx Virtual Hosts','Certbot','UFW Firewall','PM2','systemctl'],demo:buildVpsDemo},
+  dash:{type:'AI Coding · v0.dev · Cursor · React',title:'QuickDash — Admin Panel',sub:'A full-stack admin dashboard shipped in under 4 hours using AI-assisted coding tools. Features real-time stats, revenue charts, recent orders table, and user management. Deployed on Vercel.',tags:['v0.dev','Cursor AI','React 18','Recharts','Vercel','Tailwind CSS'],demo:buildDashDemo}
 };
 
-function openModal(key) {
-  const p = PROJECTS[key];
-  document.getElementById('m-type').textContent = p.type;
-  document.getElementById('m-title').textContent = p.title;
-  document.getElementById('m-sub').textContent = p.sub;
-  const tagsEl = document.getElementById('m-tags');
-  tagsEl.innerHTML = p.tags.map(t=>`<span class="tag">${t}</span>`).join('');
-  const demoEl = document.getElementById('m-demo');
-  demoEl.innerHTML = '';
-  p.demo(demoEl);
-  document.getElementById('modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+function openModal(key){
+  const p=PROJECTS[key];
+  document.getElementById('m-type').textContent=p.type;
+  document.getElementById('m-title').textContent=p.title;
+  document.getElementById('m-sub').textContent=p.sub;
+  document.getElementById('m-tags').innerHTML=p.tags.map(t=>`<span class="tag">${t}</span>`).join('');
+  const demoEl=document.getElementById('m-demo');demoEl.innerHTML='';p.demo(demoEl);
+  document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';
 }
-function closeModal() {
-  document.getElementById('modal').classList.remove('open');
-  document.body.style.overflow = '';
-  if(window._vpsInterval) { clearInterval(window._vpsInterval); window._vpsInterval=null; }
-  if(window._tgInterval) { clearInterval(window._tgInterval); window._tgInterval=null; }
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');document.body.style.overflow='';
+  if(window._vpsInterval){clearInterval(window._vpsInterval);window._vpsInterval=null;}
+  if(window._tgInterval){clearInterval(window._tgInterval);window._tgInterval=null;}
 }
-function closeModalOnBg(e) { if(e.target===document.getElementById('modal')) closeModal(); }
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+function closeModalOnBg(e){if(e.target===document.getElementById('modal'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-// TG BOT DEMO
-function buildTgDemo(el) {
-  const now = () => { const d=new Date(); return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0'); };
-  el.innerHTML = `
-  <div class="tg-app">
-    <div class="tg-topbar">
-      <div class="tg-av">🤖</div>
-      <div class="tg-info">
-        <div class="tg-name">ShopAlert Bot</div>
-        <div class="tg-status" id="tg-status">● online · responding instantly</div>
-      </div>
-    </div>
-    <div class="tg-msgs-area" id="tg-msgs">
-      <div class="tg-m b">👋 Hey! I'm <b>ShopAlert Bot</b> for your e-commerce store.<div class="tg-btn-row">
-        <button class="tg-kb-btn" onclick="tgCmd('/orders')">📦 Today's Orders</button>
-        <button class="tg-kb-btn" onclick="tgCmd('/stats')">📊 Store Stats</button>
-        <button class="tg-kb-btn" onclick="tgCmd('/ship')">🚚 Shipments</button>
-        <button class="tg-kb-btn" onclick="tgCmd('/help')">❓ Help</button>
-      </div><div class="mt">${now()} ✓✓</div></div>
-    </div>
-    <div class="tg-typing" id="tg-typing"></div>
-    <div class="tg-inp-row">
-      <input class="tg-inp" id="tg-inp" placeholder="Type a message or use buttons above..." onkeydown="if(event.key==='Enter')tgSend()">
-      <button class="tg-send-btn" onclick="tgSend()">➤</button>
-    </div>
-  </div>`;
-
-  const RESPONSES = {
-    '/orders': `📦 <b>Today's Orders</b>\n\n#1042 · Priya S. · ₹1,299 · 🟡 Processing\n#1041 · Rohan K. · ₹2,450 · ✅ Shipped\n#1040 · Anjali M. · ₹899 · ✅ Delivered\n\n💰 Total today: <b>₹4,648</b>\n📈 +12% vs yesterday`,
-    '/stats': `📊 <b>Store Stats — This Week</b>\n\n👥 New Users: <b>84</b>\n🛒 Orders: <b>127</b>\n💸 Revenue: <b>₹38,520</b>\n⭐ Avg Rating: <b>4.8/5</b>`,
-    '/ship': `🚚 <b>Shipment Tracker</b>\n\n#1041 → Out for delivery · ETA 2h\n#1039 → Delivered ✅ · 10:30 AM\n#1038 → In transit · Delhi hub`,
-    '/help': `❓ <b>Available Commands</b>\n\n/orders — Today's orders\n/stats — Weekly stats\n/ship — Shipment tracker\n/help — This menu`,
-  };
-
-  window.tgCmd = function(cmd) {
-    addTgMsg(cmd, 'u');
-    document.getElementById('tg-status').textContent = '● typing...';
-    window._tgInterval = setTimeout(() => {
-      addTgMsg(RESPONSES[cmd] || `Try: /orders /stats /ship /help`, 'b');
-      document.getElementById('tg-status').textContent = '● online · responding instantly';
-    }, 900);
-  };
-
-  window.tgSend = function() {
-    const inp = document.getElementById('tg-inp');
-    const val = inp.value.trim();
-    if(!val) return;
-    inp.value = '';
-    addTgMsg(val, 'u');
-    document.getElementById('tg-status').textContent = '● typing...';
-    const lv = val.toLowerCase();
-    setTimeout(() => {
-      let resp;
-      if(lv.includes('order')) resp = RESPONSES['/orders'];
-      else if(lv.includes('stat')||lv.includes('sale')) resp = RESPONSES['/stats'];
-      else if(lv.includes('ship')||lv.includes('deliv')) resp = RESPONSES['/ship'];
-      else if(lv.includes('help')) resp = RESPONSES['/help'];
-      else if(lv.match(/hi|hello|hey/)) resp = `👋 Hello! Use the buttons or commands above to get started!`;
-      else resp = `🤖 Got it! You said: "<i>${val}</i>"\n\nTry: /orders /stats /ship /help`;
-      addTgMsg(resp, 'b');
-      document.getElementById('tg-status').textContent = '● online · responding instantly';
-    }, 900);
-  };
-
-  function addTgMsg(text, who) {
-    const area = document.getElementById('tg-msgs');
-    const d = document.createElement('div');
-    d.className = `tg-m ${who}`;
-    d.innerHTML = text.replace(/\n/g,'<br>') + `<div class="mt">${now()}${who==='b'?' ✓✓':''}</div>`;
-    area.appendChild(d);
-    area.scrollTop = area.scrollHeight;
-  }
+function buildTgDemo(el){
+  const now=()=>{const d=new Date();return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');};
+  el.innerHTML=`<div class="tg-app"><div class="tg-topbar"><div class="tg-av">🤖</div><div class="tg-info"><div class="tg-name">ShopAlert Bot</div><div class="tg-status" id="tg-status">● online · responding instantly</div></div></div><div class="tg-msgs-area" id="tg-msgs"><div class="tg-m b">👋 Hey! I'm <b>ShopAlert Bot</b> for your e-commerce store.<div class="tg-btn-row"><button class="tg-kb-btn" onclick="tgCmd('/orders')">📦 Today's Orders</button><button class="tg-kb-btn" onclick="tgCmd('/stats')">📊 Store Stats</button><button class="tg-kb-btn" onclick="tgCmd('/ship')">🚚 Shipments</button><button class="tg-kb-btn" onclick="tgCmd('/help')">❓ Help</button></div><div class="mt">${now()} ✓✓</div></div></div><div class="tg-typing" id="tg-typing"></div><div class="tg-inp-row"><input class="tg-inp" id="tg-inp" placeholder="Type a message or use buttons above..." onkeydown="if(event.key==='Enter')tgSend()"><button class="tg-send-btn" onclick="tgSend()">➤</button></div></div>`;
+  const RESP={'/orders':`📦 <b>Today's Orders</b>\n\n#1042 · Priya S. · ₹1,299 · 🟡 Processing\n#1041 · Rohan K. · ₹2,450 · ✅ Shipped\n#1040 · Anjali M. · ₹899 · ✅ Delivered\n\n💰 Total today: <b>₹4,648</b>\n📈 +12% vs yesterday`,'/stats':`📊 <b>Store Stats — This Week</b>\n\n👥 New Users: <b>84</b>\n🛒 Orders: <b>127</b>\n💸 Revenue: <b>₹38,520</b>\n⭐ Avg Rating: <b>4.8/5</b>`,'/ship':`🚚 <b>Shipment Tracker</b>\n\n#1041 → Out for delivery · ETA 2h\n#1039 → Delivered ✅ · 10:30 AM\n#1038 → In transit · Delhi hub`,'/help':`❓ <b>Available Commands</b>\n\n/orders — Today's orders\n/stats — Weekly stats\n/ship — Shipment tracker\n/help — This menu`};
+  window.tgCmd=function(cmd){addTgMsg(cmd,'u');document.getElementById('tg-status').textContent='● typing...';window._tgInterval=setTimeout(()=>{addTgMsg(RESP[cmd]||`Try: /orders /stats /ship /help`,'b');document.getElementById('tg-status').textContent='● online · responding instantly';},900);};
+  window.tgSend=function(){const inp=document.getElementById('tg-inp');const val=inp.value.trim();if(!val)return;inp.value='';addTgMsg(val,'u');document.getElementById('tg-status').textContent='● typing...';const lv=val.toLowerCase();setTimeout(()=>{let resp;if(lv.includes('order'))resp=RESP['/orders'];else if(lv.includes('stat')||lv.includes('sale'))resp=RESP['/stats'];else if(lv.includes('ship')||lv.includes('deliv'))resp=RESP['/ship'];else if(lv.includes('help'))resp=RESP['/help'];else if(lv.match(/hi|hello|hey/))resp=`👋 Hello! Use the buttons or commands above to get started!`;else resp=`🤖 Got it! You said: "<i>${val}</i>"\n\nTry: /orders /stats /ship /help`;addTgMsg(resp,'b');document.getElementById('tg-status').textContent='● online · responding instantly';},900);};
+  function addTgMsg(text,who){const area=document.getElementById('tg-msgs');const d=document.createElement('div');d.className=`tg-m ${who}`;d.innerHTML=text.replace(/\n/g,'<br>')+`<div class="mt">${now()}${who==='b'?' ✓✓':''}</div>`;area.appendChild(d);area.scrollTop=area.scrollHeight;}
 }
 
-// WP DEMO
-function buildWpDemo(el) {
-  el.innerHTML = `
-  <div class="wp-app">
-    <div class="wp-topbar">
-      <div class="wp-logo-text">Fit<span>Zone</span></div>
-      <nav class="wp-nav-items">
-        <a onclick="wpSection('classes')">Classes</a>
-        <a onclick="wpSection('trainers')">Trainers</a>
-        <a onclick="wpSection('pricing')">Pricing</a>
-        <a onclick="wpSection('contact')">Contact</a>
-      </nav>
-      <button class="wp-nav-cta" onclick="wpSection('join')">Join Now</button>
-    </div>
-    <div id="wp-content">
-      <div class="wp-hero-band">
-        <div class="badge">🏆 #1 GYM IN GURUGRAM</div>
-        <h2>Transform Your Body,<br><span>Transform Your Life</span></h2>
-        <p>Premium fitness center with world-class trainers and modern equipment.</p>
-        <div class="wp-hero-btns">
-          <button class="wp-btn-p" onclick="wpSection('join')">Start Free Trial →</button>
-          <button class="wp-btn-s" onclick="wpSection('classes')">View Classes</button>
-        </div>
-      </div>
-      <div class="wp-classes-section">
-        <h3>Featured Classes</h3>
-        <div class="wp-class-grid">
-          <div class="wp-cls-card" onclick="wpAlert('Boxing')"><div class="ci">🥊</div><div class="cn">Boxing</div><div class="ct">Mon, Wed, Fri · 6:00 AM</div><div class="cp">₹1,200/mo</div></div>
-          <div class="wp-cls-card" onclick="wpAlert('Yoga')"><div class="ci">🧘</div><div class="cn">Power Yoga</div><div class="ct">Daily · 7:30 AM</div><div class="cp">₹900/mo</div></div>
-          <div class="wp-cls-card" onclick="wpAlert('Lifting')"><div class="ci">🏋️</div><div class="cn">Olympic Lifting</div><div class="ct">Tue, Thu, Sat · 7:00 AM</div><div class="cp">₹1,500/mo</div></div>
-        </div>
-      </div>
-      <div class="wp-trainers">
-        <h3>Expert Trainers</h3>
-        <div class="wp-trainers-grid">
-          <div class="wp-trainer"><div class="ta">👨‍🦱</div><div class="tn">Vikram Singh</div><div class="tr">Head Trainer · 8 yrs</div></div>
-          <div class="wp-trainer"><div class="ta">👩‍🦰</div><div class="tn">Priya Sharma</div><div class="tr">Yoga Specialist · 5 yrs</div></div>
-          <div class="wp-trainer"><div class="ta">👨‍🦲</div><div class="tn">Arjun Kapoor</div><div class="tr">Boxing Coach · 6 yrs</div></div>
-        </div>
-      </div>
-      <div class="wp-footer"><div class="wp-footer-logo">FitZone Gurugram</div><div class="wp-footer-text">Built by Dhruv · WordPress + Nginx + SSL</div></div>
-    </div>
-  </div>`;
-
-  window.wpSection = function(s) {
-    const msgs = { join:'✅ Membership booking form — connects to WooCommerce payment in the live site!', pricing:'💰 Plans:\n• Basic: ₹1,500/mo\n• Standard: ₹2,500/mo\n• Premium: ₹4,000/mo', contact:'📍 FitZone Gurugram\nSector 29, Near Huda City Centre\n📞 +91 98765 43210' };
-    if(msgs[s]) showWpNotif(msgs[s]);
-  };
-  window.wpAlert = function(cls) { showWpNotif(`📅 Booking: ${cls}\n\nThis opens the class booking form in the live site!`); };
-
-  function showWpNotif(msg) {
-    const existing = document.getElementById('wp-notif');
-    if(existing) existing.remove();
-    const n = document.createElement('div');
-    n.id = 'wp-notif';
-    n.style.cssText = 'position:fixed;top:80px;right:20px;background:#1a1a2e;color:#fff;padding:16px 20px;max-width:280px;font-size:12px;line-height:1.6;font-family:DM Mono,monospace;border-left:3px solid #e94560;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,.4)';
-    n.innerHTML = msg.replace(/\n/g,'<br>') + '<div style="margin-top:8px;font-size:10px;color:#e94560;cursor:pointer" onclick="this.parentNode.remove()">✕ Close</div>';
-    document.body.appendChild(n);
-    setTimeout(()=>n.remove&&n.remove(), 4000);
-  }
+function buildWpDemo(el){
+  el.innerHTML=`<div class="wp-app"><div class="wp-topbar"><div class="wp-logo-text">Fit<span>Zone</span></div><nav class="wp-nav-items"><a onclick="wpSection('classes')">Classes</a><a onclick="wpSection('trainers')">Trainers</a><a onclick="wpSection('pricing')">Pricing</a><a onclick="wpSection('contact')">Contact</a></nav><button class="wp-nav-cta" onclick="wpSection('join')">Join Now</button></div><div id="wp-content"><div class="wp-hero-band"><div class="badge">🏆 #1 GYM IN GURUGRAM</div><h2>Transform Your Body,<br><span>Transform Your Life</span></h2><p>Premium fitness center with world-class trainers and modern equipment.</p><div class="wp-hero-btns"><button class="wp-btn-p" onclick="wpSection('join')">Start Free Trial →</button><button class="wp-btn-s" onclick="wpSection('classes')">View Classes</button></div></div><div class="wp-classes-section"><h3>Featured Classes</h3><div class="wp-class-grid"><div class="wp-cls-card" onclick="wpAlert('Boxing')"><div class="ci">🥊</div><div class="cn">Boxing</div><div class="ct">Mon, Wed, Fri · 6:00 AM</div><div class="cp">₹1,200/mo</div></div><div class="wp-cls-card" onclick="wpAlert('Yoga')"><div class="ci">🧘</div><div class="cn">Power Yoga</div><div class="ct">Daily · 7:30 AM</div><div class="cp">₹900/mo</div></div><div class="wp-cls-card" onclick="wpAlert('Lifting')"><div class="ci">🏋️</div><div class="cn">Olympic Lifting</div><div class="ct">Tue, Thu, Sat · 7:00 AM</div><div class="cp">₹1,500/mo</div></div></div></div><div class="wp-trainers"><h3>Expert Trainers</h3><div class="wp-trainers-grid"><div class="wp-trainer"><div class="ta">👨‍🦱</div><div class="tn">Vikram Singh</div><div class="tr">Head Trainer · 8 yrs</div></div><div class="wp-trainer"><div class="ta">👩‍🦰</div><div class="tn">Priya Sharma</div><div class="tr">Yoga Specialist · 5 yrs</div></div><div class="wp-trainer"><div class="ta">👨‍🦲</div><div class="tn">Arjun Kapoor</div><div class="tr">Boxing Coach · 6 yrs</div></div></div></div><div class="wp-footer"><div class="wp-footer-logo">FitZone Gurugram</div><div class="wp-footer-text">Built by Dhruv · WordPress + Nginx + SSL</div></div></div></div>`;
+  window.wpSection=function(s){const msgs={join:'✅ Membership booking form — connects to WooCommerce payment in the live site!',pricing:'💰 Plans:\n• Basic: ₹1,500/mo\n• Standard: ₹2,500/mo\n• Premium: ₹4,000/mo',contact:'📍 FitZone Gurugram\nSector 29, Near Huda City Centre\n📞 +91 98765 43210'};if(msgs[s])showWpNotif(msgs[s]);};
+  window.wpAlert=function(cls){showWpNotif(`📅 Booking: ${cls}\n\nThis opens the class booking form in the live site!`);};
+  function showWpNotif(msg){const existing=document.getElementById('wp-notif');if(existing)existing.remove();const n=document.createElement('div');n.id='wp-notif';n.style.cssText='position:fixed;top:80px;right:20px;background:#1a1a2e;color:#fff;padding:16px 20px;max-width:280px;font-size:12px;line-height:1.6;font-family:DM Mono,monospace;border-left:3px solid #e94560;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,.4)';n.innerHTML=msg.replace(/\n/g,'<br>')+'<div style="margin-top:8px;font-size:10px;color:#e94560;cursor:pointer" onclick="this.parentNode.remove()">✕ Close</div>';document.body.appendChild(n);setTimeout(()=>n.remove&&n.remove(),4000);}
 }
 
-// VPS DEMO
-function buildVpsDemo(el) {
-  const COMMANDS = {
-    'nginx -t':[{t:'ok',v:'nginx: configuration file syntax is ok'},{t:'ok',v:'nginx: configuration file test is successful'}],
-    'systemctl status nginx':[{t:'ok',v:'● nginx.service - A high performance web server'},{t:'ok',v:'   Active: active (running) since today; uptime: 14 days'}],
-    'ufw status':[{t:'ok',v:'Status: active'},{t:'inf',v:'22/tcp (SSH)               ALLOW'},{t:'inf',v:'80/tcp (Nginx HTTP)        ALLOW'},{t:'inf',v:'443/tcp (Nginx HTTPS)      ALLOW'}],
-    'certbot --nginx':[{t:'inf',v:'Requesting certificate...'},{t:'ok',v:'Successfully received certificate.'},{t:'ok',v:'Certificate saved at: /etc/letsencrypt/live/dhruvdev.me/'}],
-    'df -h':[{t:'inf',v:'Filesystem  Size  Used Avail'},{t:'inf',v:'/dev/vda1    25G  8.2G   16G  34%'}],
-    'free -h':[{t:'inf',v:'Mem:  1.9Gi  892Mi  1.0Gi'},{t:'inf',v:'Swap: 1.0Gi    0B   1.0Gi'}],
-    'pm2 list':[{t:'ok',v:'│ shopbot         │ ✅ online │'},{t:'ok',v:'│ wordpress-helper │ ✅ online │'}],
-    'uptime':[{t:'inf',v:' 14:32 up 14 days, load average: 0.12, 0.08'}],
-    'whoami':[{t:'inf',v:'root'}],
-    'help':[{t:'inf',v:'Try: nginx -t  systemctl status nginx  ufw status'},{t:'inf',v:'     certbot --nginx  df -h  free -h  pm2 list  uptime'}],
-  };
-
-  el.innerHTML = `
-  <div class="vps-app">
-    <div class="vps-topbar">
-      <div class="vps-d" style="background:#ff5f57"></div>
-      <div class="vps-d" style="background:#febc2e"></div>
-      <div class="vps-d" style="background:#28c840"></div>
-      <div class="vps-title-text">root@droplet-01 — bash</div>
-      <div class="vps-conn-info">● Connected · 104.248.xx.xx</div>
-    </div>
-    <div class="vps-terminal" id="vps-term"></div>
-    <div class="vps-quick-cmds">
-      <span class="vqs" onclick="vpsRun('nginx -t')">nginx -t</span>
-      <span class="vqs" onclick="vpsRun('systemctl status nginx')">nginx status</span>
-      <span class="vqs" onclick="vpsRun('ufw status')">ufw status</span>
-      <span class="vqs" onclick="vpsRun('certbot --nginx')">certbot</span>
-      <span class="vqs" onclick="vpsRun('pm2 list')">pm2 list</span>
-      <span class="vqs" onclick="vpsRun('df -h')">disk</span>
-      <span class="vqs" onclick="vpsRun('free -h')">memory</span>
-      <span class="vqs" onclick="vpsRun('uptime')">uptime</span>
-    </div>
-    <div class="vps-inp-row">
-      <span style="color:#3fb950;font-family:DM Mono,monospace;font-size:12px;flex-shrink:0">root@droplet:~$</span>
-      <input class="vps-inp" id="vps-inp" placeholder="Type a command... (try 'help')" onkeydown="if(event.key==='Enter')vpsRun()">
-      <button class="vps-run-btn" onclick="vpsRun()">Run ↵</button>
-    </div>
-  </div>`;
-
-  const term = document.getElementById('vps-term');
-
-  async function addLine(html, delay=0) {
-    return new Promise(r=>setTimeout(()=>{
-      const d=document.createElement('div');d.className='vline';d.innerHTML=html;
-      term.appendChild(d);term.scrollTop=term.scrollHeight;r();
-    },delay));
-  }
-
-  async function vpsExec(cmd) {
-    await addLine(`<span class="pr">root@droplet-01:~$</span><span class="cm"> ${cmd}</span>`);
-    const r = COMMANDS[cmd.trim().toLowerCase()];
-    if(r) { for(const line of r) await addLine(`<span class="${line.t}">${line.v}</span>`,80); }
-    else if(!cmd.startsWith('#')) { await addLine(`<span class="er">bash: ${cmd}: command not found — try 'help'</span>`,100); }
-    await addLine(`<span class="pr">root@droplet-01:~$</span><span class="vcursor"></span>`);
-  }
-
-  window.vpsRun = async function(fc) {
-    const last=term.lastElementChild;
-    if(last&&last.querySelector('.vcursor'))last.remove();
-    const cmd=fc||document.getElementById('vps-inp').value.trim();
-    if(!cmd)return;
-    document.getElementById('vps-inp').value='';
-    await vpsExec(cmd);
-  };
-
-  (async()=>{
-    await addLine(`<span class="pr">root@droplet-01:~$</span><span class="cm"> uptime</span>`,100);
-    await addLine(`<span class="inf"> 14:32 up 14 days, load average: 0.12</span>`,60);
-    await addLine(`<span class="pr">root@droplet-01:~$</span><span class="cm"> pm2 list</span>`,100);
-    await addLine(`<span class="ok">│ shopbot         │ ✅ online │</span>`,60);
-    await addLine(`<span class="ok">│ wordpress-helper │ ✅ online │</span>`,60);
-    await addLine(`<span class="pr">root@droplet-01:~$</span><span class="vcursor"></span>`,100);
-  })();
+function buildVpsDemo(el){
+  const COMMANDS={'nginx -t':[{t:'ok',v:'nginx: configuration file syntax is ok'},{t:'ok',v:'nginx: configuration file test is successful'}],'systemctl status nginx':[{t:'ok',v:'● nginx.service - A high performance web server'},{t:'ok',v:'   Active: active (running) since today; uptime: 14 days'}],'ufw status':[{t:'ok',v:'Status: active'},{t:'inf',v:'22/tcp (SSH)               ALLOW'},{t:'inf',v:'80/tcp (Nginx HTTP)        ALLOW'},{t:'inf',v:'443/tcp (Nginx HTTPS)      ALLOW'}],'certbot --nginx':[{t:'inf',v:'Requesting certificate...'},{t:'ok',v:'Successfully received certificate.'},{t:'ok',v:'Certificate saved at: /etc/letsencrypt/live/dhruvdev.me/'}],'df -h':[{t:'inf',v:'Filesystem  Size  Used Avail'},{t:'inf',v:'/dev/vda1    25G  8.2G   16G  34%'}],'free -h':[{t:'inf',v:'Mem:  1.9Gi  892Mi  1.0Gi'},{t:'inf',v:'Swap: 1.0Gi    0B   1.0Gi'}],'pm2 list':[{t:'ok',v:'│ shopbot         │ ✅ online │'},{t:'ok',v:'│ wordpress-helper │ ✅ online │'}],'uptime':[{t:'inf',v:' 14:32 up 14 days, load average: 0.12, 0.08'}],'whoami':[{t:'inf',v:'root'}],'help':[{t:'inf',v:'Try: nginx -t  systemctl status nginx  ufw status'},{t:'inf',v:'     certbot --nginx  df -h  free -h  pm2 list  uptime'}]};
+  el.innerHTML=`<div class="vps-app"><div class="vps-topbar"><div class="vps-d" style="background:#ff5f57"></div><div class="vps-d" style="background:#febc2e"></div><div class="vps-d" style="background:#28c840"></div><div class="vps-title-text">root@droplet-01 — bash</div><div class="vps-conn-info">● Connected · 104.248.xx.xx</div></div><div class="vps-terminal" id="vps-term"></div><div class="vps-quick-cmds"><span class="vqs" onclick="vpsRun('nginx -t')">nginx -t</span><span class="vqs" onclick="vpsRun('systemctl status nginx')">nginx status</span><span class="vqs" onclick="vpsRun('ufw status')">ufw status</span><span class="vqs" onclick="vpsRun('certbot --nginx')">certbot</span><span class="vqs" onclick="vpsRun('pm2 list')">pm2 list</span><span class="vqs" onclick="vpsRun('df -h')">disk</span><span class="vqs" onclick="vpsRun('free -h')">memory</span><span class="vqs" onclick="vpsRun('uptime')">uptime</span></div><div class="vps-inp-row"><span style="color:#3fb950;font-family:DM Mono,monospace;font-size:12px;flex-shrink:0">root@droplet:~$</span><input class="vps-inp" id="vps-inp" placeholder="Type a command... (try 'help')" onkeydown="if(event.key==='Enter')vpsRun()"><button class="vps-run-btn" onclick="vpsRun()">Run ↵</button></div></div>`;
+  const term=document.getElementById('vps-term');
+  async function addLine(html,delay=0){return new Promise(r=>setTimeout(()=>{const d=document.createElement('div');d.className='vline';d.innerHTML=html;term.appendChild(d);term.scrollTop=term.scrollHeight;r();},delay));}
+  async function vpsExec(cmd){await addLine(`<span class="pr">root@droplet-01:~$</span><span class="cm"> ${cmd}</span>`);const r=COMMANDS[cmd.trim().toLowerCase()];if(r){for(const line of r)await addLine(`<span class="${line.t}">${line.v}</span>`,80);}else if(!cmd.startsWith('#')){await addLine(`<span class="er">bash: ${cmd}: command not found — try 'help'</span>`,100);}await addLine(`<span class="pr">root@droplet-01:~$</span><span class="vcursor"></span>`);}
+  window.vpsRun=async function(fc){const last=term.lastElementChild;if(last&&last.querySelector('.vcursor'))last.remove();const cmd=fc||document.getElementById('vps-inp').value.trim();if(!cmd)return;document.getElementById('vps-inp').value='';await vpsExec(cmd);};
+  (async()=>{await addLine(`<span class="pr">root@droplet-01:~$</span><span class="cm"> uptime</span>`,100);await addLine(`<span class="inf"> 14:32 up 14 days, load average: 0.12</span>`,60);await addLine(`<span class="pr">root@droplet-01:~$</span><span class="cm"> pm2 list</span>`,100);await addLine(`<span class="ok">│ shopbot         │ ✅ online │</span>`,60);await addLine(`<span class="ok">│ wordpress-helper │ ✅ online │</span>`,60);await addLine(`<span class="pr">root@droplet-01:~$</span><span class="vcursor"></span>`,100);})();
 }
 
-// DASHBOARD DEMO
-function buildDashDemo(el) {
+function buildDashDemo(el){
   const bars=[{h:62,m:'Jan'},{h:74,m:'Feb'},{h:55,m:'Mar'},{h:88,m:'Apr'},{h:70,m:'May'},{h:95,m:'Jun'},{h:80,m:'Jul'},{h:65,m:'Aug'}];
   const orders=[{id:'#2041',name:'Priya Sharma',amount:'₹2,450',status:'paid'},{id:'#2040',name:'Rohan Mehta',amount:'₹899',status:'paid'},{id:'#2039',name:'Anjali Kapoor',amount:'₹3,200',status:'pend'},{id:'#2038',name:'Vikram Singh',amount:'₹1,150',status:'paid'},{id:'#2037',name:'Fatima Al-R.',amount:'₹4,800',status:'fail'}];
-
-  el.innerHTML = `
-  <div class="dash-app">
-    <div class="dash-topbar">
-      <div class="dash-logo-txt">Quick<span>Dash</span></div>
-      <div class="dash-topbar-right">
-        <div class="dash-notif">🔔<div class="dash-notif-dot"></div></div>
-        <div class="dash-av2">D</div>
-      </div>
-    </div>
-    <div class="dash-content">
-      <div class="dash-welcome"><h2>Good afternoon, Dhruv 👋</h2><p id="dash-dt">Loading...</p></div>
-      <div class="dash-stats-row">
-        <div class="dstat blue"><div class="dstat-val" id="ds-rev">₹84,520</div><div class="dstat-label">TOTAL REVENUE</div><div class="dstat-change up">↑ 12.4%</div></div>
-        <div class="dstat green"><div class="dstat-val" id="ds-ord">1,247</div><div class="dstat-label">TOTAL ORDERS</div><div class="dstat-change up">↑ 8.1%</div></div>
-        <div class="dstat purple"><div class="dstat-val" id="ds-usr">3,891</div><div class="dstat-label">ACTIVE USERS</div><div class="dstat-change up">↑ 5.7%</div></div>
-        <div class="dstat orange"><div class="dstat-val">99.8%</div><div class="dstat-label">UPTIME</div><div class="dstat-change up">↑ All good</div></div>
-      </div>
-      <div class="dash-row">
-        <div class="dash-card">
-          <div class="dash-card-title">Revenue Overview <span class="period">Last 8 months</span></div>
-          <div class="chart-bars">${bars.map(b=>`<div class="cbar-w"><div class="cbar" style="height:${b.h}%;background:linear-gradient(180deg,#1a6bff,#00c896)"></div><div class="cbar-l">${b.m}</div></div>`).join('')}</div>
-        </div>
-        <div class="dash-card">
-          <div class="dash-card-title">Traffic Sources</div>
-          <div class="dash-pie-wrap">
-            <svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="38" fill="none" stroke="#e5e7eb" stroke-width="14"/><circle cx="45" cy="45" r="38" fill="none" stroke="#1a6bff" stroke-width="14" stroke-dasharray="143 96" stroke-dashoffset="0" transform="rotate(-90 45 45)"/><circle cx="45" cy="45" r="38" fill="none" stroke="#00c896" stroke-width="14" stroke-dasharray="57 182" stroke-dashoffset="-143" transform="rotate(-90 45 45)"/><text x="45" y="49" text-anchor="middle" font-size="11" font-weight="800" fill="#111" font-family="Syne,sans-serif">8.4k</text></svg>
-            <div class="dash-pie-legend"><div class="pie-item"><div class="pie-dot" style="background:#1a6bff"></div>Organic 59%</div><div class="pie-item"><div class="pie-dot" style="background:#00c896"></div>Social 24%</div><div class="pie-item"><div class="pie-dot" style="background:#f59e0b"></div>Paid 12%</div></div>
-          </div>
-        </div>
-      </div>
-      <div class="dash-card">
-        <div class="dash-card-title">Recent Orders <span class="period" style="color:#10b981">● Live</span></div>
-        <table class="dash-table"><thead><tr><th>Order ID</th><th>Customer</th><th>Amount</th><th>Status</th></tr></thead>
-        <tbody>${orders.map(o=>`<tr><td>${o.id}</td><td>${o.name}</td><td>${o.amount}</td><td><span class="status-badge ${o.status}">${o.status==='paid'?'✓ Paid':o.status==='pend'?'⏳ Pending':'✗ Failed'}</span></td></tr>`).join('')}</tbody></table>
-      </div>
-    </div>
-  </div>`;
-
+  el.innerHTML=`<div class="dash-app"><div class="dash-topbar"><div class="dash-logo-txt">Quick<span>Dash</span></div><div class="dash-topbar-right"><div class="dash-notif">🔔<div class="dash-notif-dot"></div></div><div class="dash-av2">D</div></div></div><div class="dash-content"><div class="dash-welcome"><h2>Good afternoon, Dhruv 👋</h2><p id="dash-dt">Loading...</p></div><div class="dash-stats-row"><div class="dstat blue"><div class="dstat-val" id="ds-rev">₹84,520</div><div class="dstat-label">TOTAL REVENUE</div><div class="dstat-change up">↑ 12.4%</div></div><div class="dstat green"><div class="dstat-val" id="ds-ord">1,247</div><div class="dstat-label">TOTAL ORDERS</div><div class="dstat-change up">↑ 8.1%</div></div><div class="dstat purple"><div class="dstat-val" id="ds-usr">3,891</div><div class="dstat-label">ACTIVE USERS</div><div class="dstat-change up">↑ 5.7%</div></div><div class="dstat orange"><div class="dstat-val">99.8%</div><div class="dstat-label">UPTIME</div><div class="dstat-change up">↑ All good</div></div></div><div class="dash-row"><div class="dash-card"><div class="dash-card-title">Revenue Overview <span class="period">Last 8 months</span></div><div class="chart-bars">${bars.map(b=>`<div class="cbar-w"><div class="cbar" style="height:${b.h}%;background:linear-gradient(180deg,#1a6bff,#00c896)"></div><div class="cbar-l">${b.m}</div></div>`).join('')}</div></div><div class="dash-card"><div class="dash-card-title">Traffic Sources</div><div class="dash-pie-wrap"><svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="38" fill="none" stroke="#e5e7eb" stroke-width="14"/><circle cx="45" cy="45" r="38" fill="none" stroke="#1a6bff" stroke-width="14" stroke-dasharray="143 96" stroke-dashoffset="0" transform="rotate(-90 45 45)"/><circle cx="45" cy="45" r="38" fill="none" stroke="#00c896" stroke-width="14" stroke-dasharray="57 182" stroke-dashoffset="-143" transform="rotate(-90 45 45)"/><text x="45" y="49" text-anchor="middle" font-size="11" font-weight="800" fill="#111" font-family="Syne,sans-serif">8.4k</text></svg><div class="dash-pie-legend"><div class="pie-item"><div class="pie-dot" style="background:#1a6bff"></div>Organic 59%</div><div class="pie-item"><div class="pie-dot" style="background:#00c896"></div>Social 24%</div><div class="pie-item"><div class="pie-dot" style="background:#f59e0b"></div>Paid 12%</div></div></div></div></div><div class="dash-card"><div class="dash-card-title">Recent Orders <span class="period" style="color:#10b981">● Live</span></div><table class="dash-table"><thead><tr><th>Order ID</th><th>Customer</th><th>Amount</th><th>Status</th></tr></thead><tbody>${orders.map(o=>`<tr><td>${o.id}</td><td>${o.name}</td><td>${o.amount}</td><td><span class="status-badge ${o.status}">${o.status==='paid'?'✓ Paid':o.status==='pend'?'⏳ Pending':'✗ Failed'}</span></td></tr>`).join('')}</tbody></table></div></div></div>`;
   function updateTime(){const d=new Date(),el2=document.getElementById('dash-dt');if(el2)el2.textContent=d.toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' · '+d.toLocaleTimeString('en-IN');}
   updateTime();window._vpsInterval=setInterval(updateTime,1000);
-
   let rev=84520,ord=1247,usr=3891;
-  setInterval(()=>{
-    rev+=Math.floor(Math.random()*200-50);ord+=Math.floor(Math.random()*3);usr+=Math.floor(Math.random()*5-1);
-    const r=document.getElementById('ds-rev'),o=document.getElementById('ds-ord'),u=document.getElementById('ds-usr');
-    if(r)r.textContent='₹'+rev.toLocaleString('en-IN');if(o)o.textContent=ord.toLocaleString('en-IN');if(u)u.textContent=usr.toLocaleString('en-IN');
-  },3000);
+  setInterval(()=>{rev+=Math.floor(Math.random()*200-50);ord+=Math.floor(Math.random()*3);usr+=Math.floor(Math.random()*5-1);const r=document.getElementById('ds-rev'),o=document.getElementById('ds-ord'),u=document.getElementById('ds-usr');if(r)r.textContent='₹'+rev.toLocaleString('en-IN');if(o)o.textContent=ord.toLocaleString('en-IN');if(u)u.textContent=usr.toLocaleString('en-IN');},3000);
 }
-
-const style=document.createElement('style');
-style.textContent=`@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}`;
-document.head.appendChild(style);
 </script>
 </body>
 </html>
