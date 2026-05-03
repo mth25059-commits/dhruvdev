@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dhruv Chandrawanshi — Cloud & AI Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0a0a0a;--paper:#f4f2ee;--muted:#888480;
+  --accent:#1a6bff;--accent2:#00c896;--border:#dedad4;
+  --card:#ffffff;--dark:#0d0d0d;
+  --mono:'DM Mono',monospace;--display:'DM Serif Display',serif;--sans:'Syne',sans-serif;
+  --wa:#25D366;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);overflow-x:hidden;cursor:none}
+
+/* ── CURSOR ── */
+#cur{width:8px;height:8px;background:var(--ink);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform .15s,background .2s}
+#cur-ring{width:32px;height:32px;border:1.5px solid rgba(10,10,10,.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:width .35s cubic-bezier(.16,1,.3,1),height .35s cubic-bezier(.16,1,.3,1),border-color .3s,background .3s,border-radius .3s}
+body.link-hover #cur{background:var(--accent)}
+body.link-hover #cur-ring{width:52px;height:52px;border-color:var(--accent);background:rgba(26,107,255,.05)}
+body.wa-hover #cur{background:var(--wa)}
+body.wa-hover #cur-ring{width:58px;height:58px;border-color:var(--wa);background:rgba(37,211,102,.08)}
+
+/* ── SCROLL PROGRESS ── */
+#progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:9997;width:0;transition:width .08s linear}
+
+/* ── WHATSAPP FLOAT ── */
+#wa-float{position:fixed;right:24px;bottom:32px;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.wa-bubble{background:var(--wa);color:#fff;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(37,211,102,.45);cursor:none;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;animation:waPulse 3s ease-in-out infinite;position:relative}
+.wa-bubble:hover{transform:scale(1.12);box-shadow:0 8px 32px rgba(37,211,102,.6)}
+.wa-bubble::before{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(37,211,102,.35);animation:waRing 2s ease-out infinite}
+.wa-badge{background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.06em;padding:7px 14px;white-space:nowrap;opacity:0;transform:translateX(10px);transition:all .3s;pointer-events:none;border-left:2px solid var(--wa)}
+#wa-float:hover .wa-badge{opacity:1;transform:translateX(0)}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 4px 30px rgba(37,211,102,.7),0 0 0 8px rgba(37,211,102,.08)}}
+@keyframes waRing{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.5);opacity:0}}
+
+/* ── BACK TO TOP ── */
+#back-top{position:fixed;left:24px;bottom:32px;z-index:500;width:42px;height:42px;background:var(--ink);color:var(--paper);border:none;font-size:16px;display:flex;align-items:center;justify-content:center;cursor:none;opacity:0;transform:translateY(20px);transition:all .35s cubic-bezier(.16,1,.3,1);font-family:var(--mono)}
+#back-top.show{opacity:1;transform:translateY(0)}
+#back-top:hover{background:var(--accent)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:22px 52px;display:flex;justify-content:space-between;align-items:center;background:rgba(244,242,238,.9);backdrop-filter:blur(16px);border-bottom:1px solid transparent;transition:border-color .3s,padding .3s}
+nav.sc{border-color:var(--border);padding:16px 52px}
+.logo{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;cursor:none}
+.nav-ul{display:flex;gap:32px;list-style:none}
+.nav-ul a{font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s;cursor:none;position:relative;padding-bottom:3px}
+.nav-ul a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--accent);transition:width .3s}
+.nav-ul a:hover{color:var(--ink)}
+.nav-ul a:hover::after{width:100%}
+.nav-cta{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--paper);background:var(--ink);border:none;padding:10px 20px;text-decoration:none;transition:background .25s,transform .2s;cursor:none;display:inline-block}
+.nav-cta:hover{background:var(--accent);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:none;border:none;background:none;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--ink);transition:all .3s}
+.hamburger.active span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.active span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--paper);z-index:190;flex-direction:column;justify-content:center;align-items:center;gap:40px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--display);font-size:42px;color:var(--ink);text-decoration:none;cursor:none;transition:color .2s}
+.mobile-menu a:hover{color:var(--accent)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;padding:130px 52px 80px;display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.hero-left{position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:36px;opacity:0;animation:up .8s ease .2s forwards}
+.hero-tag::before{content:'';width:24px;height:1px;background:var(--accent)}
+.hero-name{font-family:var(--display);font-size:clamp(48px,6.5vw,92px);line-height:1.0;color:var(--ink);margin-bottom:28px;opacity:0;animation:up .9s ease .35s forwards}
+.hero-name em{font-style:italic;color:var(--accent)}
+.hero-desc{font-size:15px;line-height:1.75;color:var(--muted);max-width:420px;margin-bottom:44px;opacity:0;animation:up .9s ease .5s forwards;font-weight:400}
+.hero-btns{display:flex;gap:14px;opacity:0;animation:up .9s ease .65s forwards;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:13px 26px;text-decoration:none;border:1.5px solid var(--ink);transition:all .25s;cursor:none}
+.btn-p:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,107,255,.3)}
+.btn-s{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:13px 26px;text-decoration:none;border:1.5px solid var(--border);transition:all .25s;cursor:none}
+.btn-s:hover{border-color:var(--ink);transform:translateY(-2px)}
+.avail{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#16a34a;background:#f0fdf4;border:1px solid #bbf7d0;padding:8px 14px;border-radius:2px;margin-bottom:28px;opacity:0;animation:up .8s ease .1s forwards}
+.avail-dot{width:6px;height:6px;background:#16a34a;border-radius:50%;animation:blink 2s infinite}
+
+/* ── GLOBE ── */
+.hero-right{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;opacity:0;animation:fadein 1.2s ease .7s forwards}
+#globe-wrap{position:relative;width:380px;height:380px}
+#globe-canvas{width:100%;height:100%}
+.globe-label{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--paper);border:1px solid var(--border);padding:5px 10px;white-space:nowrap;pointer-events:none}
+.globe-label::before{content:'';position:absolute;width:20px;height:1px;background:var(--accent);top:50%}
+.gl-1{top:20%;right:-80px}.gl-1::before{left:-22px}
+.gl-2{top:55%;right:-90px}.gl-2::before{left:-22px}
+.gl-3{bottom:20%;left:-90px;text-align:right}.gl-3::before{right:-22px;left:auto}
+
+/* ── TICKER ── */
+.ticker-wrap{overflow:hidden;border-bottom:1px solid var(--border);padding:13px 0;position:relative}
+.ticker-wrap::before,.ticker-wrap::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.ticker-wrap::before{left:0;background:linear-gradient(to right,var(--paper),transparent)}
+.ticker-wrap::after{right:0;background:linear-gradient(to left,var(--paper),transparent)}
+.ticker{display:flex;animation:tick 24s linear infinite;width:max-content}
+.ticker:hover{animation-play-state:paused}
+.ti{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 36px;display:flex;align-items:center;gap:36px;white-space:nowrap;transition:color .2s}
+.ti:hover{color:var(--ink)}
+.ti::after{content:'✦';font-size:8px;color:var(--accent)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SECTION COMMONS ── */
+section{padding:110px 52px;border-bottom:1px solid var(--border)}
+.sec-label{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.sec-label::before{content:'';width:24px;height:1px;background:var(--accent)}
+.sec-title{font-family:var(--display);font-size:clamp(34px,4vw,52px);line-height:1.1}
+.sec-title em{font-style:italic;color:var(--muted)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:28px;border-bottom:1px solid var(--border);margin-bottom:64px}
+
+/* ── SKILLS ── */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.sk{padding:44px 36px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:background .3s,transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;position:relative;overflow:hidden;background:var(--card)}
+.sk:nth-child(3n){border-right:none}
+.sk:hover{background:#fafaf8;transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.08)}
+.sk::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:width .5s cubic-bezier(.16,1,.3,1)}
+.sk:hover::after{width:100%}
+.sk::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(26,107,255,.04),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.sk:hover::before{opacity:1}
+.sk-num{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);margin-bottom:24px}
+.sk-icon{font-size:26px;display:block;margin-bottom:18px;line-height:1;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.sk:hover .sk-icon{transform:scale(1.25) rotate(-8deg)}
+.sk-name{font-size:19px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px;color:var(--ink)}
+.sk-desc{font-size:13.5px;line-height:1.65;color:var(--muted);margin-bottom:24px;font-weight:400}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink);background:var(--border);padding:5px 9px;transition:all .2s}
+.sk:hover .tag{background:rgba(26,107,255,.1);color:var(--accent)}
+.sk.featured{background:#0f1e3d;border-color:#1e3060}
+.sk.featured:hover{background:#111f42}
+.sk.featured .sk-num{color:rgba(255,255,255,.3)}
+.sk.featured .sk-name{color:#fff}
+.sk.featured .sk-desc{color:rgba(255,255,255,.55)}
+.sk.featured .tag{background:rgba(26,107,255,.25);color:#7fb3ff}
+.sk.featured:hover .tag{background:var(--accent);color:#fff}
+.sk.featured::after{background:var(--accent2)}
+.skills-r2{display:grid;grid-template-columns:1fr 1fr}
+.skills-r2 .sk:first-child{border-right:1px solid var(--border)}
+.skills-r2 .sk:last-child{border-right:none}
+.skills-r2 .sk{border-bottom:none}
+
+/* ── PROJECTS ── */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.proj-card{border:1px solid var(--border);border-right:none;border-top:none;padding:0;overflow:hidden;transition:all .4s cubic-bezier(.16,1,.3,1);position:relative;background:var(--card);cursor:none}
+.proj-card:nth-child(2n){border-right:none}
+.proj-card:nth-child(1),.proj-card:nth-child(2){border-top:1px solid var(--border)}
+.proj-card:hover{transform:translateY(-6px);box-shadow:0 24px 72px rgba(0,0,0,.12)}
+.proj-thumb{height:240px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.proj-thumb.tg{background:linear-gradient(135deg,#17212b,#0d1826)}
+.proj-thumb.wp{background:linear-gradient(135deg,#1a1a2e,#16213e)}
+.proj-thumb.vps{background:linear-gradient(135deg,#0d1117,#161b22)}
+.proj-thumb.bot{background:linear-gradient(135deg,#f9fafb,#e5e7eb)}
+
+/* ── mini previews same as before ── */
+.mini-tg{width:88%;height:90%;background:#17212b;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 8px 32px rgba(0,0,0,.4);font-family:'DM Mono',monospace}
+.mini-tg-top{background:#242f3d;padding:8px 12px;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.mini-tg-av{width:28px;height:28px;border-radius:50%;background:#1a6bff;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.mini-tg-info .name{color:#fff;font-size:11px;font-weight:600}
+.mini-tg-info .status{color:#7fb3d3;font-size:9px}
+.mini-tg-msgs{flex:1;padding:8px 10px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.mini-msg{max-width:78%;padding:7px 10px;border-radius:10px;font-size:10px;line-height:1.4}
+.mini-msg.bot{background:#2b5278;color:#e8f4fd;align-self:flex-start}
+.mini-msg.usr{background:#2b6cb0;color:#fff;align-self:flex-end}
+.mini-tg-inp{background:#242f3d;padding:6px 10px;display:flex;gap:6px;align-items:center;flex-shrink:0}
+.mini-inp{flex:1;background:#17212b;border:1px solid #2b3d52;color:#7d8590;padding:5px 10px;font-size:9px;border-radius:16px;font-family:inherit}
+.mini-send{width:26px;height:26px;background:#00c896;border:none;border-radius:50%;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.mini-wp{width:88%;height:90%;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.35);display:flex;flex-direction:column}
+.mini-wp-nav{background:#1a1a2e;padding:0 14px;height:36px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.mini-wp-logo{color:#fff;font-size:11px;font-weight:800;font-family:'Syne',sans-serif}
+.mini-wp-links{display:flex;gap:10px}
+.mini-wp-links span{color:rgba(255,255,255,.6);font-size:9px;cursor:pointer}
+.mini-wp-hero{background:linear-gradient(135deg,#1a1a2e,#e94560);padding:20px 16px;text-align:center;flex-shrink:0}
+.mini-wp-hero h3{color:#fff;font-size:14px;font-weight:800;margin-bottom:4px;font-family:'Syne',sans-serif}
+.mini-wp-hero p{color:rgba(255,255,255,.7);font-size:9px;margin-bottom:10px}
+.mini-wp-btn{display:inline-block;background:#e94560;color:#fff;padding:6px 14px;font-size:9px;font-weight:700;border-radius:2px}
+.mini-wp-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px 12px;background:#f8f8f8;flex:1}
+.mini-wp-card{background:#fff;padding:8px;border:1px solid #eee;border-radius:4px;text-align:center}
+.mini-wp-card .ic{font-size:16px;margin-bottom:4px}
+.mini-wp-card .nm{font-size:8px;font-weight:700;color:#1a1a2e;font-family:'Syne',sans-serif}
+.mini-wp-card .tm{font-size:7px;color:#888;font-family:'DM Mono',monospace}
+.mini-vps{width:88%;height:90%;background:#0d1117;border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5);display:flex;flex-direction:column;font-family:'DM Mono',monospace}
+.mini-vps-top{background:#161b22;padding:8px 14px;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.mini-vps-dot{width:10px;height:10px;border-radius:50%}
+.mini-vps-title{color:#7d8590;font-size:9px;margin-left:4px}
+.mini-vps-body{flex:1;padding:10px 14px;font-size:10px;line-height:1.9;overflow:hidden}
+.vl{display:flex;gap:6px;align-items:baseline}
+.vl .pr{color:#3fb950}.vl .cm{color:#e6edf3}.vl .ou{color:#7d8590}.vl .ok{color:#3fb950}.vl .inf{color:#58a6ff}
+.vcursor{display:inline-block;width:7px;height:12px;background:#3fb950;animation:cb .8s infinite;vertical-align:middle}
+@keyframes cb{0%,100%{opacity:1}50%{opacity:0}}
+.mini-dash{width:92%;height:92%;background:#f9fafb;border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.15);display:flex;flex-direction:column}
+.mini-dash-top{background:#fff;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e5e7eb;flex-shrink:0}
+.mini-dash-logo{font-weight:800;font-size:12px;color:#111;letter-spacing:-.02em;font-family:'Syne',sans-serif}
+.mini-dash-logo span{color:#1a6bff}
+.mini-dash-av{width:24px;height:24px;border-radius:50%;background:#1a6bff;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.mini-dash-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:8px 10px;flex-shrink:0}
+.mini-stat{background:#fff;padding:8px;border:1px solid #e5e7eb;border-radius:4px}
+.mini-stat-v{font-size:14px;font-weight:800;color:#111;line-height:1;font-family:'Syne',sans-serif}
+.mini-stat-l{font-size:7px;color:#6b7280;margin-top:2px;font-family:'DM Mono',monospace;letter-spacing:.04em}
+.mini-stat-c{font-size:8px;color:#10b981;font-weight:600;margin-top:3px}
+.mini-chart-wrap{flex:1;padding:0 10px 8px;display:flex;flex-direction:column}
+.mini-chart-title{font-size:9px;font-weight:700;color:#111;margin-bottom:6px;font-family:'Syne',sans-serif}
+.mini-bars{display:flex;align-items:flex-end;gap:4px;height:55px}
+.mini-bar-w{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.mini-bar{width:100%;border-radius:2px 2px 0 0}
+.mini-bar-l{font-size:7px;color:#9ca3af;font-family:'DM Mono',monospace}
+
+/* ── PROJECT CARD ── */
+.proj-demo-overlay{position:absolute;inset:0;background:rgba(10,10,10,.0);z-index:5;display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px;transition:background .3s;pointer-events:none}
+.proj-card:hover .proj-demo-overlay{background:rgba(10,10,10,.08)}
+.proj-demo-btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);border:none;padding:9px 20px;cursor:none;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:all}
+.proj-card:hover .proj-demo-btn{opacity:1;transform:translateY(0)}
+.proj-body{padding:22px 28px 28px}
+.proj-type{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.proj-name{font-family:var(--sans);font-size:17px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+.proj-desc{font-size:13px;line-height:1.65;color:var(--muted);margin-bottom:16px;font-weight:400}
+.proj-stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.proj-links{display:flex;gap:12px}
+.proj-link{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px;transition:border-color .2s,color .2s;cursor:none}
+.proj-link:hover{color:var(--accent);border-color:var(--accent)}
+.proj-badge{position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;background:var(--dark);color:var(--paper);padding:4px 9px;z-index:6}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,10,10,.88);backdrop-filter:blur(10px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{background:var(--paper);width:min(1000px,96vw);max-height:92vh;overflow-y:auto;position:relative;transform:translateY(32px) scale(.97);transition:transform .4s cubic-bezier(.16,1,.3,1);border:1px solid var(--border)}
+.modal-overlay.open .modal-box{transform:translateY(0) scale(1)}
+.modal-close{position:absolute;top:18px;right:18px;width:36px;height:36px;background:var(--ink);color:var(--paper);border:none;font-size:16px;display:flex;align-items:center;justify-content:center;cursor:none;z-index:10;transition:background .2s;font-family:var(--mono);line-height:1}
+.modal-close:hover{background:var(--accent)}
+.modal-header{padding:36px 44px 28px;border-bottom:1px solid var(--border)}
+.modal-type{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.modal-title{font-family:var(--display);font-size:clamp(24px,3vw,38px);line-height:1.1;margin-bottom:10px}
+.modal-sub{font-size:14px;color:var(--muted);line-height:1.65;font-weight:400;max-width:620px}
+.modal-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.modal-body{padding:0 44px 44px}
+.modal-demo-wrap{margin-top:28px}
+.modal-demo-label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 16px;background:var(--paper);border:1px solid var(--border);border-bottom:none;display:flex;align-items:center;gap:8px}
+.modal-demo-label::before{content:'';width:8px;height:8px;border-radius:50%;background:#00c896;flex-shrink:0;animation:blink 1.5s infinite}
+.demo-frame{border:1px solid var(--border);overflow:hidden}
+
+/* modal demo styles */
+.tg-app{background:#17212b;font-family:'DM Mono',monospace;display:flex;flex-direction:column;height:500px}
+.tg-topbar{background:#242f3d;padding:12px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #1a2535;flex-shrink:0}
+.tg-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1a6bff,#00c896);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.tg-info .tg-name{color:#fff;font-size:15px;font-weight:600;font-family:'Syne',sans-serif}
+.tg-info .tg-status{color:#7fb3d3;font-size:11px}
+.tg-msgs-area{flex:1;padding:14px 18px;overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.tg-m{max-width:72%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.55;animation:msgIn .35s ease}
+.tg-m.b{background:#2b5278;color:#e8f4fd;align-self:flex-start;border-bottom-left-radius:4px}
+.tg-m.u{background:#2b6cb0;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.tg-m .mt{font-size:10px;opacity:.45;text-align:right;margin-top:5px}
+.tg-btn-row{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.tg-kb-btn{background:#1c3a5e;color:#7fb3d3;border:1px solid #2b5278;padding:7px 14px;font-size:11px;border-radius:8px;font-family:'DM Mono',monospace;cursor:pointer;transition:all .2s}
+.tg-kb-btn:hover{background:#2b5278;color:#fff;transform:translateY(-1px)}
+.tg-inp-row{padding:10px 16px;background:#242f3d;display:flex;gap:10px;align-items:center;flex-shrink:0;border-top:1px solid #1a2535}
+.tg-inp{flex:1;background:#17212b;border:1px solid #2b3d52;color:#ccc;padding:10px 16px;font-size:13px;border-radius:24px;font-family:'DM Mono',monospace;outline:none;transition:border-color .2s}
+.tg-inp:focus{border-color:#3b82f6}
+.tg-send-btn{width:40px;height:40px;background:linear-gradient(135deg,#1a6bff,#00c896);border:none;border-radius:50%;color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:transform .2s}
+.tg-send-btn:hover{transform:scale(1.1)}
+.tg-typing{font-size:11px;color:#7fb3d3;padding:0 18px 8px;font-style:italic;min-height:24px}
+.wp-app{background:#fff;height:500px;overflow-y:auto;display:flex;flex-direction:column}
+.wp-topbar{background:#1a1a2e;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;flex-shrink:0;position:sticky;top:0;z-index:2}
+.wp-logo-text{color:#fff;font-weight:800;font-size:18px;letter-spacing:-.02em;font-family:'Syne',sans-serif}
+.wp-logo-text span{color:#e94560}
+.wp-nav-items{display:flex;gap:22px}
+.wp-nav-items a{color:rgba(255,255,255,.65);font-size:12px;font-family:'Syne',sans-serif;font-weight:600;cursor:pointer;transition:color .2s;text-decoration:none}
+.wp-nav-items a:hover{color:#fff}
+.wp-nav-cta{background:#e94560;color:#fff;padding:8px 18px;font-size:11px;font-weight:700;font-family:'Syne',sans-serif;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;border:none}
+.wp-hero-band{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);padding:60px 40px;text-align:center}
+.wp-hero-band .badge{display:inline-block;background:rgba(233,69,96,.2);color:#e94560;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(233,69,96,.3);margin-bottom:16px;font-family:'DM Mono',monospace}
+.wp-hero-band h2{color:#fff;font-size:32px;font-weight:800;margin-bottom:10px;line-height:1.2;font-family:'Syne',sans-serif}
+.wp-hero-band h2 span{color:#e94560}
+.wp-hero-band p{color:rgba(255,255,255,.6);font-size:13px;margin-bottom:22px}
+.wp-hero-btns{display:flex;justify-content:center;gap:12px}
+.wp-btn-p{background:#e94560;color:#fff;padding:12px 26px;font-size:12px;font-weight:700;text-transform:uppercase;border:none;cursor:pointer;font-family:'Syne',sans-serif}
+.wp-btn-s{background:transparent;color:#fff;padding:12px 26px;font-size:12px;font-weight:700;text-transform:uppercase;border:1.5px solid rgba(255,255,255,.3);cursor:pointer;font-family:'Syne',sans-serif}
+.wp-classes-section{padding:36px 32px;background:#f8f8f8}
+.wp-classes-section h3{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:20px;font-family:'DM Mono',monospace}
+.wp-class-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.wp-cls-card{background:#fff;border:1px solid #eee;padding:18px;transition:all .25s;cursor:pointer}
+.wp-cls-card:hover{border-color:#e94560;transform:translateY(-2px);box-shadow:0 8px 24px rgba(233,69,96,.08)}
+.wp-cls-card .ci{font-size:28px;margin-bottom:10px}
+.wp-cls-card .cn{font-size:14px;font-weight:700;color:#1a1a2e;margin-bottom:4px;font-family:'Syne',sans-serif}
+.wp-cls-card .ct{font-size:11px;color:#888;font-family:'DM Mono',monospace}
+.wp-cls-card .cp{font-size:12px;color:#e94560;font-weight:700;margin-top:8px;font-family:'DM Mono',monospace}
+.wp-trainers{padding:0 32px 32px}
+.wp-trainers h3{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:16px;font-family:'DM Mono',monospace}
+.wp-trainers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.wp-trainer{background:#fff;border:1px solid #eee;padding:16px;text-align:center}
+.wp-trainer .ta{font-size:36px;margin-bottom:8px}
+.wp-trainer .tn{font-size:13px;font-weight:700;color:#1a1a2e;font-family:'Syne',sans-serif}
+.wp-trainer .tr{font-size:10px;color:#e94560;font-weight:600;font-family:'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.wp-footer{background:#1a1a2e;padding:20px 32px;display:flex;justify-content:space-between;align-items:center}
+.wp-footer-logo{color:#fff;font-size:14px;font-weight:800;font-family:'Syne',sans-serif}
+.wp-footer-text{color:rgba(255,255,255,.35);font-size:10px;font-family:'DM Mono',monospace}
+.vps-app{background:#0d1117;height:500px;font-family:'DM Mono',monospace;display:flex;flex-direction:column}
+.vps-topbar{background:#161b22;padding:12px 18px;display:flex;align-items:center;gap:8px;flex-shrink:0;border-bottom:1px solid #21262d}
+.vps-d{width:13px;height:13px;border-radius:50%}
+.vps-title-text{color:#7d8590;font-size:11px;margin-left:6px}
+.vps-conn-info{margin-left:auto;font-size:10px;color:#3fb950}
+.vps-terminal{flex:1;padding:16px 20px;font-size:12.5px;line-height:2;overflow-y:auto;display:flex;flex-direction:column}
+.vline{display:flex;gap:8px;align-items:baseline}
+.vline .pr{color:#3fb950;flex-shrink:0}.vline .cm{color:#e6edf3}.vline .ou{color:#7d8590;padding-left:4px}.vline .ok{color:#3fb950;padding-left:4px}.vline .inf{color:#58a6ff;padding-left:4px}.vline .er{color:#f85149;padding-left:4px}
+.vps-inp-row{padding:8px 16px;background:#161b22;border-top:1px solid #21262d;display:flex;gap:8px;align-items:center;flex-shrink:0}
+.vps-inp{flex:1;background:#0d1117;border:1px solid #21262d;color:#e6edf3;padding:8px 14px;font-size:12px;border-radius:4px;font-family:'DM Mono',monospace;outline:none;transition:border-color .2s}
+.vps-inp:focus{border-color:#3fb950}
+.vps-run-btn{background:#3fb950;color:#0d1117;border:none;padding:8px 16px;font-size:11px;font-weight:600;font-family:'DM Mono',monospace;cursor:pointer;border-radius:4px;transition:all .2s}
+.vps-quick-cmds{padding:6px 16px 10px;background:#161b22;display:flex;gap:8px;flex-wrap:wrap}
+.vqs{background:#21262d;color:#7d8590;border:1px solid #30363d;padding:4px 10px;font-size:10px;border-radius:4px;cursor:pointer;font-family:'DM Mono',monospace;transition:all .2s}
+.vqs:hover{background:#30363d;color:#e6edf3}
+.dash-app{background:#f9fafb;height:500px;display:flex;flex-direction:column;overflow-y:auto}
+.dash-topbar{background:#fff;padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e5e7eb;flex-shrink:0;position:sticky;top:0;z-index:2}
+.dash-logo-txt{font-weight:800;font-size:16px;color:#111;letter-spacing:-.02em;font-family:'Syne',sans-serif}
+.dash-logo-txt span{color:#1a6bff}
+.dash-topbar-right{display:flex;align-items:center;gap:14px}
+.dash-notif{position:relative;font-size:18px;cursor:pointer}
+.dash-notif-dot{position:absolute;top:-2px;right:-2px;width:8px;height:8px;background:#ef4444;border-radius:50%;border:2px solid #fff}
+.dash-av2{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#1a6bff,#00c896);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.dash-content{flex:1;padding:20px}
+.dash-welcome{margin-bottom:20px}
+.dash-welcome h2{font-size:20px;font-weight:800;color:#111;font-family:'Syne',sans-serif}
+.dash-welcome p{font-size:12px;color:#6b7280;font-family:'DM Mono',monospace}
+.dash-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.dstat{background:#fff;padding:18px;border:1px solid #e5e7eb;border-radius:8px;position:relative;overflow:hidden;transition:box-shadow .2s;cursor:default}
+.dstat:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.dstat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.dstat.blue::before{background:#1a6bff}.dstat.green::before{background:#10b981}.dstat.purple::before{background:#8b5cf6}.dstat.orange::before{background:#f59e0b}
+.dstat-val{font-size:24px;font-weight:800;color:#111;line-height:1;font-family:'Syne',sans-serif}
+.dstat-label{font-size:10px;color:#6b7280;margin-top:4px;font-family:'DM Mono',monospace;letter-spacing:.05em}
+.dstat-change{font-size:11px;font-weight:600;margin-top:6px}
+.dstat-change.up{color:#10b981}
+.dash-row{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin-bottom:14px}
+.dash-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:18px}
+.dash-card-title{font-size:12px;font-weight:700;color:#111;margin-bottom:14px;font-family:'Syne',sans-serif;display:flex;justify-content:space-between;align-items:center}
+.dash-card-title .period{font-size:10px;color:#9ca3af;font-family:'DM Mono',monospace;font-weight:400}
+.chart-bars{display:flex;align-items:flex-end;gap:6px;height:100px}
+.cbar-w{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.cbar{width:100%;border-radius:3px 3px 0 0;cursor:pointer}
+.cbar:hover{opacity:.75}
+.cbar-l{font-size:8.5px;color:#9ca3af;font-family:'DM Mono',monospace}
+.dash-table{width:100%;border-collapse:collapse}
+.dash-table th{font-size:9px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;padding:6px 0;border-bottom:1px solid #e5e7eb;text-align:left;font-family:'DM Mono',monospace}
+.dash-table td{font-size:12px;color:#374151;padding:9px 0;border-bottom:1px solid #f3f4f6;font-family:'DM Mono',monospace}
+.dash-table td:last-child{text-align:right}
+.status-badge{display:inline-block;font-size:9px;font-weight:600;padding:3px 8px;border-radius:20px;letter-spacing:.04em}
+.status-badge.paid{background:#d1fae5;color:#065f46}.status-badge.pend{background:#fef3c7;color:#92400e}.status-badge.fail{background:#fee2e2;color:#991b1b}
+.dash-pie-wrap{display:flex;align-items:center;gap:16px}
+.dash-pie-legend{flex:1}
+.pie-item{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:11px;color:#374151;font-family:'DM Mono',monospace}
+.pie-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+/* ── SERVICES ── */
+.svc-list{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.svc{padding:44px 48px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);display:flex;gap:24px;align-items:flex-start;transition:background .3s,transform .3s;position:relative;overflow:hidden}
+.svc:nth-child(2n){border-right:none}
+.svc:nth-last-child(-n+2){border-bottom:none}
+.svc:hover{background:#fafaf8;transform:translateY(-2px)}
+.svc::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:width .5s cubic-bezier(.16,1,.3,1)}
+.svc:hover::after{width:100%}
+.svc-num{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.1em;margin-top:4px;flex-shrink:0}
+.svc-icon{font-size:24px;margin-bottom:14px;display:block;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.svc:hover .svc-icon{transform:scale(1.2) rotate(-6deg)}
+.svc-name{font-size:17px;font-weight:700;margin-bottom:10px;letter-spacing:-.01em}
+.svc-desc{font-size:13.5px;line-height:1.65;color:var(--muted);font-weight:400}
+.svc-price{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--accent);background:#e8f0ff;padding:5px 10px;margin-top:14px}
+
+/* ═══════════════════════════════════════
+   ── REVIEWS — COMPLETELY REDESIGNED ──
+═══════════════════════════════════════ */
+#reviews{background:var(--dark);border-bottom:1px solid #1a1a1a;position:relative;overflow:hidden}
+#reviews::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 20% 50%,rgba(26,107,255,.06) 0%,transparent 60%),radial-gradient(circle at 80% 20%,rgba(0,200,150,.04) 0%,transparent 50%);pointer-events:none}
+#reviews .sec-label{color:rgba(255,255,255,.3)}
+#reviews .sec-label::before{background:var(--accent2)}
+#reviews .sec-title{color:#fff}
+#reviews .sec-title em{color:rgba(255,255,255,.25)}
+#reviews .sec-head{border-color:#1a1a1a}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:4px}
+
+/* Card style — glassmorphism dark */
+.rv{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  padding:38px 32px;
+  position:relative;
+  transition:transform .4s cubic-bezier(.16,1,.3,1),background .3s,box-shadow .4s,border-color .3s;
+  backdrop-filter:blur(10px);
+  overflow:hidden;
+}
+.rv::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(26,107,255,.04),rgba(0,200,150,.02));
+  opacity:0;transition:opacity .4s;
+}
+.rv:hover{
+  transform:translateY(-8px);
+  background:rgba(255,255,255,.05);
+  border-color:rgba(26,107,255,.25);
+  box-shadow:0 30px 80px rgba(0,0,0,.4),0 0 0 1px rgba(26,107,255,.15);
+}
+.rv:hover::before{opacity:1}
+/* Top accent line on hover */
+.rv::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transform:scaleX(0);transition:transform .4s cubic-bezier(.16,1,.3,1);
+  transform-origin:left;
+}
+.rv:hover::after{transform:scaleX(1)}
+
+.rv-quote-icon{
+  font-family:var(--display);font-size:64px;line-height:.7;
+  color:rgba(26,107,255,.2);display:block;margin-bottom:18px;
+  transition:color .3s,transform .3s;
+}
+.rv:hover .rv-quote-icon{color:rgba(26,107,255,.35);transform:scale(1.1)}
+
+.rv-stars{display:flex;gap:4px;margin-bottom:16px}
+.rv-star{color:#fbbf24;font-size:14px;transition:transform .2s}
+.rv:hover .rv-star{animation:starPop .4s ease forwards}
+.rv:hover .rv-star:nth-child(1){animation-delay:.0s}
+.rv:hover .rv-star:nth-child(2){animation-delay:.05s}
+.rv:hover .rv-star:nth-child(3){animation-delay:.1s}
+.rv:hover .rv-star:nth-child(4){animation-delay:.15s}
+.rv:hover .rv-star:nth-child(5){animation-delay:.2s}
+@keyframes starPop{0%{transform:scale(1)}50%{transform:scale(1.4)}100%{transform:scale(1)}}
+
+.rv-text{
+  font-size:14.5px;line-height:1.8;
+  color:rgba(255,255,255,.55);
+  margin-bottom:30px;font-weight:400;
+  font-style:italic;
+}
+.rv-author{display:flex;align-items:center;gap:14px}
+.rv-avatar{
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+  flex-shrink:0;border:1.5px solid rgba(255,255,255,.1);
+  transition:border-color .3s,transform .3s;
+}
+.rv:hover .rv-avatar{border-color:rgba(26,107,255,.4);transform:scale(1.08)}
+.rv-name{font-family:var(--sans);font-size:14px;font-weight:700;color:#fff}
+.rv-role{font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:2px}
+.rv-country{position:absolute;top:32px;right:28px;font-size:22px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3))}
+
+/* Rating bar at top of reviews section */
+.reviews-rating-bar{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:0;
+}
+.reviews-rating-bar .big-score{
+  font-family:var(--display);font-size:52px;font-style:italic;color:#fff;line-height:1;
+}
+.reviews-rating-bar-right{display:flex;flex-direction:column;gap:4px}
+.reviews-rating-bar .stars-big{font-size:20px;letter-spacing:3px;color:#fbbf24}
+.reviews-rating-bar .count{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.35);letter-spacing:.08em;text-transform:uppercase}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-photo{aspect-ratio:3/4;background:linear-gradient(145deg,#0f1e3d,#1a2f5a 40%,#0d2645 70%,#091929);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid var(--border)}
+.about-photo-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;z-index:2;padding:40px 32px;text-align:center}
+.about-photo-avatar{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,#1a6bff,#00c896);display:flex;align-items:center;justify-content:center;font-size:52px;box-shadow:0 0 0 4px rgba(26,107,255,.15),0 0 0 8px rgba(26,107,255,.07);animation:avatarPulse 4s ease-in-out infinite}
+@keyframes avatarPulse{0%,100%{box-shadow:0 0 0 4px rgba(26,107,255,.15),0 0 0 8px rgba(26,107,255,.07)}50%{box-shadow:0 0 0 8px rgba(26,107,255,.2),0 0 0 16px rgba(26,107,255,.08),0 0 40px rgba(26,107,255,.15)}}
+.about-photo-name{font-family:var(--display);font-size:26px;color:#fff;line-height:1.1}
+.about-photo-name em{font-style:italic;color:rgba(0,200,150,.8)}
+.about-photo-role{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:2px}
+.about-photo-location{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.35);letter-spacing:.06em;margin-top:4px}
+.about-photo-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px}
+.about-photo-tag{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(26,107,255,.9);background:rgba(26,107,255,.12);border:1px solid rgba(26,107,255,.2);padding:4px 9px;transition:all .3s}
+.about-photo-tag:hover{background:rgba(26,107,255,.25);color:#7fb3ff}
+.about-photo::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(26,107,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(26,107,255,.05) 1px,transparent 1px);background-size:28px 28px;z-index:1;animation:gridDrift 20s linear infinite}
+@keyframes gridDrift{from{background-position:0 0}to{background-position:28px 28px}}
+.about-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,rgba(26,107,255,.06));z-index:1}
+.about-tag{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.about-tag::before{content:'';width:24px;height:1px;background:var(--accent)}
+.about-heading{font-family:var(--display);font-size:clamp(30px,3vw,44px);line-height:1.15;margin-bottom:24px}
+.about-heading em{font-style:italic;color:var(--muted)}
+.about-bio{font-size:15px;line-height:1.8;color:var(--muted);margin-bottom:32px;font-weight:400}
+.about-facts{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border)}
+.fact{padding:20px 24px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:background .3s}
+.fact:nth-child(2n){border-right:none}
+.fact:nth-last-child(-n+2){border-bottom:none}
+.fact:hover{background:#fafaf8}
+.fact-val{font-family:var(--display);font-size:32px;font-style:italic;color:var(--ink);line-height:1}
+.fact-key{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+
+/* ══════════════════════════════════════
+   ── CONTACT — FULLY REDESIGNED ──
+   Yan Hladchenko inspired: big split,
+   magnetic hover, floating labels,
+   animated send btn, noise texture
+══════════════════════════════════════ */
+#contact{
+  padding:0;
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+  overflow:hidden;
+}
+/* LEFT dark panel */
+.contact-left{
+  background:var(--dark);
+  padding:100px 64px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  border-right:1px solid #1a1a1a;
+}
+.contact-left::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 30% 60%,rgba(26,107,255,.12) 0%,transparent 65%),
+             radial-gradient(circle at 80% 20%,rgba(0,200,150,.06) 0%,transparent 50%);
+  pointer-events:none;
+}
+/* Animated grid lines */
+.contact-left::after{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:40px 40px;
+  animation:gridDrift 25s linear infinite;
+  pointer-events:none;
+}
+.contact-left-inner{position:relative;z-index:1}
+.contact-eyebrow{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(0,200,150,.8);
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:28px;
+}
+.contact-eyebrow::before{content:'';width:20px;height:1px;background:var(--accent2)}
+.contact-big{
+  font-family:var(--display);
+  font-size:clamp(44px,5.5vw,76px);
+  line-height:1.0;
+  color:#fff;
+  margin-bottom:8px;
+}
+.contact-big em{font-style:italic;color:var(--accent)}
+.contact-big-sub{
+  font-family:var(--display);font-size:clamp(44px,5.5vw,76px);
+  line-height:1.0;color:rgba(255,255,255,.2);
+  margin-bottom:32px;font-style:italic;
+}
+.contact-sub{
+  font-size:15px;line-height:1.75;
+  color:rgba(255,255,255,.45);
+  margin-bottom:48px;max-width:360px;font-weight:400;
+}
+.contact-links{display:flex;flex-direction:column;gap:0}
+.contact-link{
+  display:flex;align-items:center;gap:16px;
+  text-decoration:none;color:rgba(255,255,255,.5);
+  font-size:14px;font-weight:500;
+  padding:18px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:color .25s,transform .3s cubic-bezier(.16,1,.3,1),padding-left .3s;
+  cursor:none;position:relative;
+}
+.contact-link::before{
+  content:'→';
+  position:absolute;right:0;
+  font-family:var(--mono);font-size:13px;
+  color:var(--accent);
+  opacity:0;transform:translateX(-8px);
+  transition:all .3s;
+}
+.contact-link:hover{color:#fff;padding-left:8px}
+.contact-link:hover::before{opacity:1;transform:translateX(0)}
+.cl-icon{
+  width:42px;height:42px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+  transition:background .25s,border-color .25s,transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.contact-link:hover .cl-icon{transform:scale(1.12) rotate(-5deg)}
+.contact-link.lnk:hover .cl-icon{background:rgba(26,107,255,.15);border-color:rgba(26,107,255,.3)}
+.contact-link.wapp:hover{color:#25D366}
+.contact-link.wapp:hover .cl-icon{background:rgba(37,211,102,.1);border-color:rgba(37,211,102,.3)}
+.contact-link.mail:hover .cl-icon{background:rgba(250,204,21,.1);border-color:rgba(250,204,21,.3)}
+.contact-link.git:hover .cl-icon{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
+
+/* Availability badge */
+.contact-avail{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(22,163,74,.9);
+  background:rgba(22,163,74,.08);
+  border:1px solid rgba(22,163,74,.2);
+  padding:10px 16px;
+  margin-top:40px;
+  width:fit-content;
+}
+.contact-avail-dot{width:7px;height:7px;background:#16a34a;border-radius:50%;animation:blink 2s infinite;flex-shrink:0}
+
+/* RIGHT form panel */
+.contact-right{
+  background:var(--paper);
+  padding:100px 64px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.contact-form-title{
+  font-family:var(--display);font-size:28px;
+  color:var(--ink);margin-bottom:8px;
+}
+.contact-form-sub{
+  font-family:var(--mono);font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:48px;
+}
+
+/* Floating label inputs */
+.form-group{
+  position:relative;
+  margin-bottom:28px;
+}
+.form-input,.form-textarea{
+  width:100%;font-family:var(--sans);font-size:16px;
+  color:var(--ink);background:transparent;
+  border:none;border-bottom:1.5px solid var(--border);
+  padding:20px 0 10px;
+  outline:none;transition:border-color .3s;
+  border-radius:0;font-weight:400;resize:none;
+}
+.form-input:focus,.form-textarea:focus{border-color:var(--ink)}
+.form-textarea{min-height:100px;padding-top:22px}
+.form-label{
+  position:absolute;top:20px;left:0;
+  font-family:var(--mono);font-size:12px;
+  font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);
+  transition:top .25s cubic-bezier(.16,1,.3,1),font-size .25s,color .25s,letter-spacing .25s;
+  pointer-events:none;
+}
+.form-input:focus ~ .form-label,
+.form-input:not(:placeholder-shown) ~ .form-label,
+.form-textarea:focus ~ .form-label,
+.form-textarea:not(:placeholder-shown) ~ .form-label{
+  top:0;font-size:9px;color:var(--accent);letter-spacing:.15em;
+}
+/* focus line */
+.form-line{
+  position:absolute;bottom:0;left:0;width:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transition:width .4s cubic-bezier(.16,1,.3,1);
+}
+.form-group:focus-within .form-line{width:100%}
+
+/* Send button — magnetic big */
+.form-btn-wrap{position:relative;margin-top:12px}
+.form-btn{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  background:var(--ink);color:var(--paper);
+  font-family:var(--mono);font-size:13px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:18px 40px;border:none;cursor:none;
+  width:100%;
+  transition:background .3s,transform .2s,box-shadow .3s;
+  position:relative;overflow:hidden;
+}
+.form-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transform:translateX(-101%);
+  transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+.form-btn:hover::before{transform:translateX(0)}
+.form-btn span{position:relative;z-index:1}
+.form-btn .btn-arrow{
+  position:relative;z-index:1;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.form-btn:hover .btn-arrow{transform:translateX(6px) rotate(-35deg)}
+.form-btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(26,107,255,.3)}
+.form-success{
+  display:none;text-align:center;padding:24px;
+  font-family:var(--mono);font-size:12px;color:var(--accent2);
+  letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid var(--accent2);margin-top:12px;
+  background:rgba(0,200,150,.04);
+}
+
+/* ── FOOTER ── */
+footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:center}
+.foot-left{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.foot-right{display:flex;gap:24px}
+.foot-link{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;cursor:none}
+.foot-link:hover{color:var(--ink)}
+
+/* ── ANIMS ── */
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:18px 24px}
+  .nav-ul,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .hero{grid-template-columns:1fr;padding:110px 24px 60px}
+  .hero-right{justify-content:flex-start}
+  #globe-wrap{width:280px;height:280px}
+  section{padding:80px 24px}
+  .sec-head{flex-direction:column;align-items:flex-start;gap:12px}
+  .skills-grid{grid-template-columns:1fr}
+  .sk{border-right:none!important}
+  .skills-r2{grid-template-columns:1fr}
+  .skills-r2 .sk{border-right:none!important;border-bottom:1px solid var(--border)!important}
+  .proj-grid{grid-template-columns:1fr}
+  .proj-card:nth-child(1),.proj-card:nth-child(2){border-top:none}
+  .proj-card:nth-child(1){border-top:1px solid var(--border)}
+  .svc-list{grid-template-columns:1fr}
+  .svc{border-right:none!important;border-bottom:1px solid var(--border)!important}
+  .reviews-grid{grid-template-columns:1fr;gap:16px}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  #contact{grid-template-columns:1fr;min-height:auto}
+  .contact-left,.contact-right{padding:64px 28px}
+  footer{padding:24px;flex-direction:column;gap:16px;text-align:center}
+  #wa-float{right:16px;bottom:24px}
+  #back-top{left:16px;bottom:24px}
+  .dash-stats-row{grid-template-columns:repeat(2,1fr)}
+  .dash-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- WHATSAPP FLOAT -->
+<div id="wa-float">
+  <div class="wa-badge">WhatsApp · +91 95406 93239</div>
+  <a href="https://wa.me/919540693239" target="_blank" class="wa-bubble" title="Chat on WhatsApp">💬</a>
+</div>
+
+<button id="back-top" onclick="smoothScrollTo('home')" title="Back to top">↑</button>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#home" class="logo" onclick="event.preventDefault();smoothScrollTo('home')">dhruvdev.me</a>
+  <ul class="nav-ul">
+    <li><a href="#skills" onclick="event.preventDefault();smoothScrollTo('skills')">Skills</a></li>
+    <li><a href="#projects" onclick="event.preventDefault();smoothScrollTo('projects')">Projects</a></li>
+    <li><a href="#services" onclick="event.preventDefault();smoothScrollTo('services')">Services</a></li>
+    <li><a href="#reviews" onclick="event.preventDefault();smoothScrollTo('reviews')">Reviews</a></li>
+    <li><a href="#about" onclick="event.preventDefault();smoothScrollTo('about')">About</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta" onclick="event.preventDefault();smoothScrollTo('contact')">Hire Me →</a>
+  <button class="hamburger" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mob-menu">
+  <a href="#" onclick="smoothScrollTo('skills')">Skills</a>
+  <a href="#" onclick="smoothScrollTo('projects')">Projects</a>
+  <a href="#" onclick="smoothScrollTo('services')">Services</a>
+  <a href="#" onclick="smoothScrollTo('reviews')">Reviews</a>
+  <a href="#" onclick="smoothScrollTo('about')">About</a>
+  <a href="#" onclick="smoothScrollTo('contact')">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <canvas id="hero-bg-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.4"></canvas>
+  <div class="hero-left">
+    <div class="avail"><span class="avail-dot"></span>Open to Work · Gurugram, India</div>
+    <div class="hero-tag">Cloud Developer & AI Builder</div>
+    <h1 class="hero-name">Building <em>Smarter</em><br>Infrastructure</h1>
+    <p class="hero-desc">I deploy cloud servers, automate workflows with AI, build Telegram bots, and create WordPress sites — fast delivery, real results.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-p" onclick="event.preventDefault();smoothScrollTo('projects')">See My Work →</a>
+      <a href="#contact" class="btn-s" onclick="event.preventDefault();smoothScrollTo('contact')">Let's Talk ↗</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div id="globe-wrap">
+      <canvas id="globe-canvas"></canvas>
+      <div class="globe-label gl-1">Cloud Infra ☁️</div>
+      <div class="globe-label gl-2">Telegram Bots 🤖</div>
+      <div class="globe-label gl-3">AI Coding ⚡</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ti">Cloud & VPS</span><span class="ti">Telegram Bots</span>
+    <span class="ti">AI / Vibe Coding</span><span class="ti">WordPress</span>
+    <span class="ti">Nginx & SSL</span><span class="ti">Linux Admin</span>
+    <span class="ti">Python Automation</span><span class="ti">Server Deploy</span>
+    <span class="ti">Cloud & VPS</span><span class="ti">Telegram Bots</span>
+    <span class="ti">AI / Vibe Coding</span><span class="ti">WordPress</span>
+    <span class="ti">Nginx & SSL</span><span class="ti">Linux Admin</span>
+    <span class="ti">Python Automation</span><span class="ti">Server Deploy</span>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-head reveal">
+    <div><div class="sec-label">What I Do</div><h2 class="sec-title">Skills &amp; <em>Expertise</em></h2></div>
+    <div class="avail" style="animation:none;opacity:1"><span class="avail-dot"></span>5 Core Skills</div>
+  </div>
+  <div class="skills-grid">
+    <div class="sk reveal">
+      <span class="sk-num">01</span><span class="sk-icon">☁️</span>
+      <div class="sk-name">Cloud & VPS</div>
+      <p class="sk-desc">Deploy and manage cloud servers from scratch. Nginx setup, domain config, SSL certs, firewall rules, 24/7 uptime.</p>
+      <div class="tags"><span class="tag">DigitalOcean</span><span class="tag">AWS</span><span class="tag">Ubuntu</span><span class="tag">Nginx</span><span class="tag">SSH</span></div>
+    </div>
+    <div class="sk featured reveal" style="transition-delay:.1s">
+      <span class="sk-num">02</span><span class="sk-icon">🤖</span>
+      <div class="sk-name">Telegram Bots</div>
+      <p class="sk-desc">Custom Telegram bots for automation, business alerts, admin panels — deployed live on VPS with webhooks.</p>
+      <div class="tags"><span class="tag">Python</span><span class="tag">aiogram</span><span class="tag">pyTelegramBotAPI</span><span class="tag">Webhooks</span></div>
+    </div>
+    <div class="sk reveal" style="transition-delay:.2s">
+      <span class="sk-num">03</span><span class="sk-icon">⚡</span>
+      <div class="sk-name">AI / Vibe Coding</div>
+      <p class="sk-desc">Build full apps using AI-assisted tools. Ship in hours, not weeks. Idea to deployed product at lightning speed.</p>
+      <div class="tags"><span class="tag">Cursor</span><span class="tag">Claude</span><span class="tag">v0.dev</span><span class="tag">Bolt</span><span class="tag">Lovable</span></div>
+    </div>
+  </div>
+  <div class="skills-r2">
+    <div class="sk reveal" style="transition-delay:.05s">
+      <span class="sk-num">04</span><span class="sk-icon">🌐</span>
+      <div class="sk-name">WordPress Development</div>
+      <p class="sk-desc">End-to-end WordPress setup — themes, plugins, WooCommerce, speed optimization, and VPS hosting.</p>
+      <div class="tags"><span class="tag">WordPress</span><span class="tag">Elementor</span><span class="tag">WooCommerce</span><span class="tag">cPanel</span><span class="tag">PHP</span></div>
+    </div>
+    <div class="sk reveal" style="transition-delay:.15s">
+      <span class="sk-num">05</span><span class="sk-icon">🛠️</span>
+      <div class="sk-name">Linux & Server Admin</div>
+      <p class="sk-desc">Full Linux server management — process control, cron jobs, firewall, monitoring, production-ready setup.</p>
+      <div class="tags"><span class="tag">Linux</span><span class="tag">systemctl</span><span class="tag">UFW</span><span class="tag">Certbot</span><span class="tag">Docker</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-head reveal">
+    <div><div class="sec-label">Portfolio</div><h2 class="sec-title">Demo <em>Projects</em></h2></div>
+    <div class="avail" style="animation:none;opacity:1"><span class="avail-dot"></span>Click any card to try live demo</div>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card reveal" onclick="openModal('tg')">
+      <div class="proj-badge">TG Bot</div>
+      <div class="proj-thumb tg">
+        <div class="mini-tg">
+          <div class="mini-tg-top">
+            <div class="mini-tg-av">🤖</div>
+            <div class="mini-tg-info"><div class="name">ShopAlert Bot</div><div class="status">● online</div></div>
+          </div>
+          <div class="mini-tg-msgs">
+            <div class="mini-msg bot">👋 Hello! I'm your ShopAlert Bot.<div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap"><span style="background:#1c3a5e;color:#7fb3d3;padding:4px 8px;font-size:9px;border-radius:6px">📦 Orders</span><span style="background:#1c3a5e;color:#7fb3d3;padding:4px 8px;font-size:9px;border-radius:6px">📊 Stats</span></div></div>
+            <div class="mini-msg usr">Show today's orders</div>
+            <div class="mini-msg bot">📦 <b>3 new orders</b> today<br>Total: ₹4,850 💰</div>
+          </div>
+          <div class="mini-tg-inp">
+            <div class="mini-inp">Type a message...</div>
+            <div class="mini-send">➤</div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-demo-overlay"><button class="proj-demo-btn">▶ Try Live Demo</button></div>
+      <div class="proj-body">
+        <div class="proj-type">Telegram Bot · Python · aiogram</div>
+        <div class="proj-name">ShopAlert Bot</div>
+        <p class="proj-desc">Order alerts, shipment tracking, and customer auto-replies — deployed on DigitalOcean VPS with webhooks.</p>
+        <div class="proj-stack tags"><span class="tag">Python</span><span class="tag">aiogram</span><span class="tag">VPS</span><span class="tag">Webhooks</span></div>
+        <div class="proj-links"><a href="#" class="proj-link" onclick="event.stopPropagation()">GitHub ↗</a></div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal" style="transition-delay:.1s" onclick="openModal('wp')">
+      <div class="proj-badge">WordPress</div>
+      <div class="proj-thumb wp">
+        <div class="mini-wp">
+          <div class="mini-wp-nav">
+            <div class="mini-wp-logo">Fit<span style="color:#e94560">Zone</span></div>
+            <div class="mini-wp-links"><span>Classes</span><span>Trainers</span><span>Join</span></div>
+          </div>
+          <div class="mini-wp-hero" style="padding:14px 16px">
+            <h3 style="font-size:12px;margin-bottom:3px">Transform Your Body 💪</h3>
+            <p style="font-size:8px;margin-bottom:8px">Premium gym in Gurugram</p>
+            <div class="mini-wp-btn" style="font-size:8px;padding:4px 12px">Join Now</div>
+          </div>
+          <div class="mini-wp-cards" style="padding:6px 10px">
+            <div class="mini-wp-card"><div class="ic">🥊</div><div class="nm" style="font-size:7px">Boxing</div><div class="tm">6:00 AM</div></div>
+            <div class="mini-wp-card"><div class="ic">🧘</div><div class="nm" style="font-size:7px">Yoga</div><div class="tm">8:00 AM</div></div>
+            <div class="mini-wp-card"><div class="ic">🏋️</div><div class="nm" style="font-size:7px">Lifting</div><div class="tm">7:00 AM</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-demo-overlay"><button class="proj-demo-btn">▶ Try Live Demo</button></div>
+      <div class="proj-body">
+        <div class="proj-type">WordPress · Elementor · Nginx</div>
+        <div class="proj-name">FitZone Gym Website</div>
+        <p class="proj-desc">Full gym website with class schedule, trainer profiles, and membership booking — hosted on VPS with SSL.</p>
+        <div class="proj-stack tags"><span class="tag">WordPress</span><span class="tag">Elementor</span><span class="tag">Nginx</span><span class="tag">SSL</span></div>
+        <div class="proj-links"><a href="#" class="proj-link" onclick="event.stopPropagation()">Details ↗</a></div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal" style="transition-delay:.05s" onclick="openModal('vps')">
+      <div class="proj-badge">Cloud Setup</div>
+      <div class="proj-thumb vps">
+        <div class="mini-vps">
+          <div class="mini-vps-top">
+            <div class="mini-vps-dot" style="background:#ff5f57"></div>
+            <div class="mini-vps-dot" style="background:#febc2e"></div>
+            <div class="mini-vps-dot" style="background:#28c840"></div>
+            <div class="mini-vps-title">root@droplet-01</div>
+          </div>
+          <div class="mini-vps-body">
+            <div class="vl"><span class="pr">root@vps:~$</span><span class="cm">nginx -t</span></div>
+            <div class="vl"><span class="ok" style="padding-left:4px">✔ syntax is ok</span></div>
+            <div class="vl"><span class="pr">root@vps:~$</span><span class="cm">certbot --nginx</span></div>
+            <div class="vl"><span class="inf" style="padding-left:4px">SSL cert obtained!</span></div>
+            <div class="vl"><span class="pr">root@vps:~$</span><span class="cm">systemctl status nginx</span></div>
+            <div class="vl"><span class="ok" style="padding-left:4px">● active (running)</span></div>
+            <div class="vl"><span class="pr">root@vps:~$</span><span class="vcursor"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-demo-overlay"><button class="proj-demo-btn">▶ Try Live Demo</button></div>
+      <div class="proj-body">
+        <div class="proj-type">Cloud · Linux · Nginx</div>
+        <div class="proj-name">Multi-App VPS Setup</div>
+        <p class="proj-desc">One $6/mo DigitalOcean droplet hosting 3 different apps — WordPress, Python bot, static site — all with SSL.</p>
+        <div class="proj-stack tags"><span class="tag">Ubuntu</span><span class="tag">Nginx</span><span class="tag">Certbot</span><span class="tag">UFW</span></div>
+        <div class="proj-links"><a href="#" class="proj-link" onclick="event.stopPropagation()">Case Study ↗</a></div>
+      </div>
+    </div>
+
+    <div class="proj-card reveal" style="transition-delay:.15s" onclick="openModal('dash')">
+      <div class="proj-badge">AI Tool</div>
+      <div class="proj-thumb bot">
+        <div class="mini-dash">
+          <div class="mini-dash-top">
+            <div class="mini-dash-logo">Quick<span>Dash</span></div>
+            <div class="mini-dash-av">D</div>
+          </div>
+          <div class="mini-dash-stats">
+            <div class="mini-stat"><div class="mini-stat-v">₹84k</div><div class="mini-stat-l">REVENUE</div><div class="mini-stat-c">↑ 12%</div></div>
+            <div class="mini-stat"><div class="mini-stat-v">1.2k</div><div class="mini-stat-l">USERS</div><div class="mini-stat-c">↑ 8%</div></div>
+            <div class="mini-stat"><div class="mini-stat-v">94%</div><div class="mini-stat-l">UPTIME</div><div class="mini-stat-c">↑ 2%</div></div>
+            <div class="mini-stat"><div class="mini-stat-v">48</div><div class="mini-stat-l">ORDERS</div><div class="mini-stat-c">↑ 5%</div></div>
+          </div>
+          <div class="mini-chart-wrap">
+            <div class="mini-chart-title">Weekly Revenue</div>
+            <div class="mini-bars">
+              <div class="mini-bar-w"><div class="mini-bar" style="height:55%;background:#1a6bff;opacity:.6"></div><div class="mini-bar-l">M</div></div>
+              <div class="mini-bar-w"><div class="mini-bar" style="height:72%;background:#1a6bff;opacity:.7"></div><div class="mini-bar-l">T</div></div>
+              <div class="mini-bar-w"><div class="mini-bar" style="height:48%;background:#1a6bff;opacity:.6"></div><div class="mini-bar-l">W</div></div>
+              <div class="mini-bar-w"><div class="mini-bar" style="height:88%;background:#1a6bff"></div><div class="mini-bar-l">T</div></div>
+              <div class="mini-bar-w"><div class="mini-bar" style="height:65%;background:#1a6bff;opacity:.75"></div><div class="mini-bar-l">F</div></div>
+              <div class="mini-bar-w"><div class="mini-bar" style="height:40%;background:#1a6bff;opacity:.5"></div><div class="mini-bar-l">S</div></div>
+              <div class="mini-bar-w"><div class="mini-bar" style="height:30%;background:#1a6bff;opacity:.4"></div><div class="mini-bar-l">S</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="proj-demo-overlay"><button class="proj-demo-btn">▶ Try Live Demo</button></div>
+      <div class="proj-body">
+        <div class="proj-type">AI Coding · v0.dev · Cursor</div>
+        <div class="proj-name">QuickDash — Admin Panel</div>
+        <p class="proj-desc">Full-stack admin dashboard built in under 4 hours using AI tools — auth, charts, data tables. Deployed on Vercel.</p>
+        <div class="proj-stack tags"><span class="tag">v0.dev</span><span class="tag">Cursor</span><span class="tag">React</span><span class="tag">Vercel</span></div>
+        <div class="proj-links"><a href="#" class="proj-link" onclick="event.stopPropagation()">Live Demo ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModalOnBg(event)">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-header">
+      <div class="modal-type" id="m-type"></div>
+      <div class="modal-title" id="m-title"></div>
+      <div class="modal-sub" id="m-sub"></div>
+      <div class="modal-tags" id="m-tags"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-demo-wrap">
+        <div class="modal-demo-label">LIVE INTERACTIVE DEMO — Try it yourself</div>
+        <div class="demo-frame" id="m-demo"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="sec-head reveal">
+    <div><div class="sec-label">What I Offer</div><h2 class="sec-title">Services &amp; <em>Pricing</em></h2></div>
+  </div>
+  <div class="svc-list">
+    <div class="svc reveal">
+      <div class="svc-num">01</div>
+      <div>
+        <span class="svc-icon">☁️</span>
+        <div class="svc-name">VPS Setup & Management</div>
+        <p class="svc-desc">Full VPS setup from scratch — OS install, Nginx, SSL, domain, firewall. Your server ready in 24 hours.</p>
+        <span class="svc-price">Starting ₹3,000</span>
+      </div>
+    </div>
+    <div class="svc reveal" style="transition-delay:.1s">
+      <div class="svc-num">02</div>
+      <div>
+        <span class="svc-icon">🤖</span>
+        <div class="svc-name">Telegram Bot Development</div>
+        <p class="svc-desc">Custom Telegram bots for your business — order alerts, auto-replies, admin panels, payment integration.</p>
+        <span class="svc-price">Starting ₹4,500</span>
+      </div>
+    </div>
+    <div class="svc reveal" style="transition-delay:.05s">
+      <div class="svc-num">03</div>
+      <div>
+        <span class="svc-icon">🌐</span>
+        <div class="svc-name">WordPress Website</div>
+        <p class="svc-desc">Complete WordPress site — design, plugins, WooCommerce, speed optimization, and hosting on VPS.</p>
+        <span class="svc-price">Starting ₹12,000</span>
+      </div>
+    </div>
+    <div class="svc reveal" style="transition-delay:.15s">
+      <div class="svc-num">04</div>
+      <div>
+        <span class="svc-icon">⚡</span>
+        <div class="svc-name">AI-Powered App Development</div>
+        <p class="svc-desc">Fast delivery using AI tools — landing pages, dashboards, tools. Ship in 24-48 hours at fraction of usual cost.</p>
+        <span class="svc-price">Starting ₹20,000</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS — REDESIGNED -->
+<section id="reviews">
+  <div class="sec-head reveal">
+    <div>
+      <div class="sec-label">Client Reviews</div>
+      <h2 class="sec-title">What They <em>Say</em></h2>
+    </div>
+    <div class="reviews-rating-bar">
+      <div class="big-score">5.0</div>
+      <div class="reviews-rating-bar-right">
+        <div class="stars-big">★★★★★</div>
+        <div class="count">3 verified reviews</div>
+      </div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+
+    <div class="rv reveal">
+      <div class="rv-country">🇮🇳</div>
+      <span class="rv-quote-icon">"</span>
+      <div class="rv-stars">
+        <span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span>
+      </div>
+      <p class="rv-text">Set up our entire VPS in one day — Nginx, SSL, domain, everything working perfectly. Super responsive and knows his stuff inside out.</p>
+      <div class="rv-author">
+        <div class="rv-avatar" style="background:rgba(26,107,255,.15)">🧑‍💼</div>
+        <div><div class="rv-name">Rahul Mehta</div><div class="rv-role">Founder, TechStart Delhi</div></div>
+      </div>
+    </div>
+
+    <div class="rv reveal" style="transition-delay:.1s">
+      <div class="rv-country">🇦🇪</div>
+      <span class="rv-quote-icon">"</span>
+      <div class="rv-stars">
+        <span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span>
+      </div>
+      <p class="rv-text">Built us a Telegram bot for our store in 2 days. Order alerts, auto replies, admin panel — everything worked exactly as needed. Will hire again.</p>
+      <div class="rv-author">
+        <div class="rv-avatar" style="background:rgba(0,200,150,.12)">👩‍💻</div>
+        <div><div class="rv-name">Fatima Al-Rashid</div><div class="rv-role">E-commerce Owner, Dubai</div></div>
+      </div>
+    </div>
+
+    <div class="rv reveal" style="transition-delay:.2s">
+      <div class="rv-country">🇺🇸</div>
+      <span class="rv-quote-icon">"</span>
+      <div class="rv-stars">
+        <span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span><span class="rv-star">★</span>
+      </div>
+      <p class="rv-text">Needed a WordPress site fast. Dhruv delivered in 48 hours — clean design, fast load, mobile perfect. Best freelancer I've worked with.</p>
+      <div class="rv-author">
+        <div class="rv-avatar" style="background:rgba(251,191,36,.12)">🧑‍🎨</div>
+        <div><div class="rv-name">Marcus Johnson</div><div class="rv-role">Fitness Coach, USA</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-photo reveal">
+      <div class="about-photo-inner">
+        <div class="about-photo-avatar">👨‍💻</div>
+        <div>
+          <div class="about-photo-name">Dhruv<br><em>Chandrawanshi</em></div>
+          <div class="about-photo-role">Cloud & AI Developer</div>
+          <div class="about-photo-location">📍 Gurugram, India</div>
+        </div>
+        <div class="about-photo-tags">
+          <span class="about-photo-tag">Python</span>
+          <span class="about-photo-tag">Cloud</span>
+          <span class="about-photo-tag">Linux</span>
+          <span class="about-photo-tag">AI Tools</span>
+          <span class="about-photo-tag">Telegram Bots</span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:.15s">
+      <div class="about-tag">Who I Am</div>
+      <h2 class="about-heading">A Builder Who <em>Actually Delivers</em></h2>
+      <p class="about-bio">Hey, I'm Dhruv — a self-taught developer from Gurugram who loves building things that work. I started with Linux servers, moved to Python bots, and now I build full apps using AI tools faster than most teams can write specs.<br><br>I don't just write code — I understand infrastructure, automation, and how to make tech actually useful for businesses.</p>
+      <div class="about-facts">
+        <div class="fact"><div class="fact-val">10+</div><div class="fact-key">Projects Done</div></div>
+        <div class="fact"><div class="fact-val">5★</div><div class="fact-key">Avg Rating</div></div>
+        <div class="fact"><div class="fact-val">24h</div><div class="fact-key">Response Time</div></div>
+        <div class="fact"><div class="fact-val">3+</div><div class="fact-key">Years Learning</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT — REDESIGNED -->
+<section id="contact">
+  <!-- LEFT PANEL -->
+  <div class="contact-left reveal">
+    <div class="contact-left-inner">
+      <div class="contact-eyebrow">Get in Touch</div>
+      <h2 class="contact-big">Let's <em>Work</em></h2>
+      <div class="contact-big-sub">Together.</div>
+      <p class="contact-sub">Have a project in mind? Need a VPS set up, a Telegram bot built, or a WordPress site? Let's talk — I respond within 24 hours.</p>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/dhruv-chandrawanshi-31844b3bb/" target="_blank" class="contact-link lnk">
+          <div class="cl-icon">💼</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:inherit">LinkedIn</div>
+            <div style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.05em">Dhruv Chandrawanshi</div>
+          </div>
+        </a>
+        <a href="https://wa.me/919540693239" target="_blank" class="contact-link wapp">
+          <div class="cl-icon">💬</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:inherit">WhatsApp</div>
+            <div style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.05em">+91 95406 93239</div>
+          </div>
+        </a>
+        <a href="mailto:dxruxkumar@gmail.com" class="contact-link mail">
+          <div class="cl-icon">📧</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:inherit">Email</div>
+            <div style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.05em">dxruxkumar@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://github.com" target="_blank" class="contact-link git">
+          <div class="cl-icon">🐙</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:inherit">GitHub</div>
+            <div style="font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.05em">My open source code</div>
+          </div>
+        </a>
+      </div>
+      <div class="contact-avail">
+        <div class="contact-avail-dot"></div>
+        Available for new projects
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="contact-right reveal" style="transition-delay:.2s">
+    <div class="contact-form-title">Send a Message</div>
+    <div class="contact-form-sub">I'll reply within 24 hours</div>
+
+    <div class="form-group">
+      <input type="text" class="form-input" id="f-name" placeholder=" ">
+      <label class="form-label">Your Name</label>
+      <div class="form-line"></div>
+    </div>
+    <div class="form-group">
+      <input type="email" class="form-input" id="f-email" placeholder=" ">
+      <label class="form-label">Email Address</label>
+      <div class="form-line"></div>
+    </div>
+    <div class="form-group">
+      <textarea class="form-textarea" id="f-msg" placeholder=" "></textarea>
+      <label class="form-label">What do you need?</label>
+      <div class="form-line"></div>
+    </div>
+
+    <div class="form-btn-wrap">
+      <button class="form-btn" id="form-submit">
+        <span>Send Message</span>
+        <span class="btn-arrow">→</span>
+      </button>
+    </div>
+    <div class="form-success" id="form-success">✓ Message Sent! I'll reply within 24 hours.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-left">© 2025 Dhruv Chandrawanshi · dhruvdev.me · Built with ⚡ AI Coding</div>
+  <div class="foot-right">
+    <a href="https://www.linkedin.com/in/dhruv-chandrawanshi-31844b3bb/" target="_blank" class="foot-link">LinkedIn</a>
+    <a href="https://github.com" target="_blank" class="foot-link">GitHub</a>
+    <a href="https://wa.me/919540693239" target="_blank" class="foot-link">WhatsApp</a>
+    <a href="mailto:dxruxkumar@gmail.com" class="foot-link">Email</a>
+  </div>
+</footer>
+
+<script>
+// ── SMOOTH SCROLL ──
+function smoothScrollTo(id){
+  const el=document.getElementById(id);if(!el)return;
+  const navH=document.getElementById('nav').offsetHeight;
+  const top=el.getBoundingClientRect().top+window.pageYOffset-navH-8;
+  window.scrollTo({top,behavior:'smooth'});
+  document.getElementById('mob-menu').classList.remove('open');
+  document.getElementById('ham').classList.remove('active');
+}
+
+// ── CURSOR ──
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-4}px,${my-4}px)`;});
+(function animRing(){rx+=(mx-rx-16)*.1;ry+=(my-ry-16)*.1;ring.style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(animRing);})();
+document.querySelectorAll('a,button,.proj-card,.sk,.svc,.rv,.fact,.about-photo-tag,.contact-link').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('link-hover'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('link-hover'));
+});
+const waEl=document.querySelector('.wa-bubble');
+if(waEl){
+  waEl.addEventListener('mouseenter',()=>{document.body.classList.remove('link-hover');document.body.classList.add('wa-hover');});
+  waEl.addEventListener('mouseleave',()=>document.body.classList.remove('wa-hover'));
+}
+
+// ── SCROLL STUFF ──
+window.addEventListener('scroll',()=>{
+  const s=window.pageYOffset,dh=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('progress-bar').style.width=(s/dh*100)+'%';
+  document.getElementById('nav').classList.toggle('sc',s>40);
+  document.getElementById('back-top').classList.toggle('show',s>400);
+});
+
+// ── MOBILE MENU ──
+document.getElementById('ham').addEventListener('click',()=>{
+  document.getElementById('mob-menu').classList.toggle('open');
+  document.getElementById('ham').classList.toggle('active');
+});
+
+// ── SKILL CARD MOUSE GLOW ──
+document.querySelectorAll('.sk').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+    card.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
+
+// ── SCROLL REVEAL ──
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── HERO BG ──
+const bgC=document.getElementById('hero-bg-canvas'),bgCtx=bgC.getContext('2d');
+function resizeBg(){bgC.width=bgC.offsetWidth;bgC.height=bgC.offsetHeight;}
+resizeBg();window.addEventListener('resize',resizeBg);
+const pts=[];
+for(let i=0;i<60;i++)pts.push({x:Math.random()*bgC.width,y:Math.random()*bgC.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*2+.5});
+(function drawBg(){
+  bgCtx.clearRect(0,0,bgC.width,bgC.height);
+  pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>bgC.width)p.vx*=-1;if(p.y<0||p.y>bgC.height)p.vy*=-1;bgCtx.beginPath();bgCtx.arc(p.x,p.y,p.r,0,Math.PI*2);bgCtx.fillStyle='rgba(26,107,255,.25)';bgCtx.fill();});
+  pts.forEach((a,i)=>pts.slice(i+1).forEach(b=>{const d=Math.hypot(a.x-b.x,a.y-b.y);if(d<100){bgCtx.beginPath();bgCtx.moveTo(a.x,a.y);bgCtx.lineTo(b.x,b.y);bgCtx.strokeStyle=`rgba(26,107,255,${.08*(1-d/100)})`;bgCtx.lineWidth=.5;bgCtx.stroke();}}));
+  requestAnimationFrame(drawBg);
+})();
+
+// ── GLOBE ──
+const gc=document.getElementById('globe-canvas'),gctx=gc.getContext('2d');
+let W,H,dots=[],rot=0;
+function resizeGlobe(){const w=document.getElementById('globe-wrap');W=gc.width=w.offsetWidth;H=gc.height=w.offsetHeight;buildGlobe();}
+function buildGlobe(){
+  dots=[];const R=Math.min(W,H)*.42;
+  for(let lat=-80;lat<=80;lat+=12)for(let lon=0;lon<360;lon+=12){const phi=(90-lat)*Math.PI/180,theta=lon*Math.PI/180;dots.push({x:R*Math.sin(phi)*Math.cos(theta),y:R*Math.cos(phi),z:R*Math.sin(phi)*Math.sin(theta),type:'dot'});}
+  [{lat:20,lon:80,s:20,n:30},{lat:40,lon:10,s:18,n:25},{lat:5,lon:20,s:22,n:28},{lat:40,lon:-100,s:22,n:30},{lat:-15,lon:-55,s:18,n:22},{lat:-25,lon:135,s:14,n:16}].forEach(b=>{for(let i=0;i<b.n;i++){const la=b.lat+(Math.random()-.5)*b.s,lo=b.lon+(Math.random()-.5)*b.s,phi=(90-la)*Math.PI/180,theta=lo*Math.PI/180,R2=Math.min(W,H)*.42;dots.push({x:R2*Math.sin(phi)*Math.cos(theta),y:R2*Math.cos(phi),z:R2*Math.sin(phi)*Math.sin(theta),type:'land'});}});
+}
+resizeGlobe();window.addEventListener('resize',resizeGlobe);
+(function drawGlobe(){
+  gctx.clearRect(0,0,W,H);const cx=W/2,cy=H/2,R=Math.min(W,H)*.42;rot+=.004;
+  const cos=Math.cos(rot),sin=Math.sin(rot);
+  const g=gctx.createRadialGradient(cx-R*.25,cy-R*.25,0,cx,cy,R);
+  g.addColorStop(0,'rgba(26,107,255,.06)');g.addColorStop(.7,'rgba(26,107,255,.02)');g.addColorStop(1,'rgba(26,107,255,0)');
+  gctx.beginPath();gctx.arc(cx,cy,R,0,Math.PI*2);gctx.fillStyle=g;gctx.fill();
+  gctx.beginPath();gctx.arc(cx,cy,R,0,Math.PI*2);gctx.strokeStyle='rgba(26,107,255,.12)';gctx.lineWidth=1;gctx.stroke();
+  [...dots].sort((a,b)=>(a.x*sin+a.z*cos)-(b.x*sin+b.z*cos)).forEach(d=>{
+    const rx=d.x*cos-d.z*sin,rz=d.x*sin+d.z*cos,vis=rz>-R*.1,sx=cx+rx,sy=cy+d.y,al=vis?(0.15+(rz/R)*.55):.03,sz=d.type==='land'?2.2:1.2;
+    gctx.beginPath();gctx.arc(sx,sy,sz,0,Math.PI*2);gctx.fillStyle=d.type==='land'?`rgba(26,107,255,${al*.9})`:`rgba(26,107,255,${al*.45})`;gctx.fill();
+  });
+  const pulse=(Math.sin(Date.now()*.002)+1)/2;
+  gctx.beginPath();gctx.arc(cx,cy,R*(1+pulse*.04),0,Math.PI*2);gctx.strokeStyle=`rgba(26,107,255,${.08*(1-pulse)})`;gctx.lineWidth=1;gctx.stroke();
+  requestAnimationFrame(drawGlobe);
+})();
+
+// ── CONTACT FORM ──
+document.getElementById('form-submit').addEventListener('click',()=>{
+  const n=document.getElementById('f-name').value.trim();
+  const e=document.getElementById('f-email').value.trim();
+  const m=document.getElementById('f-msg').value.trim();
+  if(!n||!e||!m){
+    const btn=document.getElementById('form-submit');
+    btn.querySelector('span').textContent='Fill all fields!';
+    btn.style.background='#ef4444';
+    setTimeout(()=>{btn.querySelector('span').textContent='Send Message';btn.style.background='';},2000);
+    return;
+  }
+  const sub=encodeURIComponent('Portfolio Inquiry from '+n);
+  const body=encodeURIComponent('Name: '+n+'\nEmail: '+e+'\n\nMessage:\n'+m);
+  window.location.href='mailto:dxruxkumar@gmail.com?subject='+sub+'&body='+body;
+  document.getElementById('form-submit').querySelector('span').textContent='Opening email...';
+  setTimeout(()=>{
+    document.getElementById('form-submit').style.display='none';
+    document.getElementById('form-success').style.display='block';
+    ['f-name','f-email','f-msg'].forEach(id=>document.getElementById(id).value='');
+  },1000);
+});
+
+// ══ MODAL SYSTEM ══
+const PROJECTS={
+  tg:{type:'Telegram Bot · Python · aiogram · VPS',title:'ShopAlert Bot',sub:'A fully functional Telegram bot for e-commerce stores — sends real-time order alerts, tracks shipments, and handles customer queries via smart auto-replies.',tags:['Python','aiogram','DigitalOcean VPS','Nginx Webhooks','SQLite DB'],demo:buildTgDemo},
+  wp:{type:'WordPress · Elementor · Nginx · SSL',title:'FitZone Gym Website',sub:'A complete gym business website with interactive class schedule, trainer profiles, and membership booking form. Hosted on VPS with Nginx, SSL via Certbot.',tags:['WordPress 6.4','Elementor Pro','Nginx','Certbot SSL','WooCommerce'],demo:buildWpDemo},
+  vps:{type:'Cloud · Ubuntu · Nginx · Linux Admin',title:'Multi-App VPS Setup',sub:'Production-grade single DigitalOcean droplet ($6/mo) running 3 separate apps — each with its own domain, SSL certificate, and process manager.',tags:['Ubuntu 22.04','Nginx Virtual Hosts','Certbot','UFW Firewall','PM2'],demo:buildVpsDemo},
+  dash:{type:'AI Coding · v0.dev · Cursor · React',title:'QuickDash — Admin Panel',sub:'A full-stack admin dashboard shipped in under 4 hours using AI-assisted coding tools. Features real-time stats, revenue charts, and order management.',tags:['v0.dev','Cursor AI','React 18','Recharts','Vercel'],demo:buildDashDemo}
+};
+function openModal(k){
+  const p=PROJECTS[k];
+  document.getElementById('m-type').textContent=p.type;
+  document.getElementById('m-title').textContent=p.title;
+  document.getElementById('m-sub').textContent=p.sub;
+  document.getElementById('m-tags').innerHTML=p.tags.map(t=>`<span class="tag">${t}</span>`).join('');
+  const d=document.getElementById('m-demo');d.innerHTML='';p.demo(d);
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+  if(window._vpsInt){clearInterval(window._vpsInt);window._vpsInt=null;}
+  if(window._tgInt){clearTimeout(window._tgInt);window._tgInt=null;}
+}
+function closeModalOnBg(e){if(e.target===document.getElementById('modal'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// ── TG DEMO ──
+function buildTgDemo(el){
+  const now=()=>{const d=new Date();return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');};
+  el.innerHTML=`<div class="tg-app"><div class="tg-topbar"><div class="tg-av">🤖</div><div class="tg-info"><div class="tg-name">ShopAlert Bot</div><div class="tg-status" id="tg-st">● online</div></div></div><div class="tg-msgs-area" id="tg-msgs"><div class="tg-m b">👋 Hey! I'm <b>ShopAlert Bot</b>.<div class="tg-btn-row"><button class="tg-kb-btn" onclick="tgCmd('/orders')">📦 Orders</button><button class="tg-kb-btn" onclick="tgCmd('/stats')">📊 Stats</button><button class="tg-kb-btn" onclick="tgCmd('/ship')">🚚 Ship</button><button class="tg-kb-btn" onclick="tgCmd('/help')">❓ Help</button></div><div class="mt">${now()} ✓✓</div></div></div><div class="tg-typing" id="tg-typ"></div><div class="tg-inp-row"><input class="tg-inp" id="tg-inp" placeholder="Type or use buttons..." onkeydown="if(event.key==='Enter')tgSend()"><button class="tg-send-btn" onclick="tgSend()">➤</button></div></div>`;
+  const R={'/orders':`📦 <b>Today's Orders</b>\n\n#1042 · Priya S. · ₹1,299 · 🟡 Processing\n#1041 · Rohan K. · ₹2,450 · ✅ Shipped\n#1040 · Anjali M. · ₹899 · ✅ Delivered\n\n💰 Total: <b>₹4,648</b>`,'/stats':`📊 <b>Stats — This Week</b>\n\n👥 New Users: <b>84</b>\n🛒 Orders: <b>127</b>\n💸 Revenue: <b>₹38,520</b>\n⭐ Avg Rating: <b>4.8/5</b>`,'/ship':`🚚 <b>Shipments</b>\n\n#1041 → Out for delivery · ETA 2h\n#1039 → Delivered ✅\n#1038 → In transit · Delhi hub`,'/help':`❓ <b>Commands</b>\n\n/orders — Today's list\n/stats — Weekly stats\n/ship — Tracker\n/help — This menu`};
+  window.tgCmd=function(cmd){addTgMsg(cmd,'u');document.getElementById('tg-st').textContent='● typing...';window._tgInt=setTimeout(()=>{addTgMsg(R[cmd]||`🤔 Try: /orders /stats /ship /help`,'b');document.getElementById('tg-st').textContent='● online';},900+Math.random()*400);};
+  window.tgSend=function(){const inp=document.getElementById('tg-inp'),v=inp.value.trim();if(!v)return;inp.value='';addTgMsg(v,'u');document.getElementById('tg-st').textContent='● typing...';const lv=v.toLowerCase();setTimeout(()=>{let r;if(lv.includes('order'))r=R['/orders'];else if(lv.includes('stat')||lv.includes('sale'))r=R['/stats'];else if(lv.includes('ship'))r=R['/ship'];else if(lv.includes('hi')||lv.includes('hello'))r=`👋 Hi! Use /orders /stats /ship /help`;else r=`🤖 You said: "<i>${v}</i>"\n\nTry: /orders /stats /ship /help`;addTgMsg(r,'b');document.getElementById('tg-st').textContent='● online';},800+Math.random()*500);};
+  function addTgMsg(t,w){const a=document.getElementById('tg-msgs'),d=document.createElement('div');d.className=`tg-m ${w}`;d.innerHTML=t.replace(/\n/g,'<br>')+`<div class="mt">${now()}${w==='b'?' ✓✓':''}</div>`;a.appendChild(d);a.scrollTop=a.scrollHeight;}
+}
+
+// ── WP DEMO ──
+function buildWpDemo(el){
+  el.innerHTML=`<div class="wp-app"><div class="wp-topbar"><div class="wp-logo-text">Fit<span>Zone</span></div><nav class="wp-nav-items"><a onclick="wpSec('classes')">Classes</a><a onclick="wpSec('trainers')">Trainers</a><a onclick="wpSec('pricing')">Pricing</a></nav><button class="wp-nav-cta" onclick="wpSec('join')">Join Now</button></div><div id="wp-c"><div class="wp-hero-band"><div class="badge">🏆 #1 GYM IN GURUGRAM</div><h2>Transform Your Body,<br><span>Transform Your Life</span></h2><p>Premium fitness center with world-class trainers and modern equipment.</p><div class="wp-hero-btns"><button class="wp-btn-p" onclick="wpSec('join')">Start Free Trial →</button><button class="wp-btn-s" onclick="wpSec('classes')">View Classes</button></div></div><div class="wp-classes-section"><h3>Featured Classes</h3><div class="wp-class-grid"><div class="wp-cls-card" onclick="wpAl('Boxing')"><div class="ci">🥊</div><div class="cn">Boxing</div><div class="ct">Mon, Wed, Fri · 6AM</div><div class="cp">₹1,200/mo</div></div><div class="wp-cls-card" onclick="wpAl('Yoga')"><div class="ci">🧘</div><div class="cn">Power Yoga</div><div class="ct">Daily · 7:30AM</div><div class="cp">₹900/mo</div></div><div class="wp-cls-card" onclick="wpAl('Lifting')"><div class="ci">🏋️</div><div class="cn">Olympic Lifting</div><div class="ct">Tue, Thu · 7AM</div><div class="cp">₹1,500/mo</div></div><div class="wp-cls-card" onclick="wpAl('HIIT')"><div class="ci">🔥</div><div class="cn">HIIT Blast</div><div class="ct">Mon-Fri · 5:30PM</div><div class="cp">₹1,100/mo</div></div><div class="wp-cls-card" onclick="wpAl('Cycling')"><div class="ci">🚴</div><div class="cn">Spin Cycling</div><div class="ct">Daily · 6:30AM</div><div class="cp">₹800/mo</div></div><div class="wp-cls-card" onclick="wpAl('Zumba')"><div class="ci">💃</div><div class="cn">Zumba Dance</div><div class="ct">Tue, Thu · 7PM</div><div class="cp">₹850/mo</div></div></div></div><div class="wp-footer"><div class="wp-footer-logo">FitZone Gurugram</div><div class="wp-footer-text">Built by Dhruv · WordPress + Nginx + SSL</div></div></div></div>`;
+  const msgs={join:'✅ Membership form would open here!\nConnects to WooCommerce for payment.',pricing:'💰 Plans:\n• Basic: ₹1,500/mo\n• Standard: ₹2,500/mo\n• Premium: ₹4,000/mo',classes:null,trainers:'👨‍🏫 3 expert trainers on staff!'};
+  window.wpSec=function(s){if(msgs[s])showWpN(msgs[s]);};
+  window.wpAl=function(c){showWpN(`📅 Booking: ${c}\n\nThis opens the class booking form with payment gateway!`);};
+  function showWpN(msg){const ex=document.getElementById('wp-notif');if(ex)ex.remove();const n=document.createElement('div');n.id='wp-notif';n.style.cssText='position:fixed;top:80px;right:20px;background:#1a1a2e;color:#fff;padding:16px 20px;max-width:300px;font-size:12px;line-height:1.6;font-family:DM Mono,monospace;border-left:3px solid #e94560;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,.4)';n.innerHTML=msg.replace(/\n/g,'<br>')+'<div style="margin-top:10px;font-size:10px;color:#e94560;cursor:pointer" onclick="this.parentNode.remove()">✕ Close</div>';document.body.appendChild(n);setTimeout(()=>n.remove&&n.remove(),4000);}
+}
+
+// ── VPS DEMO ──
+function buildVpsDemo(el){
+  const CMDS={'nginx -t':[{t:'ok',v:'nginx: configuration file syntax is ok'},{t:'ok',v:'nginx: test is successful'}],'nginx -v':[{t:'inf',v:'nginx version: nginx/1.24.0 (Ubuntu)'}],'systemctl status nginx':[{t:'ok',v:'● nginx.service - A high performance web server'},{t:'ok',v:'   Active: active (running) since today'}],'ufw status':[{t:'ok',v:'Status: active'},{t:'inf',v:'22/tcp  ALLOW  Anywhere'},{t:'inf',v:'80/tcp  ALLOW  Anywhere'},{t:'inf',v:'443/tcp ALLOW  Anywhere'}],'certbot --nginx':[{t:'ok',v:'Successfully received certificate.'},{t:'ok',v:'Cert saved at: /etc/letsencrypt/live/dhruvdev.me/'}],'df -h':[{t:'inf',v:'/dev/vda1  25G  8.2G  16G  34% /'}],'free -h':[{t:'inf',v:'Mem: 1.9Gi used: 892Mi free: 1.0Gi'}],'pm2 list':[{t:'ok',v:'│ 0 │ shopbot  │ ✅ online │'},{t:'ok',v:'│ 1 │ wp-site  │ ✅ online │'}],'uptime':[{t:'inf',v:' up 14 days, load: 0.12'}],'help':[{t:'inf',v:'nginx -t  |  systemctl status nginx  |  ufw status'},{t:'inf',v:'certbot --nginx  |  df -h  |  free -h  |  pm2 list'}]};
+  el.innerHTML=`<div class="vps-app"><div class="vps-topbar"><div class="vps-d" style="background:#ff5f57"></div><div class="vps-d" style="background:#febc2e"></div><div class="vps-d" style="background:#28c840"></div><div class="vps-title-text">root@droplet-01 — bash</div><div class="vps-conn-info">● Connected</div></div><div class="vps-terminal" id="vt"></div><div class="vps-quick-cmds"><span class="vqs" onclick="vpsR('nginx -t')">nginx -t</span><span class="vqs" onclick="vpsR('systemctl status nginx')">nginx status</span><span class="vqs" onclick="vpsR('ufw status')">ufw status</span><span class="vqs" onclick="vpsR('certbot --nginx')">certbot</span><span class="vqs" onclick="vpsR('pm2 list')">pm2 list</span><span class="vqs" onclick="vpsR('df -h')">disk</span><span class="vqs" onclick="vpsR('free -h')">memory</span></div><div class="vps-inp-row"><span style="color:#3fb950;font-family:DM Mono,monospace;font-size:12px;flex-shrink:0">root@droplet:~$</span><input class="vps-inp" id="vi" placeholder="Type a command... (try 'help')" onkeydown="if(event.key==='Enter')vpsR()"><button class="vps-run-btn" onclick="vpsR()">Run ↵</button></div></div>`;
+  const t=document.getElementById('vt');
+  function addL(html,d=0){return new Promise(r=>setTimeout(()=>{const el2=document.createElement('div');el2.className='vline';el2.innerHTML=html;t.appendChild(el2);t.scrollTop=t.scrollHeight;r();},d));}
+  async function exec(cmd){
+    await addL(`<span class="pr">root@droplet-01:~$</span><span class="cm"> ${cmd}</span>`);
+    const r=CMDS[cmd.trim().toLowerCase()];
+    if(r)for(const row of r)await addL(`<span class="${row.t}">${row.v}</span>`,80);
+    else await addL(`<span class="er">bash: ${cmd}: command not found</span>`,100);
+    t.querySelectorAll('.vcursor').forEach(c=>{const p=c.closest('.vline');if(p)p.innerHTML=p.innerHTML.replace(/<span class="vcursor"><\/span>/,'');});
+    await addL(`<span class="pr">root@droplet-01:~$</span><span class="vcursor"></span>`);
+  }
+  window.vpsR=async function(f){
+    t.querySelectorAll('.vcursor').forEach(c=>{const p=c.closest('.vline');if(p)p.remove();});
+    const cmd=f||document.getElementById('vi').value.trim();
+    if(!cmd)return;document.getElementById('vi').value='';await exec(cmd);
+  };
+  (async()=>{await addL(`<span class="pr">root@droplet-01:~$</span><span class="cm"> # Welcome to your VPS — try the buttons above!</span>`,100);await addL(`<span class="pr">root@droplet-01:~$</span><span class="vcursor"></span>`,80);})();
+}
+
+// ── DASH DEMO ──
+function buildDashDemo(el){
+  const bars=[{h:62,m:'Jan'},{h:74,m:'Feb'},{h:55,m:'Mar'},{h:88,m:'Apr'},{h:70,m:'May'},{h:95,m:'Jun'},{h:80,m:'Jul'},{h:65,m:'Aug'}];
+  const orders=[{id:'#2041',name:'Priya Sharma',amt:'₹2,450',s:'paid'},{id:'#2040',name:'Rohan Mehta',amt:'₹899',s:'paid'},{id:'#2039',name:'Anjali Kapoor',amt:'₹3,200',s:'pend'},{id:'#2038',name:'Vikram Singh',amt:'₹1,150',s:'paid'},{id:'#2037',name:'Fatima Al-R.',amt:'₹4,800',s:'fail'}];
+  el.innerHTML=`<div class="dash-app"><div class="dash-topbar"><div class="dash-logo-txt">Quick<span>Dash</span></div><div class="dash-topbar-right"><div class="dash-notif">🔔<div class="dash-notif-dot"></div></div><div class="dash-av2">D</div></div></div><div class="dash-content"><div class="dash-welcome"><h2>Good afternoon, Dhruv 👋</h2><p id="ddt">Loading...</p></div><div class="dash-stats-row"><div class="dstat blue"><div class="dstat-val" id="dr">₹84,520</div><div class="dstat-label">TOTAL REVENUE</div><div class="dstat-change up">↑ 12.4% this month</div></div><div class="dstat green"><div class="dstat-val" id="do">1,247</div><div class="dstat-label">TOTAL ORDERS</div><div class="dstat-change up">↑ 8.1% this week</div></div><div class="dstat purple"><div class="dstat-val" id="du">3,891</div><div class="dstat-label">ACTIVE USERS</div><div class="dstat-change up">↑ 5.7% today</div></div><div class="dstat orange"><div class="dstat-val">99.8%</div><div class="dstat-label">UPTIME</div><div class="dstat-change up">↑ All systems go</div></div></div><div class="dash-row"><div class="dash-card"><div class="dash-card-title">Revenue Overview <span class="period">Last 8 months</span></div><div class="chart-bars">${bars.map(b=>`<div class="cbar-w"><div class="cbar" style="height:${b.h}%;background:linear-gradient(180deg,#1a6bff,#00c896)"></div><div class="cbar-l">${b.m}</div></div>`).join('')}</div></div><div class="dash-card"><div class="dash-card-title">Traffic</div><div class="dash-pie-wrap"><svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="38" fill="none" stroke="#e5e7eb" stroke-width="14"/><circle cx="45" cy="45" r="38" fill="none" stroke="#1a6bff" stroke-width="14" stroke-dasharray="143 96" stroke-dashoffset="0" transform="rotate(-90 45 45)"/><circle cx="45" cy="45" r="38" fill="none" stroke="#00c896" stroke-width="14" stroke-dasharray="57 182" stroke-dashoffset="-143" transform="rotate(-90 45 45)"/><text x="45" y="49" text-anchor="middle" font-size="11" font-weight="800" fill="#111" font-family="Syne,sans-serif">8.4k</text></svg><div class="dash-pie-legend"><div class="pie-item"><div class="pie-dot" style="background:#1a6bff"></div>Organic 59%</div><div class="pie-item"><div class="pie-dot" style="background:#00c896"></div>Social 24%</div><div class="pie-item"><div class="pie-dot" style="background:#f59e0b"></div>Paid 12%</div></div></div></div></div><div class="dash-card"><div class="dash-card-title">Recent Orders <span class="period" style="color:#10b981">● Live</span></div><table class="dash-table"><thead><tr><th>ID</th><th>Customer</th><th>Amount</th><th>Status</th></tr></thead><tbody>${orders.map(o=>`<tr><td>${o.id}</td><td>${o.name}</td><td>${o.amt}</td><td><span class="status-badge ${o.s}">${o.s==='paid'?'✓ Paid':o.s==='pend'?'⏳ Pending':'✗ Failed'}</span></td></tr>`).join('')}</tbody></table></div></div></div>`;
+  function upd(){const d=new Date(),e=document.getElementById('ddt');if(e)e.textContent=d.toLocaleDateString('en-IN',{weekday:'long',month:'long',day:'numeric'})+' · '+d.toLocaleTimeString();}
+  upd();window._vpsInt=setInterval(upd,1000);
+  let rev=84520,ord=1247,usr=3891;
+  setInterval(()=>{rev+=Math.floor(Math.random()*200-50);ord+=Math.floor(Math.random()*3);usr+=Math.floor(Math.random()*5-1);const r=document.getElementById('dr'),o=document.getElementById('do'),u=document.getElementById('du');if(r)r.textContent='₹'+rev.toLocaleString('en-IN');if(o)o.textContent=ord.toLocaleString('en-IN');if(u)u.textContent=usr.toLocaleString('en-IN');},3000);
+}
+</script>
+</body>
+</html>
