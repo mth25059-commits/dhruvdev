@@ -92,7 +92,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .tag{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink);background:var(--border);padding:5px 9px;transition:all .2s}
 .sk:hover .tag{background:rgba(26,107,255,.1);color:var(--accent)}
 
-/* ── FEATURED SKILL (accent strip) ── */
 .sk.featured{background:#0f1e3d;border-color:#1e3060}
 .sk.featured:hover{background:#111f42}
 .sk.featured .sk-num{color:rgba(255,255,255,.3)}
@@ -119,7 +118,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .proj-thumb.vps{background:linear-gradient(135deg,#0d1117,#161b22)}
 .proj-thumb.bot{background:linear-gradient(135deg,#f9fafb,#e5e7eb)}
 
-/* MINI TG PREVIEW */
 .mini-tg{width:88%;height:90%;background:#17212b;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 8px 32px rgba(0,0,0,.4);font-family:'DM Mono',monospace}
 .mini-tg-top{background:#242f3d;padding:8px 12px;display:flex;align-items:center;gap:8px;flex-shrink:0}
 .mini-tg-av{width:28px;height:28px;border-radius:50%;background:#1a6bff;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
@@ -134,7 +132,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .mini-send{width:26px;height:26px;background:#00c896;border:none;border-radius:50%;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
 @keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-/* MINI WP PREVIEW */
 .mini-wp{width:88%;height:90%;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.35);display:flex;flex-direction:column}
 .mini-wp-nav{background:#1a1a2e;padding:0 14px;height:36px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .mini-wp-logo{color:#fff;font-size:11px;font-weight:800;font-family:'Syne',sans-serif}
@@ -150,7 +147,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .mini-wp-card .nm{font-size:8px;font-weight:700;color:#1a1a2e;font-family:'Syne',sans-serif}
 .mini-wp-card .tm{font-size:7px;color:#888;font-family:'DM Mono',monospace}
 
-/* MINI VPS TERMINAL */
 .mini-vps{width:88%;height:90%;background:#0d1117;border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5);display:flex;flex-direction:column;font-family:'DM Mono',monospace}
 .mini-vps-top{background:#161b22;padding:8px 14px;display:flex;align-items:center;gap:6px;flex-shrink:0}
 .mini-vps-dot{width:10px;height:10px;border-radius:50%}
@@ -166,7 +162,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .vcursor{display:inline-block;width:7px;height:12px;background:#3fb950;animation:cb .8s infinite;vertical-align:middle}
 @keyframes cb{0%,100%{opacity:1}50%{opacity:0}}
 
-/* MINI DASHBOARD */
 .mini-dash{width:92%;height:92%;background:#f9fafb;border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.15);display:flex;flex-direction:column}
 .mini-dash-top{background:#fff;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e5e7eb;flex-shrink:0}
 .mini-dash-logo{font-weight:800;font-size:12px;color:#111;letter-spacing:-.02em;font-family:'Syne',sans-serif}
@@ -184,7 +179,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .mini-bar{width:100%;border-radius:2px 2px 0 0;background:#1a6bff}
 .mini-bar-l{font-size:7px;color:#9ca3af;font-family:'DM Mono',monospace}
 
-/* ── PROJECT CARD OVERLAY ── */
 .proj-demo-overlay{position:absolute;inset:0;background:rgba(10,10,10,.0);z-index:5;display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px;transition:background .3s;pointer-events:none}
 .proj-card:hover .proj-demo-overlay{background:rgba(10,10,10,.08)}
 .proj-demo-btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);border:none;padding:9px 20px;cursor:none;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:all}
@@ -218,7 +212,7 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .modal-demo-label .live-pulse{animation:blink 1.5s infinite}
 .demo-frame{border:1px solid var(--border);overflow:hidden}
 
-/* ─── TG MODAL DEMO ─── */
+/* TG MODAL */
 .tg-app{background:#17212b;font-family:'DM Mono',monospace;display:flex;flex-direction:column;height:500px}
 .tg-topbar{background:#242f3d;padding:12px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #1a2535;flex-shrink:0}
 .tg-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1a6bff,#00c896);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
@@ -239,7 +233,7 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .tg-send-btn:hover{transform:scale(1.1)}
 .tg-typing{font-size:11px;color:#7fb3d3;padding:0 18px 8px;font-style:italic;min-height:24px;transition:opacity .3s}
 
-/* ─── WP MODAL DEMO ─── */
+/* WP MODAL */
 .wp-app{background:#fff;height:500px;overflow-y:auto;display:flex;flex-direction:column}
 .wp-topbar{background:#1a1a2e;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;flex-shrink:0;position:sticky;top:0;z-index:2}
 .wp-logo-text{color:#fff;font-weight:800;font-size:18px;letter-spacing:-.02em;font-family:'Syne',sans-serif}
@@ -278,7 +272,7 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .wp-footer-logo{color:#fff;font-size:14px;font-weight:800;font-family:'Syne',sans-serif}
 .wp-footer-text{color:rgba(255,255,255,.35);font-size:10px;font-family:'DM Mono',monospace}
 
-/* ─── VPS MODAL DEMO ─── */
+/* VPS MODAL */
 .vps-app{background:#0d1117;height:500px;font-family:'DM Mono',monospace;display:flex;flex-direction:column}
 .vps-topbar{background:#161b22;padding:12px 18px;display:flex;align-items:center;gap:8px;flex-shrink:0;border-bottom:1px solid #21262d}
 .vps-d{width:13px;height:13px;border-radius:50%}
@@ -302,7 +296,7 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .vqs{background:#21262d;color:#7d8590;border:1px solid #30363d;padding:4px 10px;font-size:10px;border-radius:4px;cursor:pointer;font-family:'DM Mono',monospace;transition:all .2s;letter-spacing:.03em}
 .vqs:hover{background:#30363d;color:#e6edf3}
 
-/* ─── DASHBOARD MODAL DEMO ─── */
+/* DASHBOARD MODAL */
 .dash-app{background:#f9fafb;height:500px;display:flex;flex-direction:column;overflow-y:auto}
 .dash-topbar{background:#fff;padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e5e7eb;flex-shrink:0;position:sticky;top:0;z-index:2}
 .dash-logo-txt{font-weight:800;font-size:16px;color:#111;letter-spacing:-.02em;font-family:'Syne',sans-serif}
@@ -383,7 +377,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 
 /* ── ABOUT ── */
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-/* Updated about photo: rich visual instead of blank emoji box */
 .about-photo{aspect-ratio:3/4;background:linear-gradient(145deg,#0f1e3d 0%,#1a2f5a 40%,#0d2645 70%,#091929 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid var(--border)}
 .about-photo-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;z-index:2;padding:40px 32px;text-align:center}
 .about-photo-avatar{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,#1a6bff,#00c896);display:flex;align-items:center;justify-content:center;font-size:52px;box-shadow:0 0 0 4px rgba(26,107,255,.15),0 0 0 8px rgba(26,107,255,.07)}
@@ -393,7 +386,6 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .about-photo-location{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.35);letter-spacing:.06em;margin-top:4px}
 .about-photo-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:10px}
 .about-photo-tag{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:rgba(26,107,255,.9);background:rgba(26,107,255,.12);border:1px solid rgba(26,107,255,.2);padding:4px 9px}
-/* animated grid bg */
 .about-photo::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(26,107,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(26,107,255,.05) 1px,transparent 1px);background-size:28px 28px;z-index:1}
 .about-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,rgba(26,107,255,.06));z-index:1}
 
@@ -409,30 +401,340 @@ section{padding:110px 52px;border-bottom:1px solid var(--border)}
 .fact-val{font-family:var(--display);font-size:32px;font-style:italic;color:var(--ink);line-height:1}
 .fact-key{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 
-/* ── CONTACT ── */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.contact-big{font-family:var(--display);font-size:clamp(36px,5vw,64px);line-height:1.05;margin-bottom:28px}
-.contact-big em{font-style:italic;color:var(--accent)}
-.contact-sub{font-size:15px;line-height:1.75;color:var(--muted);margin-bottom:40px;font-weight:400}
-.contact-links{display:flex;flex-direction:column;gap:16px}
-.contact-link{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--ink);font-size:15px;font-weight:600;transition:color .2s;cursor:none}
-.contact-link:hover{color:var(--accent)}
-.cl-icon{width:44px;height:44px;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;transition:background .25s}
-.contact-link:hover .cl-icon{background:#e8f0ff}
-/* WhatsApp special */
-.contact-link.whatsapp:hover{color:#25D366}
-.contact-link.whatsapp:hover .cl-icon{background:#d4f7e3}
-.form-group{margin-bottom:20px}
-.form-label{display:block;font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.form-input,.form-textarea{width:100%;font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--card);border:1.5px solid var(--border);padding:14px 16px;outline:none;transition:border-color .2s;border-radius:0;font-weight:400;resize:none}
-.form-input:focus,.form-textarea:focus{border-color:var(--accent)}
-.form-textarea{min-height:140px}
-.form-btn{display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:15px 32px;border:none;cursor:none;transition:background .25s;width:100%;justify-content:center}
-.form-btn:hover{background:var(--accent)}
-.form-success{display:none;text-align:center;padding:20px;font-family:var(--mono);font-size:12px;color:var(--accent2);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--accent2);margin-top:12px}
+/* ══════════════════════════════════════════════
+   NEW CONTACT SECTION — yanhladchenko.com style
+   Editorial, fullscreen, dark + light split
+══════════════════════════════════════════════ */
+#contact {
+  padding: 0;
+  border-bottom: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* LEFT PANEL — dark editorial */
+.contact-left {
+  background: #0a0a0a;
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.contact-left::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(26,107,255,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.contact-left::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0,200,150,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.contact-label-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  margin-bottom: 0;
+}
+.contact-label-row::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.contact-hero-text {
+  position: relative;
+  z-index: 1;
+}
+.contact-big-word {
+  font-family: var(--display);
+  font-size: clamp(52px, 7vw, 96px);
+  line-height: .95;
+  color: #fff;
+  display: block;
+}
+.contact-big-word.italic {
+  font-style: italic;
+  color: rgba(255,255,255,.25);
+}
+.contact-big-word.accent {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.contact-subtext {
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba(255,255,255,.4);
+  margin-top: 36px;
+  max-width: 340px;
+  font-weight: 400;
+}
+
+/* Channel links — bottom left */
+.contact-channels {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,.08);
+  margin-top: 40px;
+}
+.contact-channel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  text-decoration: none;
+  color: rgba(255,255,255,.55);
+  transition: color .25s, padding-left .25s;
+  cursor: none;
+  group: true;
+}
+.contact-channel:hover {
+  color: #fff;
+  padding-left: 8px;
+}
+.contact-channel:hover .ch-arrow { opacity: 1; transform: translateX(0); }
+.ch-left { display: flex; align-items: center; gap: 16px; }
+.ch-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255,255,255,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+  transition: border-color .25s, background .25s;
+}
+.contact-channel:hover .ch-icon { border-color: var(--accent); background: rgba(26,107,255,.1); }
+.ch-text { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; }
+.ch-label { font-size: 9px; color: rgba(255,255,255,.25); letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 2px; }
+.ch-value { color: inherit; }
+.ch-arrow {
+  font-family: var(--mono);
+  font-size: 13px;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all .25s;
+  color: var(--accent);
+}
+
+/* Availability badge */
+.contact-avail-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #16a34a;
+  background: rgba(22,163,74,.08);
+  border: 1px solid rgba(22,163,74,.2);
+  padding: 8px 14px;
+  margin-top: 28px;
+  align-self: flex-start;
+}
+.avail-pulse { width: 6px; height: 6px; background: #16a34a; border-radius: 50%; animation: blink 2s infinite; }
+
+/* RIGHT PANEL — light, form */
+.contact-right {
+  background: var(--paper);
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 1px solid var(--border);
+}
+
+.contact-form-header {
+  margin-bottom: 44px;
+}
+.contact-form-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.contact-form-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--accent); }
+.contact-form-title {
+  font-family: var(--display);
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.contact-form-title em { font-style: italic; color: var(--muted); }
+.contact-form-sub {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+/* Form fields */
+.cf-group { margin-bottom: 22px; }
+.cf-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.cf-input, .cf-textarea {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--border);
+  padding: 10px 0;
+  outline: none;
+  transition: border-color .2s;
+  border-radius: 0;
+  font-weight: 400;
+  resize: none;
+}
+.cf-input:focus, .cf-textarea:focus { border-color: var(--ink); }
+.cf-input::placeholder, .cf-textarea::placeholder { color: rgba(136,132,128,.5); }
+.cf-textarea { min-height: 100px; }
+
+/* Service selector */
+.cf-services {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+.cf-svc-btn {
+  padding: 10px 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: all .2s;
+  text-align: left;
+}
+.cf-svc-btn:hover, .cf-svc-btn.active {
+  border-color: var(--ink);
+  color: var(--ink);
+  background: rgba(0,0,0,.03);
+}
+.cf-svc-btn.active { border-color: var(--accent); color: var(--accent); }
+
+/* Submit button */
+.cf-submit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 18px 28px;
+  border: none;
+  cursor: pointer;
+  transition: background .25s;
+  margin-top: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.cf-submit:hover { background: var(--accent); }
+.cf-submit-text { position: relative; z-index: 1; }
+.cf-submit-arrow {
+  font-size: 18px;
+  transition: transform .3s;
+  position: relative;
+  z-index: 1;
+}
+.cf-submit:hover .cf-submit-arrow { transform: translateX(4px); }
+.cf-submit.loading { pointer-events: none; background: #333; }
+
+/* Success state */
+.cf-success {
+  display: none;
+  text-align: center;
+  padding: 32px;
+  border: 1px solid var(--accent2);
+  margin-top: 20px;
+  background: rgba(0,200,150,.03);
+}
+.cf-success-icon { font-size: 36px; margin-bottom: 12px; }
+.cf-success-title {
+  font-family: var(--display);
+  font-size: 22px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.cf-success-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  color: var(--accent2);
+  text-transform: uppercase;
+}
+
+/* Sending indicator */
+.cf-sending {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+.cf-sending.show { display: flex; }
+.cf-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: dotpulse 1.2s ease infinite; }
+.cf-dot:nth-child(2) { animation-delay: .2s; }
+.cf-dot:nth-child(3) { animation-delay: .4s; }
+@keyframes dotpulse { 0%,80%,100%{transform:scale(0);opacity:.3} 40%{transform:scale(1);opacity:1} }
 
 /* ── FOOTER ── */
-footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:center}
+footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
 .foot-left{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .foot-right{display:flex;gap:24px}
 .foot-link{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;cursor:none}
@@ -466,8 +768,12 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
   .svc{border-right:none!important;border-bottom:1px solid var(--border)!important}
   .reviews-grid{grid-template-columns:1fr}
   .rv{border-right:none;border-bottom:1px solid #1e1e1e}
-  .about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .about-grid{grid-template-columns:1fr;gap:40px}
   footer{padding:24px;flex-direction:column;gap:16px;text-align:center}
+  #contact { grid-template-columns: 1fr; min-height: auto; }
+  .contact-left { padding: 60px 28px; }
+  .contact-right { padding: 60px 28px; }
+  .cf-services { grid-template-columns: 1fr; }
   .dash-stats-row{grid-template-columns:repeat(2,1fr)}
   .dash-row{grid-template-columns:1fr}
   .wp-class-grid,.wp-trainers-grid{grid-template-columns:1fr 1fr}
@@ -589,8 +895,6 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
     <div class="avail" style="animation:none;opacity:1"><span class="avail-dot"></span>Click any card to try live demo</div>
   </div>
   <div class="proj-grid">
-
-    <!-- TG BOT -->
     <div class="proj-card reveal" onclick="openModal('tg')">
       <div class="proj-badge">TG Bot</div>
       <div class="proj-thumb tg" style="cursor:none">
@@ -619,8 +923,6 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
         <div class="proj-links"><a href="#" class="proj-link" onclick="event.stopPropagation()">GitHub ↗</a></div>
       </div>
     </div>
-
-    <!-- WORDPRESS -->
     <div class="proj-card reveal" style="transition-delay:.1s" onclick="openModal('wp')">
       <div class="proj-badge">WordPress</div>
       <div class="proj-thumb wp" style="cursor:none">
@@ -650,8 +952,6 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
         <div class="proj-links"><a href="#" class="proj-link" onclick="event.stopPropagation()">Details ↗</a></div>
       </div>
     </div>
-
-    <!-- VPS SETUP -->
     <div class="proj-card reveal" style="transition-delay:.05s" onclick="openModal('vps')">
       <div class="proj-badge">Cloud Setup</div>
       <div class="proj-thumb vps" style="cursor:none">
@@ -682,8 +982,6 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
         <div class="proj-links"><a href="#" class="proj-link" onclick="event.stopPropagation()">Case Study ↗</a></div>
       </div>
     </div>
-
-    <!-- DASHBOARD -->
     <div class="proj-card reveal" style="transition-delay:.15s" onclick="openModal('dash')">
       <div class="proj-badge">AI Tool</div>
       <div class="proj-thumb bot" style="cursor:none">
@@ -699,7 +997,7 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
             <div class="mini-stat"><div class="mini-stat-v">48</div><div class="mini-stat-l">ORDERS</div><div class="mini-stat-c">↑ 5%</div></div>
           </div>
           <div class="mini-chart-wrap" style="padding:0 10px 8px;flex:1;display:flex;flex-direction:column">
-            <div class="mini-chart-title" style="font-size:8px;font-weight:700;color:#111;margin-bottom:4px;font-family:'Syne',sans-serif">Weekly Revenue</div>
+            <div class="mini-chart-title" style="font-size:8px;font-weight:700;color:#111;margin-bottom:4px">Weekly Revenue</div>
             <div class="mini-bars">
               <div class="mini-bar-w"><div class="mini-bar" style="height:55%;background:#1a6bff;opacity:.6"></div><div class="mini-bar-l">M</div></div>
               <div class="mini-bar-w"><div class="mini-bar" style="height:72%;background:#1a6bff;opacity:.7"></div><div class="mini-bar-l">T</div></div>
@@ -721,11 +1019,10 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
         <div class="proj-links"><a href="#" class="proj-link" onclick="event.stopPropagation()">Live Demo ↗</a></div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ═══════════ MODAL ═══════════ -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModalOnBg(event)">
   <div class="modal-box" id="modal-box">
     <button class="modal-close" onclick="closeModal()">✕</button>
@@ -829,7 +1126,6 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
 <!-- ABOUT -->
 <section id="about">
   <div class="about-grid">
-    <!-- FIXED: Rich visual card instead of blank emoji box -->
     <div class="about-photo reveal">
       <div class="about-photo-inner">
         <div class="about-photo-avatar">👨‍💻</div>
@@ -861,34 +1157,122 @@ footer{padding:28px 52px;display:flex;justify-content:space-between;align-items:
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ══════════════════════════════════
+     NEW CONTACT SECTION
+══════════════════════════════════ -->
 <section id="contact">
-  <div class="contact-grid">
-    <div class="reveal">
-      <h2 class="contact-big">Let's <em>Work</em><br>Together</h2>
-      <p class="contact-sub">Have a project in mind? Need a VPS set up, a Telegram bot built, or a WordPress site? Let's talk — I respond within 24 hours.</p>
-      <div class="contact-links">
-        <a href="https://www.linkedin.com/in/dhruv-chandrawanshi-31844b3bb/" target="_blank" class="contact-link"><div class="cl-icon">💼</div>LinkedIn — Dhruv Chandrawanshi</a>
-        <a href="https://wa.me/919540693239" target="_blank" class="contact-link whatsapp"><div class="cl-icon">💬</div>WhatsApp — +91 95406 93239</a>
-        <a href="mailto:dxruxkumar@gmail.com" class="contact-link"><div class="cl-icon">📧</div>dxruxkumar@gmail.com</a>
-        <a href="https://github.com" target="_blank" class="contact-link"><div class="cl-icon">🐙</div>GitHub — My code</a>
+
+  <!-- LEFT — Dark editorial panel -->
+  <div class="contact-left reveal">
+    <div>
+      <div class="contact-label-row">Get in Touch</div>
+    </div>
+
+    <div class="contact-hero-text">
+      <span class="contact-big-word">Let's</span>
+      <span class="contact-big-word italic">build</span>
+      <span class="contact-big-word accent">together.</span>
+      <p class="contact-subtext">Have a project idea? Need a VPS configured, a Telegram bot built, or a full site shipped? I respond within 24 hours — usually much faster.</p>
+      <div class="contact-avail-badge">
+        <span class="avail-pulse"></span>
+        Available for new projects
       </div>
     </div>
-    <div class="reveal" style="transition-delay:.15s">
-      <div class="form-group"><label class="form-label">Your Name</label><input type="text" class="form-input" placeholder="Rahul Sharma" id="f-name"></div>
-      <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" placeholder="rahul@company.com" id="f-email"></div>
-      <div class="form-group"><label class="form-label">What do you need?</label><textarea class="form-textarea" placeholder="I need a Telegram bot for my store..." id="f-msg"></textarea></div>
-      <button class="form-btn" id="form-submit">Send Message →</button>
-      <div class="form-success" id="form-success">✓ Message Sent! I'll reply within 24 hours.</div>
+
+    <div class="contact-channels">
+      <a href="https://www.linkedin.com/in/dhruv-chandrawanshi-31844b3bb/" target="_blank" class="contact-channel">
+        <div class="ch-left">
+          <div class="ch-icon">💼</div>
+          <div class="ch-text">
+            <span class="ch-label">LinkedIn</span>
+            <span class="ch-value">Dhruv Chandrawanshi</span>
+          </div>
+        </div>
+        <span class="ch-arrow">→</span>
+      </a>
+      <a href="https://wa.me/919540693239" target="_blank" class="contact-channel">
+        <div class="ch-left">
+          <div class="ch-icon">💬</div>
+          <div class="ch-text">
+            <span class="ch-label">WhatsApp</span>
+            <span class="ch-value">+91 95406 93239</span>
+          </div>
+        </div>
+        <span class="ch-arrow">→</span>
+      </a>
+      <a href="mailto:dxruxkumar@gmail.com" class="contact-channel">
+        <div class="ch-left">
+          <div class="ch-icon">📧</div>
+          <div class="ch-text">
+            <span class="ch-label">Email</span>
+            <span class="ch-value">dxruxkumar@gmail.com</span>
+          </div>
+        </div>
+        <span class="ch-arrow">→</span>
+      </a>
     </div>
   </div>
+
+  <!-- RIGHT — Form panel -->
+  <div class="contact-right reveal" style="transition-delay:.2s">
+    <div class="contact-form-header">
+      <div class="contact-form-eyebrow">Send a Message</div>
+      <h2 class="contact-form-title">Start a <em>Conversation</em></h2>
+      <p class="contact-form-sub">Fill the form — I'll receive it instantly on Telegram and reply to you.</p>
+    </div>
+
+    <div id="contact-form-wrap">
+      <div class="cf-group">
+        <label class="cf-label">Your Name *</label>
+        <input type="text" class="cf-input" id="cf-name" placeholder="Rahul Sharma">
+      </div>
+
+      <div class="cf-group">
+        <label class="cf-label">Email Address *</label>
+        <input type="email" class="cf-input" id="cf-email" placeholder="rahul@company.com">
+      </div>
+
+      <div class="cf-group">
+        <label class="cf-label">What do you need?</label>
+        <div class="cf-services" id="cf-services">
+          <button class="cf-svc-btn" onclick="toggleSvc(this)">☁️ VPS Setup</button>
+          <button class="cf-svc-btn" onclick="toggleSvc(this)">🤖 Telegram Bot</button>
+          <button class="cf-svc-btn" onclick="toggleSvc(this)">🌐 WordPress Site</button>
+          <button class="cf-svc-btn" onclick="toggleSvc(this)">⚡ AI App / Tool</button>
+        </div>
+      </div>
+
+      <div class="cf-group">
+        <label class="cf-label">Tell me about your project *</label>
+        <textarea class="cf-textarea" id="cf-message" placeholder="I need a Telegram bot for my e-commerce store that sends order alerts and lets me check stats..."></textarea>
+      </div>
+
+      <button class="cf-submit" id="cf-submit" onclick="submitContactForm()">
+        <span class="cf-submit-text">Send Message via Telegram</span>
+        <span class="cf-submit-arrow">→</span>
+      </button>
+
+      <div class="cf-sending" id="cf-sending">
+        <div class="cf-dot"></div>
+        <div class="cf-dot"></div>
+        <div class="cf-dot"></div>
+        <span>Sending to Telegram...</span>
+      </div>
+    </div>
+
+    <div class="cf-success" id="cf-success">
+      <div class="cf-success-icon">✅</div>
+      <div class="cf-success-title">Message Sent!</div>
+      <div class="cf-success-sub">I've received it on Telegram · Replying within 24h</div>
+    </div>
+  </div>
+
 </section>
 
 <footer>
   <div class="foot-left">© 2025 Dhruv Chandrawanshi · dhruvdev.me · Built with ⚡ AI Coding</div>
   <div class="foot-right">
     <a href="https://www.linkedin.com/in/dhruv-chandrawanshi-31844b3bb/" target="_blank" class="foot-link">LinkedIn</a>
-    <a href="https://github.com" target="_blank" class="foot-link">GitHub</a>
     <a href="https://wa.me/919540693239" target="_blank" class="foot-link">WhatsApp</a>
     <a href="mailto:dxruxkumar@gmail.com" class="foot-link">Email</a>
   </div>
@@ -936,29 +1320,106 @@ resizeGlobe();window.addEventListener('resize',resizeGlobe);
 function drawGlobe(){ctx.clearRect(0,0,W,H);const cx=W/2,cy=H/2,R=Math.min(W,H)*.42;rot+=.004;const cos=Math.cos(rot),sin=Math.sin(rot);const grad=ctx.createRadialGradient(cx-R*.25,cy-R*.25,0,cx,cy,R);grad.addColorStop(0,'rgba(26,107,255,.06)');grad.addColorStop(.7,'rgba(26,107,255,.02)');grad.addColorStop(1,'rgba(26,107,255,0)');ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.strokeStyle='rgba(26,107,255,.12)';ctx.lineWidth=1;ctx.stroke();const sorted=[...dots].sort((a,b)=>{return(a.x*sin+a.z*cos)-(b.x*sin+b.z*cos);});sorted.forEach(d=>{const rx2=d.x*cos-d.z*sin,rz=d.x*sin+d.z*cos,visible=rz>-R*.1,sx=cx+rx2,sy=cy+d.y,alpha=visible?(0.15+(rz/R)*.55):.03,sz=d.type==='land'?2.2:1.2;ctx.beginPath();ctx.arc(sx,sy,sz,0,Math.PI*2);ctx.fillStyle=d.type==='land'?`rgba(26,107,255,${alpha*.9})`:`rgba(26,107,255,${alpha*.45})`;ctx.fill();});const pulse=(Math.sin(Date.now()*.002)+1)/2;ctx.beginPath();ctx.arc(cx,cy,R*(1+pulse*.04),0,Math.PI*2);ctx.strokeStyle=`rgba(26,107,255,${.08*(1-pulse)})`;ctx.lineWidth=1;ctx.stroke();requestAnimationFrame(drawGlobe);}
 drawGlobe();
 
-// ── CONTACT FORM — sends via mailto to dxruxkumar@gmail.com ──
-document.getElementById('form-submit').addEventListener('click',()=>{
-  const n=document.getElementById('f-name').value.trim();
-  const e=document.getElementById('f-email').value.trim();
-  const m=document.getElementById('f-msg').value.trim();
-  if(!n||!e||!m){
-    const btn=document.getElementById('form-submit');
-    btn.textContent='Fill all fields!';
-    setTimeout(()=>btn.textContent='Send Message →',2000);
+// ══════════════════════════════════════
+// ── SERVICE TOGGLE ──
+// ══════════════════════════════════════
+window.toggleSvc = function(btn) {
+  btn.classList.toggle('active');
+};
+
+// ══════════════════════════════════════
+// ── CONTACT FORM → TELEGRAM BOT ──
+// Sends message to Dhruv's Telegram via Bot API
+// Bot: 8782631390:AAHUDKQN-fA2EiK1nMpgYvJxFvD89jmSLh0
+// Chat: 7092478487
+// ══════════════════════════════════════
+const TG_BOT_TOKEN = '8782631390:AAHUDKQN-fA2EiK1nMpgYvJxFvD89jmSLh0';
+const TG_CHAT_ID   = '7092478487';
+
+window.submitContactForm = async function() {
+  const name    = document.getElementById('cf-name').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const message = document.getElementById('cf-message').value.trim();
+
+  // Collect selected services
+  const activeSvcs = [...document.querySelectorAll('.cf-svc-btn.active')]
+    .map(b => b.textContent.trim()).join(', ') || 'Not specified';
+
+  // Validation
+  if (!name || !email || !message) {
+    const btn = document.getElementById('cf-submit');
+    const orig = btn.querySelector('.cf-submit-text').textContent;
+    btn.style.background = '#c0392b';
+    btn.querySelector('.cf-submit-text').textContent = '⚠ Fill all required fields';
+    setTimeout(() => {
+      btn.style.background = '';
+      btn.querySelector('.cf-submit-text').textContent = orig;
+    }, 2500);
     return;
   }
-  const subject=encodeURIComponent('Portfolio Inquiry from '+n);
-  const body=encodeURIComponent('Name: '+n+'\nEmail: '+e+'\n\nMessage:\n'+m);
-  window.location.href='mailto:dxruxkumar@gmail.com?subject='+subject+'&body='+body;
-  document.getElementById('form-submit').textContent='Opening email...';
-  setTimeout(()=>{
-    document.getElementById('form-submit').style.display='none';
-    document.getElementById('form-success').style.display='block';
-    document.getElementById('f-name').value='';
-    document.getElementById('f-email').value='';
-    document.getElementById('f-msg').value='';
-  },1000);
-});
+
+  // Show loading
+  const btn = document.getElementById('cf-submit');
+  btn.classList.add('loading');
+  btn.querySelector('.cf-submit-text').textContent = 'Sending...';
+  document.getElementById('cf-sending').classList.add('show');
+
+  // Build Telegram message
+  const now = new Date();
+  const timeStr = now.toLocaleString('en-IN', {
+    timeZone: 'Asia/Kolkata',
+    day: '2-digit', month: 'short', year: 'numeric',
+    hour: '2-digit', minute: '2-digit'
+  });
+
+  const text =
+`🔔 *New Portfolio Inquiry!*
+
+👤 *Name:* ${name}
+📧 *Email:* ${email}
+🛠 *Service:* ${activeSvcs}
+
+💬 *Message:*
+${message}
+
+📅 *Time:* ${timeStr} IST
+🌐 *Source:* dhruvdev.me/contact`;
+
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TG_CHAT_ID,
+        text: text,
+        parse_mode: 'Markdown'
+      })
+    });
+
+    const data = await res.json();
+
+    if (data.ok) {
+      // Success!
+      document.getElementById('contact-form-wrap').style.display = 'none';
+      document.getElementById('cf-success').style.display = 'block';
+      document.getElementById('cf-sending').classList.remove('show');
+    } else {
+      throw new Error(data.description || 'Telegram API error');
+    }
+  } catch (err) {
+    // Fallback — open mailto
+    console.error('TG send failed:', err);
+    document.getElementById('cf-sending').classList.remove('show');
+    btn.classList.remove('loading');
+    btn.querySelector('.cf-submit-text').textContent = 'Send Message via Telegram';
+    btn.style.background = '';
+
+    // Fallback to mailto
+    const subject = encodeURIComponent('Portfolio Inquiry from ' + name);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nService: ${activeSvcs}\n\nMessage:\n${message}`);
+    window.location.href = `mailto:dxruxkumar@gmail.com?subject=${subject}&body=${body}`;
+  }
+};
 
 // ══════════════════════════════════════
 // ── MODAL SYSTEM ──
@@ -1016,7 +1477,7 @@ function closeModal() {
 function closeModalOnBg(e) { if(e.target===document.getElementById('modal')) closeModal(); }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
 
-// ══════ TG BOT DEMO ══════
+// TG BOT DEMO
 function buildTgDemo(el) {
   const now = () => { const d=new Date(); return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0'); };
   el.innerHTML = `
@@ -1044,43 +1505,19 @@ function buildTgDemo(el) {
   </div>`;
 
   const RESPONSES = {
-    '/orders': `📦 <b>Today's Orders</b> (${new Date().toLocaleDateString('en-IN')})\n\n` +
-      `#1042 · Priya S. · ₹1,299 · 🟡 Processing\n` +
-      `#1041 · Rohan K. · ₹2,450 · ✅ Shipped\n` +
-      `#1040 · Anjali M. · ₹899 · ✅ Delivered\n\n` +
-      `💰 Total today: <b>₹4,648</b>\n📈 +12% vs yesterday`,
-    '/stats': `📊 <b>Store Stats — This Week</b>\n\n` +
-      `👥 New Users: <b>84</b>\n` +
-      `🛒 Orders: <b>127</b>\n` +
-      `💸 Revenue: <b>₹38,520</b>\n` +
-      `⭐ Avg Rating: <b>4.8/5</b>\n` +
-      `🔁 Repeat Buyers: <b>34%</b>`,
-    '/ship': `🚚 <b>Shipment Tracker</b>\n\n` +
-      `#1041 → Out for delivery · ETA 2h\n` +
-      `#1039 → Delivered ✅ · 10:30 AM\n` +
-      `#1038 → In transit · Delhi hub\n` +
-      `#1037 → Delivered ✅ · Yesterday\n\n` +
-      `📍 Carrier: Delhivery, Bluedart`,
-    '/help': `❓ <b>Available Commands</b>\n\n` +
-      `/orders — Today's orders list\n` +
-      `/stats — Weekly store stats\n` +
-      `/ship — Shipment tracker\n` +
-      `/notify — Toggle alerts ON/OFF\n` +
-      `/report — Generate PDF report\n\n` +
-      `💡 Or just type anything to ask me!`,
-    '/notify': `🔔 <b>Notifications are ON</b>\n\nYou'll receive alerts for:\n✅ New orders\n✅ Payment received\n✅ Low stock warnings\n✅ Delivery updates\n\nSend /notify again to toggle OFF.`,
-    '/report': `📄 Generating your report...\n\n✅ Report ready!\n📊 Week of ${new Date().toLocaleDateString('en-IN')}\n💰 Revenue: ₹38,520\n📦 Orders: 127\n\n[📥 Download PDF] (demo mode)`,
+    '/orders': `📦 <b>Today's Orders</b>\n\n#1042 · Priya S. · ₹1,299 · 🟡 Processing\n#1041 · Rohan K. · ₹2,450 · ✅ Shipped\n#1040 · Anjali M. · ₹899 · ✅ Delivered\n\n💰 Total today: <b>₹4,648</b>\n📈 +12% vs yesterday`,
+    '/stats': `📊 <b>Store Stats — This Week</b>\n\n👥 New Users: <b>84</b>\n🛒 Orders: <b>127</b>\n💸 Revenue: <b>₹38,520</b>\n⭐ Avg Rating: <b>4.8/5</b>`,
+    '/ship': `🚚 <b>Shipment Tracker</b>\n\n#1041 → Out for delivery · ETA 2h\n#1039 → Delivered ✅ · 10:30 AM\n#1038 → In transit · Delhi hub`,
+    '/help': `❓ <b>Available Commands</b>\n\n/orders — Today's orders\n/stats — Weekly stats\n/ship — Shipment tracker\n/help — This menu`,
   };
 
   window.tgCmd = function(cmd) {
     addTgMsg(cmd, 'u');
     document.getElementById('tg-status').textContent = '● typing...';
-    const delay = 800 + Math.random()*600;
     window._tgInterval = setTimeout(() => {
-      const resp = RESPONSES[cmd] || `🤔 I can handle: /orders /stats /ship /help\n\nOr ask me anything about your store!`;
-      addTgMsg(resp, 'b');
+      addTgMsg(RESPONSES[cmd] || `Try: /orders /stats /ship /help`, 'b');
       document.getElementById('tg-status').textContent = '● online · responding instantly';
-    }, delay);
+    }, 900);
   };
 
   window.tgSend = function() {
@@ -1094,16 +1531,14 @@ function buildTgDemo(el) {
     setTimeout(() => {
       let resp;
       if(lv.includes('order')) resp = RESPONSES['/orders'];
-      else if(lv.includes('stat')||lv.includes('sale')||lv.includes('revenue')) resp = RESPONSES['/stats'];
-      else if(lv.includes('ship')||lv.includes('deliver')) resp = RESPONSES['/ship'];
+      else if(lv.includes('stat')||lv.includes('sale')) resp = RESPONSES['/stats'];
+      else if(lv.includes('ship')||lv.includes('deliv')) resp = RESPONSES['/ship'];
       else if(lv.includes('help')) resp = RESPONSES['/help'];
-      else if(lv.includes('hi')||lv.includes('hello')||lv.includes('hey')) resp = `👋 Hello! I'm ShopAlert Bot.\nUse the buttons or commands to get started!\n\n/orders /stats /ship /help`;
-      else if(lv.includes('price')||lv.includes('cost')) resp = `💰 I can show revenue stats!\nTry /stats for this week's numbers.`;
-      else if(lv.includes('customer')) resp = `👥 This week: <b>84 new customers</b>\n34% are repeat buyers!\nSend /stats for full details.`;
-      else resp = `🤖 Got it! You said: "<i>${val}</i>"\n\nI can help with orders, stats, and shipments.\nTry: /orders /stats /ship /help`;
+      else if(lv.match(/hi|hello|hey/)) resp = `👋 Hello! Use the buttons or commands above to get started!`;
+      else resp = `🤖 Got it! You said: "<i>${val}</i>"\n\nTry: /orders /stats /ship /help`;
       addTgMsg(resp, 'b');
       document.getElementById('tg-status').textContent = '● online · responding instantly';
-    }, 900 + Math.random()*500);
+    }, 900);
   };
 
   function addTgMsg(text, who) {
@@ -1116,7 +1551,7 @@ function buildTgDemo(el) {
   }
 }
 
-// ══════ WP DEMO ══════
+// WP DEMO
 function buildWpDemo(el) {
   el.innerHTML = `
   <div class="wp-app">
@@ -1134,7 +1569,7 @@ function buildWpDemo(el) {
       <div class="wp-hero-band">
         <div class="badge">🏆 #1 GYM IN GURUGRAM</div>
         <h2>Transform Your Body,<br><span>Transform Your Life</span></h2>
-        <p>Premium fitness center with world-class trainers, modern equipment, and a community that pushes you to be your best.</p>
+        <p>Premium fitness center with world-class trainers and modern equipment.</p>
         <div class="wp-hero-btns">
           <button class="wp-btn-p" onclick="wpSection('join')">Start Free Trial →</button>
           <button class="wp-btn-s" onclick="wpSection('classes')">View Classes</button>
@@ -1143,12 +1578,9 @@ function buildWpDemo(el) {
       <div class="wp-classes-section">
         <h3>Featured Classes</h3>
         <div class="wp-class-grid">
-          <div class="wp-cls-card" onclick="wpAlert('Boxing Fundamentals')"><div class="ci">🥊</div><div class="cn">Boxing Fundamentals</div><div class="ct">Mon, Wed, Fri · 6:00 AM</div><div class="cp">₹1,200/mo</div></div>
-          <div class="wp-cls-card" onclick="wpAlert('Power Yoga')"><div class="ci">🧘</div><div class="cn">Power Yoga</div><div class="ct">Daily · 7:30 AM & 6:30 PM</div><div class="cp">₹900/mo</div></div>
-          <div class="wp-cls-card" onclick="wpAlert('Olympic Lifting')"><div class="ci">🏋️</div><div class="cn">Olympic Lifting</div><div class="ct">Tue, Thu, Sat · 7:00 AM</div><div class="cp">₹1,500/mo</div></div>
-          <div class="wp-cls-card" onclick="wpAlert('HIIT Blast')"><div class="ci">🔥</div><div class="cn">HIIT Blast</div><div class="ct">Mon-Fri · 5:30 PM</div><div class="cp">₹1,100/mo</div></div>
-          <div class="wp-cls-card" onclick="wpAlert('Cycling')"><div class="ci">🚴</div><div class="cn">Spin Cycling</div><div class="ct">Daily · 6:30 AM</div><div class="cp">₹800/mo</div></div>
-          <div class="wp-cls-card" onclick="wpAlert('Zumba')"><div class="ci">💃</div><div class="cn">Zumba Dance</div><div class="ct">Tue, Thu · 7:00 PM</div><div class="cp">₹850/mo</div></div>
+          <div class="wp-cls-card" onclick="wpAlert('Boxing')"><div class="ci">🥊</div><div class="cn">Boxing</div><div class="ct">Mon, Wed, Fri · 6:00 AM</div><div class="cp">₹1,200/mo</div></div>
+          <div class="wp-cls-card" onclick="wpAlert('Yoga')"><div class="ci">🧘</div><div class="cn">Power Yoga</div><div class="ct">Daily · 7:30 AM</div><div class="cp">₹900/mo</div></div>
+          <div class="wp-cls-card" onclick="wpAlert('Lifting')"><div class="ci">🏋️</div><div class="cn">Olympic Lifting</div><div class="ct">Tue, Thu, Sat · 7:00 AM</div><div class="cp">₹1,500/mo</div></div>
         </div>
       </div>
       <div class="wp-trainers">
@@ -1159,61 +1591,42 @@ function buildWpDemo(el) {
           <div class="wp-trainer"><div class="ta">👨‍🦲</div><div class="tn">Arjun Kapoor</div><div class="tr">Boxing Coach · 6 yrs</div></div>
         </div>
       </div>
-      <div class="wp-footer">
-        <div class="wp-footer-logo">FitZone Gurugram</div>
-        <div class="wp-footer-text">Built by Dhruv Chandrawanshi · WordPress + Nginx + SSL</div>
-      </div>
+      <div class="wp-footer"><div class="wp-footer-logo">FitZone Gurugram</div><div class="wp-footer-text">Built by Dhruv · WordPress + Nginx + SSL</div></div>
     </div>
   </div>`;
 
-  const wpAlerts = {
-    join: '✅ Booking form would open here!\nIn the live site, this connects to WooCommerce for membership payment.',
-    classes: null, trainers: null, pricing: '💰 Membership plans:\n• Basic: ₹1,500/mo\n• Standard: ₹2,500/mo\n• Premium: ₹4,000/mo\nAll plans include full facility access!',
-    contact: '📍 FitZone Gurugram\nSector 29, Near Huda City Centre\n📞 +91 98765 43210\n📧 fitzone@gym.in'
-  };
   window.wpSection = function(s) {
-    if(wpAlerts[s]) { showWpNotif(wpAlerts[s]); }
+    const msgs = { join:'✅ Membership booking form — connects to WooCommerce payment in the live site!', pricing:'💰 Plans:\n• Basic: ₹1,500/mo\n• Standard: ₹2,500/mo\n• Premium: ₹4,000/mo', contact:'📍 FitZone Gurugram\nSector 29, Near Huda City Centre\n📞 +91 98765 43210' };
+    if(msgs[s]) showWpNotif(msgs[s]);
   };
-  window.wpAlert = function(cls) {
-    showWpNotif(`📅 Booking: ${cls}\n\nIn the live site, this opens the class booking form connected to your calendar & payment gateway!`);
-  };
+  window.wpAlert = function(cls) { showWpNotif(`📅 Booking: ${cls}\n\nThis opens the class booking form in the live site!`); };
 
   function showWpNotif(msg) {
     const existing = document.getElementById('wp-notif');
     if(existing) existing.remove();
     const n = document.createElement('div');
     n.id = 'wp-notif';
-    n.style.cssText = 'position:fixed;top:80px;right:20px;background:#1a1a2e;color:#fff;padding:16px 20px;max-width:300px;font-size:12px;line-height:1.6;font-family:DM Mono,monospace;border-left:3px solid #e94560;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,.4);animation:slideIn .3s ease';
-    n.innerHTML = msg.replace(/\n/g,'<br>') + '<div style="margin-top:10px;font-size:10px;color:#e94560;cursor:pointer" onclick="this.parentNode.remove()">✕ Close</div>';
+    n.style.cssText = 'position:fixed;top:80px;right:20px;background:#1a1a2e;color:#fff;padding:16px 20px;max-width:280px;font-size:12px;line-height:1.6;font-family:DM Mono,monospace;border-left:3px solid #e94560;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,.4)';
+    n.innerHTML = msg.replace(/\n/g,'<br>') + '<div style="margin-top:8px;font-size:10px;color:#e94560;cursor:pointer" onclick="this.parentNode.remove()">✕ Close</div>';
     document.body.appendChild(n);
-    setTimeout(()=>n.remove && n.remove(), 4000);
+    setTimeout(()=>n.remove&&n.remove(), 4000);
   }
 }
 
-// ══════ VPS TERMINAL DEMO ══════
+// VPS DEMO
 function buildVpsDemo(el) {
   const COMMANDS = {
-    'nginx -t': [{t:'out',v:'nginx: the configuration file /etc/nginx/nginx.conf syntax is ok'},{t:'ok',v:'nginx: configuration file /etc/nginx/nginx.conf test is successful'}],
-    'nginx -v': [{t:'inf',v:'nginx version: nginx/1.24.0 (Ubuntu)'}],
-    'systemctl status nginx': [{t:'ok',v:'● nginx.service - A high performance web server'},{t:'ok',v:'   Loaded: loaded (/lib/systemd/system/nginx.service; enabled)'},{t:'ok',v:'   Active: active (running) since today; uptime: 14 days'},{t:'inf',v:'   PID: 1024 (nginx master process)'}],
-    'ufw status': [{t:'ok',v:'Status: active'},{t:'inf',v:'To                         Action      From'},{t:'inf',v:'--                         ------      ----'},{t:'inf',v:'22/tcp (SSH)               ALLOW       Anywhere'},{t:'inf',v:'80/tcp (Nginx HTTP)        ALLOW       Anywhere'},{t:'inf',v:'443/tcp (Nginx HTTPS)      ALLOW       Anywhere'}],
-    'certbot --nginx': [{t:'inf',v:'Saving debug log to /var/log/letsencrypt/letsencrypt.log'},{t:'inf',v:'Which names would you like to activate HTTPS for?'},{t:'ok',v:'- - - - - - - - - - - - - - - - - - -'},{t:'ok',v:'Successfully received certificate.'},{t:'ok',v:'Certificate is saved at: /etc/letsencrypt/live/dhruvdev.me/'},{t:'ok',v:'IMPORTANT NOTES: Your certificate will expire on 2025-08-03'}],
-    'df -h': [{t:'inf',v:'Filesystem      Size  Used Avail Use%'},{t:'inf',v:'/dev/vda1        25G  8.2G   16G  34% /'},{t:'inf',v:'tmpfs           985M     0  985M   0% /dev/shm'}],
-    'free -h': [{t:'inf',v:'               total        used        free'},{t:'inf',v:'Mem:           1.9Gi       892Mi       1.0Gi'},{t:'inf',v:'Swap:          1.0Gi          0B       1.0Gi'}],
-    'pm2 list': [{t:'ok',v:'┌─────┬──────────────────┬──────┬──────┬───────────┐'},{t:'ok',v:'│ id  │ name             │ mode │ ↺    │ status    │'},{t:'ok',v:'├─────┼──────────────────┼──────┼──────┼───────────┤'},{t:'ok',v:'│ 0   │ shopbot          │ fork │ 0    │ ✅ online  │'},{t:'ok',v:'│ 1   │ wordpress-helper  │ fork │ 0    │ ✅ online  │'},{t:'ok',v:'└─────┴──────────────────┴──────┴──────┴───────────┘'}],
-    'uptime': [{t:'inf',v:' 14:32:11 up 14 days, 6:20,  1 user,  load average: 0.12, 0.08, 0.05'}],
-    'whoami': [{t:'inf',v:'root'}],
-    'ls /etc/nginx/sites-enabled': [{t:'inf',v:'dhruvdev.me  quickdash.app  shopalert.bot'}],
-    'pwd': [{t:'inf',v:'/root'}],
-    'help': [{t:'inf',v:'Try these commands:'},{t:'inf',v:'nginx -t    systemctl status nginx    ufw status'},{t:'inf',v:'certbot --nginx    df -h    free -h    pm2 list'},{t:'inf',v:'uptime    ls /etc/nginx/sites-enabled    whoami'}],
+    'nginx -t':[{t:'ok',v:'nginx: configuration file syntax is ok'},{t:'ok',v:'nginx: configuration file test is successful'}],
+    'systemctl status nginx':[{t:'ok',v:'● nginx.service - A high performance web server'},{t:'ok',v:'   Active: active (running) since today; uptime: 14 days'}],
+    'ufw status':[{t:'ok',v:'Status: active'},{t:'inf',v:'22/tcp (SSH)               ALLOW'},{t:'inf',v:'80/tcp (Nginx HTTP)        ALLOW'},{t:'inf',v:'443/tcp (Nginx HTTPS)      ALLOW'}],
+    'certbot --nginx':[{t:'inf',v:'Requesting certificate...'},{t:'ok',v:'Successfully received certificate.'},{t:'ok',v:'Certificate saved at: /etc/letsencrypt/live/dhruvdev.me/'}],
+    'df -h':[{t:'inf',v:'Filesystem  Size  Used Avail'},{t:'inf',v:'/dev/vda1    25G  8.2G   16G  34%'}],
+    'free -h':[{t:'inf',v:'Mem:  1.9Gi  892Mi  1.0Gi'},{t:'inf',v:'Swap: 1.0Gi    0B   1.0Gi'}],
+    'pm2 list':[{t:'ok',v:'│ shopbot         │ ✅ online │'},{t:'ok',v:'│ wordpress-helper │ ✅ online │'}],
+    'uptime':[{t:'inf',v:' 14:32 up 14 days, load average: 0.12, 0.08'}],
+    'whoami':[{t:'inf',v:'root'}],
+    'help':[{t:'inf',v:'Try: nginx -t  systemctl status nginx  ufw status'},{t:'inf',v:'     certbot --nginx  df -h  free -h  pm2 list  uptime'}],
   };
-
-  const initLines = [
-    {pr:'root@droplet-01:~$', cm:'# Welcome to your DigitalOcean VPS'},
-    {pr:'root@droplet-01:~$', cm:'# Type commands below or use quick buttons', ou:''},
-    {pr:'root@droplet-01:~$', cm:'uptime', out:[{t:'inf',v:' 14:32:11 up 14 days, 6:20,  1 user,  load average: 0.12, 0.08'}]},
-    {pr:'root@droplet-01:~$', cm:'pm2 list', out:[{t:'ok',v:'│ 0   │ shopbot          │ ✅ online  │'},{t:'ok',v:'│ 1   │ wordpress-helper  │ ✅ online  │'}]},
-  ];
 
   el.innerHTML = `
   <div class="vps-app">
@@ -1231,9 +1644,9 @@ function buildVpsDemo(el) {
       <span class="vqs" onclick="vpsRun('ufw status')">ufw status</span>
       <span class="vqs" onclick="vpsRun('certbot --nginx')">certbot</span>
       <span class="vqs" onclick="vpsRun('pm2 list')">pm2 list</span>
-      <span class="vqs" onclick="vpsRun('df -h')">disk usage</span>
+      <span class="vqs" onclick="vpsRun('df -h')">disk</span>
       <span class="vqs" onclick="vpsRun('free -h')">memory</span>
-      <span class="vqs" onclick="vpsRun('ls /etc/nginx/sites-enabled')">sites</span>
+      <span class="vqs" onclick="vpsRun('uptime')">uptime</span>
     </div>
     <div class="vps-inp-row">
       <span style="color:#3fb950;font-family:DM Mono,monospace;font-size:12px;flex-shrink:0">root@droplet:~$</span>
@@ -1244,66 +1657,44 @@ function buildVpsDemo(el) {
 
   const term = document.getElementById('vps-term');
 
-  function addLine(html, delay=0) {
-    return new Promise(r => setTimeout(()=>{
-      const d = document.createElement('div');
-      d.className='vline';d.innerHTML=html;term.appendChild(d);term.scrollTop=term.scrollHeight;r();
-    }, delay));
+  async function addLine(html, delay=0) {
+    return new Promise(r=>setTimeout(()=>{
+      const d=document.createElement('div');d.className='vline';d.innerHTML=html;
+      term.appendChild(d);term.scrollTop=term.scrollHeight;r();
+    },delay));
   }
 
   async function vpsExec(cmd) {
     await addLine(`<span class="pr">root@droplet-01:~$</span><span class="cm"> ${cmd}</span>`);
     const r = COMMANDS[cmd.trim().toLowerCase()];
-    if(r) {
-      for(let i=0;i<r.length;i++){
-        await addLine(`<span class="${r[i].t}">${r[i].v}</span>`, 80);
-      }
-    } else if(cmd.startsWith('#')) {
-      // comment
-    } else {
-      await addLine(`<span class="er">bash: ${cmd}: command not found</span>`, 100);
-      await addLine(`<span class="ou">Try: nginx -t, pm2 list, ufw status, or type 'help'</span>`, 50);
-    }
+    if(r) { for(const line of r) await addLine(`<span class="${line.t}">${line.v}</span>`,80); }
+    else if(!cmd.startsWith('#')) { await addLine(`<span class="er">bash: ${cmd}: command not found — try 'help'</span>`,100); }
     await addLine(`<span class="pr">root@droplet-01:~$</span><span class="vcursor"></span>`);
-    term.querySelectorAll('.vcursor:not(:last-of-type)').forEach(c=>{
-      const parent = c.closest('.vline');
-      if(parent && parent !== term.lastElementChild) c.remove();
-    });
   }
 
-  window.vpsRun = async function(forcedCmd) {
-    const cLines = term.querySelectorAll('.vline');
-    const last = cLines[cLines.length-1];
-    if(last && last.querySelector('.vcursor')) last.remove();
-    const cmd = forcedCmd || document.getElementById('vps-inp').value.trim();
-    if(!cmd) return;
-    document.getElementById('vps-inp').value = '';
+  window.vpsRun = async function(fc) {
+    const last=term.lastElementChild;
+    if(last&&last.querySelector('.vcursor'))last.remove();
+    const cmd=fc||document.getElementById('vps-inp').value.trim();
+    if(!cmd)return;
+    document.getElementById('vps-inp').value='';
     await vpsExec(cmd);
   };
 
   (async()=>{
-    for(const l of initLines){
-      await addLine(`<span class="pr">${l.pr}</span><span class="cm"> ${l.cm}</span>`, 100);
-      if(l.out) for(const o of l.out) await addLine(`<span class="${o.t}">${o.v}</span>`, 60);
-    }
-    await addLine(`<span class="pr">root@droplet-01:~$</span><span class="vcursor"></span>`, 100);
+    await addLine(`<span class="pr">root@droplet-01:~$</span><span class="cm"> uptime</span>`,100);
+    await addLine(`<span class="inf"> 14:32 up 14 days, load average: 0.12</span>`,60);
+    await addLine(`<span class="pr">root@droplet-01:~$</span><span class="cm"> pm2 list</span>`,100);
+    await addLine(`<span class="ok">│ shopbot         │ ✅ online │</span>`,60);
+    await addLine(`<span class="ok">│ wordpress-helper │ ✅ online │</span>`,60);
+    await addLine(`<span class="pr">root@droplet-01:~$</span><span class="vcursor"></span>`,100);
   })();
 }
 
-// ══════ DASHBOARD DEMO ══════
+// DASHBOARD DEMO
 function buildDashDemo(el) {
-  const bars = [
-    {h:62,v:'₹52k',m:'Jan'},{h:74,v:'₹63k',m:'Feb'},{h:55,v:'₹47k',m:'Mar'},
-    {h:88,v:'₹75k',m:'Apr'},{h:70,v:'₹59k',m:'May'},{h:95,v:'₹81k',m:'Jun'},
-    {h:80,v:'₹68k',m:'Jul'},{h:65,v:'₹55k',m:'Aug'}
-  ];
-  const orders = [
-    {id:'#2041',name:'Priya Sharma',amount:'₹2,450',status:'paid'},
-    {id:'#2040',name:'Rohan Mehta',amount:'₹899',status:'paid'},
-    {id:'#2039',name:'Anjali Kapoor',amount:'₹3,200',status:'pend'},
-    {id:'#2038',name:'Vikram Singh',amount:'₹1,150',status:'paid'},
-    {id:'#2037',name:'Fatima Al-R.',amount:'₹4,800',status:'fail'},
-  ];
+  const bars=[{h:62,m:'Jan'},{h:74,m:'Feb'},{h:55,m:'Mar'},{h:88,m:'Apr'},{h:70,m:'May'},{h:95,m:'Jun'},{h:80,m:'Jul'},{h:65,m:'Aug'}];
+  const orders=[{id:'#2041',name:'Priya Sharma',amount:'₹2,450',status:'paid'},{id:'#2040',name:'Rohan Mehta',amount:'₹899',status:'paid'},{id:'#2039',name:'Anjali Kapoor',amount:'₹3,200',status:'pend'},{id:'#2038',name:'Vikram Singh',amount:'₹1,150',status:'paid'},{id:'#2037',name:'Fatima Al-R.',amount:'₹4,800',status:'fail'}];
 
   el.innerHTML = `
   <div class="dash-app">
@@ -1315,81 +1706,47 @@ function buildDashDemo(el) {
       </div>
     </div>
     <div class="dash-content">
-      <div class="dash-welcome">
-        <h2>Good afternoon, Dhruv 👋</h2>
-        <p id="dash-date-time">Loading...</p>
-      </div>
+      <div class="dash-welcome"><h2>Good afternoon, Dhruv 👋</h2><p id="dash-dt">Loading...</p></div>
       <div class="dash-stats-row">
-        <div class="dstat blue"><div class="dstat-val" id="ds-rev">₹84,520</div><div class="dstat-label">TOTAL REVENUE</div><div class="dstat-change up">↑ 12.4% this month</div></div>
-        <div class="dstat green"><div class="dstat-val" id="ds-ord">1,247</div><div class="dstat-label">TOTAL ORDERS</div><div class="dstat-change up">↑ 8.1% this week</div></div>
-        <div class="dstat purple"><div class="dstat-val" id="ds-usr">3,891</div><div class="dstat-label">ACTIVE USERS</div><div class="dstat-change up">↑ 5.7% today</div></div>
-        <div class="dstat orange"><div class="dstat-val">99.8%</div><div class="dstat-label">UPTIME</div><div class="dstat-change up">↑ All systems go</div></div>
+        <div class="dstat blue"><div class="dstat-val" id="ds-rev">₹84,520</div><div class="dstat-label">TOTAL REVENUE</div><div class="dstat-change up">↑ 12.4%</div></div>
+        <div class="dstat green"><div class="dstat-val" id="ds-ord">1,247</div><div class="dstat-label">TOTAL ORDERS</div><div class="dstat-change up">↑ 8.1%</div></div>
+        <div class="dstat purple"><div class="dstat-val" id="ds-usr">3,891</div><div class="dstat-label">ACTIVE USERS</div><div class="dstat-change up">↑ 5.7%</div></div>
+        <div class="dstat orange"><div class="dstat-val">99.8%</div><div class="dstat-label">UPTIME</div><div class="dstat-change up">↑ All good</div></div>
       </div>
       <div class="dash-row">
         <div class="dash-card">
           <div class="dash-card-title">Revenue Overview <span class="period">Last 8 months</span></div>
-          <div class="chart-bars">
-            ${bars.map(b=>`<div class="cbar-w"><div class="cbar" style="height:${b.h}%;background:linear-gradient(180deg,#1a6bff,#00c896)" title="${b.v}"></div><div class="cbar-l">${b.m}</div></div>`).join('')}
-          </div>
+          <div class="chart-bars">${bars.map(b=>`<div class="cbar-w"><div class="cbar" style="height:${b.h}%;background:linear-gradient(180deg,#1a6bff,#00c896)"></div><div class="cbar-l">${b.m}</div></div>`).join('')}</div>
         </div>
         <div class="dash-card">
           <div class="dash-card-title">Traffic Sources</div>
           <div class="dash-pie-wrap">
-            <svg width="90" height="90" viewBox="0 0 90 90">
-              <circle cx="45" cy="45" r="38" fill="none" stroke="#e5e7eb" stroke-width="14"/>
-              <circle cx="45" cy="45" r="38" fill="none" stroke="#1a6bff" stroke-width="14" stroke-dasharray="143 96" stroke-dashoffset="0" transform="rotate(-90 45 45)"/>
-              <circle cx="45" cy="45" r="38" fill="none" stroke="#00c896" stroke-width="14" stroke-dasharray="57 182" stroke-dashoffset="-143" transform="rotate(-90 45 45)"/>
-              <circle cx="45" cy="45" r="38" fill="none" stroke="#f59e0b" stroke-width="14" stroke-dasharray="30 209" stroke-dashoffset="-200" transform="rotate(-90 45 45)"/>
-              <text x="45" y="49" text-anchor="middle" font-size="11" font-weight="800" fill="#111" font-family="Syne,sans-serif">8.4k</text>
-            </svg>
-            <div class="dash-pie-legend">
-              <div class="pie-item"><div class="pie-dot" style="background:#1a6bff"></div>Organic 59%</div>
-              <div class="pie-item"><div class="pie-dot" style="background:#00c896"></div>Social 24%</div>
-              <div class="pie-item"><div class="pie-dot" style="background:#f59e0b"></div>Paid Ads 12%</div>
-              <div class="pie-item"><div class="pie-dot" style="background:#e5e7eb"></div>Other 5%</div>
-            </div>
+            <svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="38" fill="none" stroke="#e5e7eb" stroke-width="14"/><circle cx="45" cy="45" r="38" fill="none" stroke="#1a6bff" stroke-width="14" stroke-dasharray="143 96" stroke-dashoffset="0" transform="rotate(-90 45 45)"/><circle cx="45" cy="45" r="38" fill="none" stroke="#00c896" stroke-width="14" stroke-dasharray="57 182" stroke-dashoffset="-143" transform="rotate(-90 45 45)"/><text x="45" y="49" text-anchor="middle" font-size="11" font-weight="800" fill="#111" font-family="Syne,sans-serif">8.4k</text></svg>
+            <div class="dash-pie-legend"><div class="pie-item"><div class="pie-dot" style="background:#1a6bff"></div>Organic 59%</div><div class="pie-item"><div class="pie-dot" style="background:#00c896"></div>Social 24%</div><div class="pie-item"><div class="pie-dot" style="background:#f59e0b"></div>Paid 12%</div></div>
           </div>
         </div>
       </div>
-      <div class="dash-card" style="margin-bottom:0">
-        <div class="dash-card-title">Recent Orders <span class="period" id="live-count" style="color:#10b981">● Live</span></div>
-        <table class="dash-table">
-          <thead><tr><th>Order ID</th><th>Customer</th><th>Amount</th><th>Status</th></tr></thead>
-          <tbody id="orders-tbody">
-            ${orders.map(o=>`<tr><td>${o.id}</td><td>${o.name}</td><td>${o.amount}</td><td><span class="status-badge ${o.status}">${o.status==='paid'?'✓ Paid':o.status==='pend'?'⏳ Pending':'✗ Failed'}</span></td></tr>`).join('')}
-          </tbody>
-        </table>
+      <div class="dash-card">
+        <div class="dash-card-title">Recent Orders <span class="period" style="color:#10b981">● Live</span></div>
+        <table class="dash-table"><thead><tr><th>Order ID</th><th>Customer</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody>${orders.map(o=>`<tr><td>${o.id}</td><td>${o.name}</td><td>${o.amount}</td><td><span class="status-badge ${o.status}">${o.status==='paid'?'✓ Paid':o.status==='pend'?'⏳ Pending':'✗ Failed'}</span></td></tr>`).join('')}</tbody></table>
       </div>
     </div>
   </div>`;
 
-  function updateTime() {
-    const d = new Date();
-    const el2 = document.getElementById('dash-date-time');
-    if(el2) el2.textContent =
-      d.toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'}) +
-      ' · ' + d.toLocaleTimeString('en-IN');
-  }
-  updateTime();
-  window._vpsInterval = setInterval(updateTime, 1000);
+  function updateTime(){const d=new Date(),el2=document.getElementById('dash-dt');if(el2)el2.textContent=d.toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' · '+d.toLocaleTimeString('en-IN');}
+  updateTime();window._vpsInterval=setInterval(updateTime,1000);
 
-  let rev = 84520, ord = 1247, usr = 3891;
-  setInterval(() => {
-    rev += Math.floor(Math.random()*200-50);
-    ord += Math.floor(Math.random()*3);
-    usr += Math.floor(Math.random()*5-1);
-    const r = document.getElementById('ds-rev');
-    const o = document.getElementById('ds-ord');
-    const u = document.getElementById('ds-usr');
-    if(r) r.textContent = '₹'+rev.toLocaleString('en-IN');
-    if(o) o.textContent = ord.toLocaleString('en-IN');
-    if(u) u.textContent = usr.toLocaleString('en-IN');
-  }, 3000);
+  let rev=84520,ord=1247,usr=3891;
+  setInterval(()=>{
+    rev+=Math.floor(Math.random()*200-50);ord+=Math.floor(Math.random()*3);usr+=Math.floor(Math.random()*5-1);
+    const r=document.getElementById('ds-rev'),o=document.getElementById('ds-ord'),u=document.getElementById('ds-usr');
+    if(r)r.textContent='₹'+rev.toLocaleString('en-IN');if(o)o.textContent=ord.toLocaleString('en-IN');if(u)u.textContent=usr.toLocaleString('en-IN');
+  },3000);
 }
 
-// CSS for wp-notif animation
-const style = document.createElement('style');
-style.textContent = `@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}`;
+const style=document.createElement('style');
+style.textContent=`@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}`;
 document.head.appendChild(style);
 </script>
 </body>
