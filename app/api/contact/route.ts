@@ -6,7 +6,6 @@ type ContactPayload = {
   name?: string;
   email?: string;
   projectType?: string;
-  budget?: string;
   message?: string;
 };
 
@@ -28,7 +27,6 @@ export async function POST(request: Request) {
   const name = (body.name ?? "").trim().slice(0, 200);
   const email = (body.email ?? "").trim().slice(0, 200);
   const projectType = (body.projectType ?? "").trim().slice(0, 100);
-  const budget = (body.budget ?? "").trim().slice(0, 100);
   const message = (body.message ?? "").trim().slice(0, 4000);
 
   if (!name || !email || !message) {
@@ -56,7 +54,6 @@ export async function POST(request: Request) {
     `<b>Name:</b> ${escape(name)}`,
     `<b>Email:</b> ${escape(email)}`,
     projectType ? `<b>Project:</b> ${escape(projectType)}` : "",
-    budget ? `<b>Budget:</b> ${escape(budget)}` : "",
     "",
     "<b>Message:</b>",
     escape(message),

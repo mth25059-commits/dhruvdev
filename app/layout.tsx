@@ -23,9 +23,10 @@ const geistMono = Geist_Mono({
 });
 
 export const viewport: Viewport = {
+  // Light is the default theme; mobile browser chrome should match.
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0A0A0F" },
     { media: "(prefers-color-scheme: light)", color: "#FAFAF7" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A0A0F" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -124,6 +125,14 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* No-flash theme bootstrap. Light is the default; only flip to dark
+            if the user explicitly chose it in a previous visit. Runs before
+            paint so there's no light-to-dark flash for dark-mode users. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('dhruvdev-theme');if(t!=='dark'){document.documentElement.classList.add('light')}}catch(e){document.documentElement.classList.add('light')}`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

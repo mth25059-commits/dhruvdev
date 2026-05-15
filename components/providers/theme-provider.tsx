@@ -31,12 +31,12 @@ const subscribe = (callback: () => void) => {
 };
 
 const getSnapshot = (): Theme => {
-  if (typeof window === "undefined") return "dark";
+  if (typeof window === "undefined") return "light";
   const stored = window.localStorage.getItem(STORAGE_KEY);
-  return stored === "light" ? "light" : "dark";
+  return stored === "dark" ? "dark" : "light";
 };
 
-const getServerSnapshot = (): Theme => "dark";
+const getServerSnapshot = (): Theme => "light";
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const stored = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);

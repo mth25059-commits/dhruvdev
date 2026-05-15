@@ -40,7 +40,6 @@ export function Contact() {
       name: String(formData.get("name") ?? "").trim(),
       email: String(formData.get("email") ?? "").trim(),
       projectType: String(formData.get("projectType") ?? "").trim(),
-      budget: String(formData.get("budget") ?? "").trim(),
       message: String(formData.get("message") ?? "").trim(),
     };
 
@@ -108,22 +107,19 @@ export function Contact() {
                 type="email"
                 placeholder="jane@company.com"
               />
-              <Select
-                label="Project type"
-                name="projectType"
-                options={[
-                  "Website",
-                  "Telegram Bot",
-                  "AI Automation",
-                  "VPS / Hosting",
-                  "Other",
-                ]}
-              />
-              <Select
-                label="Budget"
-                name="budget"
-                options={["< $500", "$500 – $2k", "$2k – $5k", "$5k+"]}
-              />
+              <div className="md:col-span-2">
+                <Select
+                  label="Project type"
+                  name="projectType"
+                  options={[
+                    "Website",
+                    "Telegram Bot",
+                    "AI Automation",
+                    "VPS / Hosting",
+                    "Other",
+                  ]}
+                />
+              </div>
             </div>
             <div className="mt-4">
               <Field
