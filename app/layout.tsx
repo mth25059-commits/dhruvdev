@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LenisProvider } from "@/components/providers/lenis-provider";
 import { CustomCursor } from "@/components/cursor";
 import { GridBackground } from "@/components/grid-background";
+import { CodeRainBackground } from "@/components/code-globe";
 import { Navbar } from "@/components/navbar";
 import { AiChat } from "@/components/ai-chat";
 import { SITE } from "@/lib/content";
@@ -132,6 +133,7 @@ export default function RootLayout({
         <ThemeProvider>
           <LenisProvider>
             <GridBackground />
+            <CodeRainBackground />
             <CustomCursor />
             <Navbar />
             <main className="relative z-10">{children}</main>

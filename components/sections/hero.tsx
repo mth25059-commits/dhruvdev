@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { SITE } from "@/lib/content";
+import { HeroGlobe } from "@/components/code-globe";
 
 const containerVariants = {
   hidden: { opacity: 1 },
@@ -39,6 +40,7 @@ export function Hero() {
       <div className="mesh-bg">
         <div className="blob-3" />
       </div>
+      <HeroGlobe />
       <div className="noise absolute inset-0 -z-10" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px]">

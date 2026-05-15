@@ -1,16 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { NAV_LINKS } from "@/lib/content";
 import { useTheme } from "@/components/providers/theme-provider";
+import { useActiveSection } from "@/lib/use-active-section";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
+
+  const sectionIds = useMemo(
+    () => NAV_LINKS.map((l) => l.href.replace(/^#/, "")),
+    [],
+  );
+  const active = useActiveSection(sectionIds);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -32,17 +39,43 @@ export function Navbar() {
         <Logo showWordmark />
 
         <nav className="hidden items-center gap-1 md:flex">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="group relative rounded-full px-4 py-2 text-sm text-[rgb(var(--text-muted))] transition-colors hover:text-[rgb(var(--text-primary))]"
-              data-cursor-hover
-            >
-              <span className="relative z-10">{link.label}</span>
-              <span className="absolute inset-0 -z-0 rounded-full bg-white/0 transition-colors group-hover:bg-white/5" />
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const id = link.href.replace(/^#/, "");
+            const isActive = active === id;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                aria-current={isActive ? "page" : undefined}
+                className={cn(
+                  "group relative rounded-full px-4 py-2 text-sm transition-colors",
+                  isActive
+                    ? "text-[rgb(var(--text-primary))]"
+                    : "text-[rgb(var(--text-muted))] hover:text-[rgb(var(--text-primary))]",
+                )}
+                data-cursor-hover
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    aria-hidden
+                    className="absolute inset-0 -z-0 rounded-full"
+                    style={{
+                      background:
+                        "linear-gradient(120deg, rgb(var(--accent-violet)/0.35) 0%, rgb(var(--accent-pink)/0.3) 50%, rgb(var(--accent-amber)/0.28) 100%)",
+                      boxShadow:
+                        "0 0 24px -8px rgb(var(--accent-violet)/0.55), inset 0 0 0 1px rgb(255 255 255 / 0.08)",
+                    }}
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                  />
+                )}
+                <span className="relative z-10">{link.label}</span>
+                {!isActive && (
+                  <span className="absolute inset-0 -z-0 rounded-full bg-white/0 transition-colors group-hover:bg-white/5" />
+                )}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2">

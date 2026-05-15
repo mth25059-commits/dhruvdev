@@ -27,3 +27,12 @@ export function useMediaQuery(query: string): boolean {
 export function useIsDesktop() {
   return useMediaQuery("(hover: hover) and (pointer: fine)");
 }
+
+/**
+ * Looser desktop check used for purely decorative motion (background globe,
+ * code rain). Anything ≥ 1024px gets the decoration. Mouse-driven effects
+ * (custom cursor, grid spotlight) still gate on the stricter `useIsDesktop`.
+ */
+export function useIsWideViewport() {
+  return useMediaQuery("(min-width: 1024px)");
+}

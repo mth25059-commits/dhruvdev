@@ -6,20 +6,22 @@ import { SITE } from "@/lib/content";
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-white/5 bg-[rgb(var(--bg-base))] px-6 pt-16 pb-8 md:px-10 md:pt-24">
+    <footer className="relative overflow-hidden border-t border-white/5 bg-[rgb(var(--bg-base))] px-6 pt-16 pb-8 md:px-10 md:pt-24">
       <div className="mx-auto w-full max-w-[1400px]">
-        {/* Giant name */}
+        {/* Giant name — sized so "Chandrawanshi" (longest line) always fits.
+            12 chars wide ≈ 0.52em per char in our display font, so we cap
+            the font size at viewport-width / 7 to guarantee no clip. */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-10% 0px" }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="relative"
         >
-          <h2 className="font-display select-none text-balance text-[clamp(3rem,16vw,16rem)] font-bold leading-[0.85] tracking-[-0.05em]">
+          <h2 className="font-display select-none text-balance text-[clamp(2.5rem,11.5vw,12rem)] font-bold leading-[0.88] tracking-[-0.045em]">
             <span className="gradient-text-animated">Dhruv</span>
             <br />
-            Chandrawanshi
+            <span className="block">Chandrawanshi</span>
           </h2>
           <a
             href="#top"
