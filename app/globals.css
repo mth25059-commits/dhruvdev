@@ -1,0 +1,347 @@
+@import "tailwindcss";
+
+/* ============================
+   Design tokens — Aurora Violet
+   ============================ */
+:root {
+  /* Dark mode (default) */
+  --bg-base: 10 10 15;          /* #0A0A0F */
+  --bg-panel: 19 16 31;         /* #13101F */
+  --bg-elevated: 26 21 48;      /* #1A1530 */
+  --text-primary: 250 250 250;  /* #FAFAFA */
+  --text-muted: 156 163 175;    /* #9CA3AF */
+  --text-subtle: 113 113 122;   /* #71717A */
+  --border-subtle: 255 255 255 / 0.08;
+  --border-strong: 255 255 255 / 0.15;
+  --grid-line: 255 255 255 / 0.04;
+  --grid-glow: 124 58 237 / 0.5;
+
+  /* Accent gradient — used across themes */
+  --accent-violet: 124 58 237;  /* #7C3AED */
+  --accent-pink: 236 72 153;    /* #EC4899 */
+  --accent-amber: 245 158 11;   /* #F59E0B */
+  --accent-cyan: 34 211 238;    /* #22D3EE */
+
+  /* Fonts */
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace;
+  --font-display: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.light {
+  --bg-base: 250 250 247;       /* #FAFAF7 warm off-white */
+  --bg-panel: 255 255 255;
+  --bg-elevated: 245 245 240;
+  --text-primary: 10 10 15;
+  --text-muted: 82 82 82;
+  --text-subtle: 113 113 113;
+  --border-subtle: 0 0 0 / 0.08;
+  --border-strong: 0 0 0 / 0.15;
+  --grid-line: 0 0 0 / 0.04;
+  --grid-glow: 124 58 237 / 0.35;
+}
+
+@theme inline {
+  --color-bg: rgb(var(--bg-base));
+  --color-panel: rgb(var(--bg-panel));
+  --color-elevated: rgb(var(--bg-elevated));
+  --color-text: rgb(var(--text-primary));
+  --color-muted: rgb(var(--text-muted));
+  --color-subtle: rgb(var(--text-subtle));
+  --color-violet: rgb(var(--accent-violet));
+  --color-pink: rgb(var(--accent-pink));
+  --color-amber: rgb(var(--accent-amber));
+  --color-cyan: rgb(var(--accent-cyan));
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-display: var(--font-display);
+}
+
+/* ============================
+   Base styles
+   ============================ */
+* {
+  border-color: rgb(var(--border-subtle));
+}
+
+html {
+  background: rgb(var(--bg-base));
+  color: rgb(var(--text-primary));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: rgb(var(--bg-base));
+  color: rgb(var(--text-primary));
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Hide native cursor on desktop only when our custom cursor is active */
+@media (hover: hover) and (pointer: fine) {
+  body[data-cursor-active="true"],
+  body[data-cursor-active="true"] * {
+    cursor: none !important;
+  }
+}
+
+/* ============================
+   Custom selection
+   ============================ */
+::selection {
+  background: rgb(var(--accent-violet) / 0.4);
+  color: rgb(var(--text-primary));
+}
+
+/* ============================
+   Scrollbar
+   ============================ */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* ============================
+   Utility classes
+   ============================ */
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--accent-violet)) 0%,
+    rgb(var(--accent-pink)) 50%,
+    rgb(var(--accent-amber)) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.gradient-text-animated {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--accent-violet)),
+    rgb(var(--accent-pink)),
+    rgb(var(--accent-amber)),
+    rgb(var(--accent-violet))
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.gradient-border {
+  position: relative;
+  background: rgb(var(--bg-panel));
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgb(var(--accent-violet) / 0.6),
+    rgb(var(--accent-pink) / 0.4),
+    rgb(var(--accent-amber) / 0.3)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+.noise {
+  position: relative;
+}
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.45'/></svg>");
+  opacity: 0.04;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.mask-fade-b {
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+}
+.mask-fade-r {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+
+/* ============================
+   Mesh gradient hero bg
+   ============================ */
+.mesh-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.mesh-bg::before,
+.mesh-bg::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  animation: float 18s ease-in-out infinite;
+}
+.mesh-bg::before {
+  width: 40vw; height: 40vw;
+  background: radial-gradient(circle, rgb(var(--accent-violet)), transparent 65%);
+  top: -10vw; left: -10vw;
+}
+.mesh-bg::after {
+  width: 50vw; height: 50vw;
+  background: radial-gradient(circle, rgb(var(--accent-pink)), transparent 65%);
+  bottom: -15vw; right: -15vw;
+  animation-delay: -9s;
+}
+.mesh-bg .blob-3 {
+  position: absolute;
+  width: 35vw; height: 35vw;
+  top: 30vh; left: 35vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(var(--accent-amber)), transparent 65%);
+  filter: blur(100px);
+  opacity: 0.35;
+  animation: float 22s ease-in-out infinite -6s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(4vw, 5vh) scale(1.08); }
+  66%      { transform: translate(-3vw, -4vh) scale(0.95); }
+}
+
+/* ============================
+   Marquee
+   ============================ */
+.marquee-track {
+  display: flex;
+  gap: 4rem;
+  white-space: nowrap;
+  animation: marquee 40s linear infinite;
+}
+.marquee-track.reverse { animation-direction: reverse; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ============================
+   Pulse dot (status indicator)
+   ============================ */
+.status-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+}
+.status-dot::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: #22c55e;
+  opacity: 0.5;
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes ping {
+  0%   { transform: scale(1);   opacity: 0.5; }
+  75%, 100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* ============================
+   Typing dots (AI chat / bot mock)
+   ============================ */
+.typing-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgb(var(--text-muted));
+  margin: 0 2px;
+  animation: typing 1.4s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ============================
+   Logo path draw on load
+   ============================ */
+.logo-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  pathLength: 1;
+  animation: draw 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+}
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ============================
+   Reveal animations (CSS-only fallback)
+   ============================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ============================
+   Tilt utility (3D card hover)
+   ============================ */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.tilt-card-inner {
+  transform-style: preserve-3d;
+}
+
+/* ============================
+   Glow effects
+   ============================ */
+.glow-violet {
+  box-shadow:
+    0 0 40px rgb(var(--accent-violet) / 0.25),
+    0 0 80px rgb(var(--accent-violet) / 0.1);
+}
+.glow-pink {
+  box-shadow:
+    0 0 40px rgb(var(--accent-pink) / 0.25),
+    0 0 80px rgb(var(--accent-pink) / 0.1);
+}
