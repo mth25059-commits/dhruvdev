@@ -41,7 +41,11 @@ export function AiChat() {
     setInput("");
     setLoading(true);
     try {
-      const res = await fetch("/api/chat", {
+      // Build an absolute URL via window.location.origin (which never includes
+      // any basic-auth credentials in the URL) so fetch() doesn't reject the
+      // request when previewed behind a tunnel like https://user:pass@host.
+      const endpoint = `${window.location.origin}/api/chat`;
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: nextMessages }),
